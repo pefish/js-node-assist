@@ -1,8 +1,6 @@
 /**
  * Created by joy on 12/10/2017.
  */
-import BigNumber from 'bignumber.js'
-import ErrorHelper from '../src/common/helpers/ErrorHelper'
 require('../index')
 
 // String
@@ -12,12 +10,6 @@ require('../index')
 
 const b = '1111111111111111111', c = 1
 // console.log(Number(b) + c) // 1111111111111111200 有精度问题
-try {
-  console.log(b + sfs)
-} catch (err) {
-  console.log(err.getErrorMessage())
-  console.log(err instanceof Error)
-}
 console.log(b.add(c))  // exception
 // console.log(b.add(c.toString()))  // 1111111111111111112
 // console.log(b.add(new BigNumber(c.toString())))  // 1111111111111111112
