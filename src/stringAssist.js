@@ -4,23 +4,25 @@
 import BigNumber from 'bignumber.js'
 import AssertUtil from './common/utils/AssertUtil'
 
-function assertType (val) {
-  if (typeof val !== 'string') {
-    throw new Error(`'string' type can not compare to '${typeof val}' type`)
-  }
-}
-
 String.prototype.equals = function (val) {
   AssertUtil.isType(val, 'string')
   return this === val
 }
 
-String.prototype.add = function (val) {
+String.prototype.add = function (val, retBigNumber = false) {
   AssertUtil.isType(val, ['string', BigNumber])
-  const num1 = new BigNumber(this)
-  const num2 = (val instanceof BigNumber) ? val : new BigNumber(val)
-  return num1.add(num2).toString()
+  const BN = BigNumber.another({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return retBigNumber === true ? num1.add(val) : num1.add(val).toString()
 }
+
+// 加千分号
+String.prototype.addThousandSign = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
+  return new BigNumber(this).toFormat(decimalRemain, remainMethod)
+}
+
 
 
 
