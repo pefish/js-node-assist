@@ -1,0 +1,3 @@
+[submodule "src/common"]
+	path = src/common
+	url = git@git.oschina.net:pefish/common.git

@@ -1,0 +1,34 @@
+{
+  "name": "node-assist",
+  "version": "0.0.2",
+  "description": "assistance tool of node",
+  "keywords": [
+    "assist",
+    "node",
+    "tool"
+  ],
+  "homepage": "https://gitee.com/pefish/node-assist",
+  "bugs": "https://gitee.com/pefish/node-assist/issues",
+  "license": "MIT",
+  "author": "pefish",
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/pefish/node-assist"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "yarn build && babel-node test/index.js"
+  },
+  "dependencies": {
+    "bignumber.js": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1"
+  }
+}
