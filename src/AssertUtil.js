@@ -1,8 +1,8 @@
 /**
  * Created by joy on 28/09/2017.
  */
-import errorCodes from '../constants/errorCodes'
-import ErrorHelper from '../helpers/ErrorHelper'
+import errorCodes from './errorCodes'
+import ErrorHelper from './ErrorHelper'
 
 export default class AssertUtil {
   
