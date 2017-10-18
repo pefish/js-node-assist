@@ -2,7 +2,7 @@
  * Created by joy on 12/10/2017.
  */
 import BigNumber from 'bignumber.js'
-import AssertUtil from './common/utils/AssertUtil'
+import AssertUtil from './AssertUtil'
 
 String.prototype.equals = function (val) {
   AssertUtil.isType(val, 'string')
