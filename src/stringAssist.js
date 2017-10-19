@@ -68,6 +68,10 @@ String.prototype.addThousandSign = function (decimalRemain = null, remainMethod 
   return new BigNumber(this).toFormat(decimalRemain, remainMethod)
 }
 
+Stying.prototype.remainDecimal = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
+  return new BigNumber(this).round(decimalRemain, remainMethod)
+}
+
 
 
 
