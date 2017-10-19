@@ -69,7 +69,11 @@ String.prototype.addThousandSign = function (decimalRemain = null, remainMethod 
 }
 
 String.prototype.remainDecimal = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
-  return new BigNumber(this).round(decimalRemain, remainMethod)
+  const BN = BigNumber.another({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.round(decimalRemain, remainMethod).toString()
 }
 
 
