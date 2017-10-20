@@ -18,12 +18,14 @@ const a = '36563.12542', b = 0.2
 // console.log(a + b)  // 0.30000000000000004 有精度问题
 // console.log(a.add(b.toString()))  // 0.3
 // console.log(a.addThousandSign())
-
+console.log('6363,66.675'.removeThousandSign())
 
 // Number
 // const a = 1
 // console.log(a.equals('1'))  // exception
 // console.log(a.equals(1))  // true
 // console.log(a.equals(2))  // false
+
+
 
 

@@ -68,6 +68,11 @@ String.prototype.addThousandSign = function (decimalRemain = null, remainMethod 
   return new BigNumber(this).toFormat(decimalRemain, remainMethod)
 }
 
+// 移除千分号
+String.prototype.removeThousandSign = function () {
+  return this.replace(new RegExp(',', 'g'), '')
+}
+
 String.prototype.remainDecimal = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
