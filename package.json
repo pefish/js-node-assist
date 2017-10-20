@@ -1,6 +1,6 @@
 {
   "name": "node-assist",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -20,7 +20,6 @@
   },
   "main": "index.js",
   "scripts": {
-    "postinstall": "babel src -d lib",
     "build": "babel src -d lib",
     "test": "babel src -d lib && babel-node test/index.js"
   },
