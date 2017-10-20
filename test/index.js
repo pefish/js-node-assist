@@ -18,7 +18,8 @@ const a = '36563.12542', b = 0.2
 // console.log(a + b)  // 0.30000000000000004 有精度问题
 // console.log(a.add(b.toString()))  // 0.3
 // console.log(a.addThousandSign())
-console.log('6363,66.675'.removeThousandSign())
+// console.log('6363,66.675'.removeThousandSign())
+// console.log('6785.00'.addThousandSign())
 
 // Number
 // const a = 1

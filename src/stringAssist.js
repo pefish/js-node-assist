@@ -65,7 +65,10 @@ String.prototype.eq = function (val) {
 
 // 加千分号
 String.prototype.addThousandSign = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
-  return new BigNumber(this).toFormat(decimalRemain, remainMethod)
+  const parts = this.split(".")
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  return parts[1] === '' ? parts[0] : parts.join(".")
+  // return new BigNumber(this).toFormat(decimalRemain, remainMethod)
 }
 
 // 移除千分号
