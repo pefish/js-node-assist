@@ -22,8 +22,8 @@ const a = '36563.12542', b = 0.2
 // console.log('6785.00'.addThousandSign())
 // console.log('hsgyt\\fghjdy.tf.\\dgh\\'.replaceAll('\\\\', '\\\\'))
 // console.log('2354.56'.remainDecimal(1))
-console.log(a.decimalCount())
-
+// console.log(a.decimalCount())
+console.log(a.splits(['5', '1']))
 
 // Number
 // const a = 1

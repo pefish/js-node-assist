@@ -93,5 +93,9 @@ String.prototype.decimalCount = function () {
   return this.split('.')[1].length
 }
 
+String.prototype.splits = function (searchStrs) {
+  const str = searchStrs.join('|')
+  return this.split(new RegExp(str, 'gm'))
+}
 
 
