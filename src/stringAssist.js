@@ -81,9 +81,17 @@ String.prototype.remainDecimal = function (decimalRemain = null, remainMethod = 
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return num1.round(decimalRemain, remainMethod).toString()
+  return num1.toFixed(decimalRemain, remainMethod)
 }
 
+String.prototype.replaceAll = function (regStr, replaceStr) {
+  return this.replace(new RegExp(regStr, 'gm'), replaceStr)
+}
+
+String.prototype.decimalCount = function () {
+  const num1 = new BigNumber(this)
+  return this.split('.')[1].length
+}
 
 
 

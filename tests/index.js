@@ -1,7 +1,7 @@
 /**
  * Created by joy on 12/10/2017.
  */
-require('../index_es6')
+require('../src/index')
 
 // String
 // console.log('1'.equals(1))  // exception
@@ -20,6 +20,10 @@ const a = '36563.12542', b = 0.2
 // console.log(a.addThousandSign())
 // console.log('6363,66.675'.removeThousandSign())
 // console.log('6785.00'.addThousandSign())
+// console.log('hsgyt\\fghjdy.tf.\\dgh\\'.replaceAll('\\\\', '\\\\'))
+// console.log('2354.56'.remainDecimal(1))
+console.log(a.decimalCount())
+
 
 // Number
 // const a = 1

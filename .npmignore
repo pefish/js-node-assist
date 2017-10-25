@@ -1,1 +1,6 @@
 src
+.babelrc
+yarn.lock
+.gitmodules
+.idea
+tests
