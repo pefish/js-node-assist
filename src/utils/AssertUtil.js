@@ -3,12 +3,32 @@
  */
 import errorCodes from '../constants/errorCodes'
 import ErrorHelper from './ErrorHelper'
+import BigNumber from 'bignumber.js'
 
 export default class AssertUtil {
   
   static notEmpty (value, opts = {}) {
     if ('' === value || null === value || undefined === value) {
       throw new ErrorHelper(`value: ${value}, notEmpty except: ${JSON.stringify(opts)}`, errorCodes.PARAM_EMPTY_ERROR)
+    }
+  }
+
+  static canCast (value, expectValue, opts = {}) {
+    let result = false
+    switch (expectValue) {
+      case 'number':
+        result = !isNaN(Number(value))
+        break
+      case 'integer':
+        result = !isNaN(Number(value)) && Number.isInteger(Number(value))
+        break
+      case 'bignumber':
+        const num1 = new BigNumber(value)
+        result = true
+        break
+    }
+    if (result === false) {
+      throw new ErrorHelper(`value: ${value}, expectValue: ${JSON.stringify(expectValue)}, canCast except: ${JSON.stringify(opts)}`, errorCodes.PARAM_CAN_CAST_ERROR)
     }
   }
 

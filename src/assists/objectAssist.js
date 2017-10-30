@@ -1,4 +1,4 @@
-Object.prototype.toTwoDimen = function (spliceNum) {
+Object.prototype.toTwoDimenArray = function (spliceNum) {
   // {
   //   a: 7,
   //   b: 6,
@@ -36,3 +36,29 @@ Object.prototype.assign = function (obj) {
   return this
 }
 
+Object.prototype.toArray = function () {
+  return Object.entries(this)
+}
+
+Object.prototype.getKeys = function () {
+  return Object.keys(this)
+}
+
+Object.prototype.getValues = function () {
+  return Object.values(this)
+}
+
+Object.prototype.getEntries = function () {
+  return Object.entries(this)
+}
+
+Object.prototype.remove = function (key) {
+  const b = {}
+  Object.assign(b, this)
+  delete b[key]
+  return b
+}
+
+Object.prototype.has = function (key) {
+  return this[key] !== undefined
+}

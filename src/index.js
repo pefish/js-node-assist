@@ -4,8 +4,7 @@
 
 global['logger'] = global['logger'] || console
 
-import './assists/errorAssist'
-import './assists/objectAssist'
-import './assists/numberAssist'
-import './assists/stringAssist'
-import './assists/arrayAssist'
+require('./assists/errorAssist')
+require('./assists/objectAssist')
+require('./assists/stringAssist')
+require('./assists/arrayAssist')

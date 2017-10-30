@@ -1,6 +1,6 @@
 {
   "name": "node-assist",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -21,7 +21,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "babel-node tests/index.js",
+    "test": "yarn build && node tests/index.js",
     "publish-npm": "yarn test && yarn build && npm publish --tag latest"
   },
   "dependencies": {
