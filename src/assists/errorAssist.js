@@ -1,7 +1,3 @@
-/**
- * Created by joy on 12/10/2017.
- */
-
 Error.prototype.setErrorCode = function (errorCode) {
   this._errorCode = errorCode
 }

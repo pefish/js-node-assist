@@ -34,10 +34,10 @@ require('../src/index')
 
 // Array
 // const a = [1, 2, 3, 4, 5, 6, 7]
-// console.log({a: 1, b: 2, c: 3}.toTwoDimen(2))
 // console.log([1, 1, 34, 2, 'a', 'a', 'b', ''].uniq().removeEmpty())
 
 // Object
-const a = {a: 1}
-console.log(a.assign({b: 2}))
+// const a = {a: 1}
+// console.log(a.assign({b: 2}))
+console.log({a: 1, b: 2, c: 3}.toTwoDimen(2))
 

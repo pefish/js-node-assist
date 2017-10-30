@@ -1,8 +1,3 @@
-/**
- * Created by joy on 12/10/2017.
- */
-import AssertUtil from '../utils/AssertUtil'
-
 Array.prototype.toTwoDimen = function (spliceNum) {
   let num = this.length > 0 ? parseInt(this.length / spliceNum) + 1 : 0
   let newArrays = []

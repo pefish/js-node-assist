@@ -1,6 +1,3 @@
-/**
- * Created by joy on 12/10/2017.
- */
 import BigNumber from 'bignumber.js'
 import AssertUtil from '../utils/AssertUtil'
 

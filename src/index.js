@@ -5,7 +5,7 @@
 global['logger'] = global['logger'] || console
 
 import './assists/errorAssist'
+import './assists/objectAssist'
 import './assists/numberAssist'
 import './assists/stringAssist'
 import './assists/arrayAssist'
-import './assists/objectAssist'

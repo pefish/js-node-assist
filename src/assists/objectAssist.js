@@ -1,13 +1,3 @@
-/**
- * Created by joy on 12/10/2017.
- */
-import AssertUtil from '../utils/AssertUtil'
-
-/**
- *
- * @param spliceNum
- * @returns {Array}
- */
 Object.prototype.toTwoDimen = function (spliceNum) {
   // {
   //   a: 7,
