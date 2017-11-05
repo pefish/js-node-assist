@@ -50,7 +50,8 @@ require('../lib/index')
 
 
 // Array
-// const a = [1, 2, 3, 4, 5, 6, 7]
+const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+console.log(a.toTwoDimen(null, 11))
 // console.log([1, 1, 34, 2, 'a', 'a', 'b', ''].uniq().removeEmpty())
 
 // Object
