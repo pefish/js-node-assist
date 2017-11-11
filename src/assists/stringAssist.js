@@ -10,7 +10,7 @@ import AssertUtil from '../utils/AssertUtil'
  * @returns {any}
  */
 String.prototype.add = function (val, retBigNumber = false) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
@@ -26,7 +26,7 @@ String.prototype.add = function (val, retBigNumber = false) {
  * @returns {any}
  */
 String.prototype.sub = function (val, retBigNumber = false) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
@@ -42,7 +42,7 @@ String.prototype.sub = function (val, retBigNumber = false) {
  * @returns {any}
  */
 String.prototype.multi = function (val, retBigNumber = false) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
@@ -58,7 +58,7 @@ String.prototype.multi = function (val, retBigNumber = false) {
  * @returns {any}
  */
 String.prototype.div = function (val, retBigNumber = false) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
@@ -73,7 +73,7 @@ String.prototype.div = function (val, retBigNumber = false) {
  * @returns {boolean}
  */
 String.prototype.gt = function (val) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const num1 = new BigNumber(this)
   return num1.comparedTo(val) === 1
@@ -85,7 +85,7 @@ String.prototype.gt = function (val) {
  * @returns {boolean}
  */
 String.prototype.lt = function (val) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const num1 = new BigNumber(this)
   return num1.comparedTo(val) === -1
@@ -97,7 +97,7 @@ String.prototype.lt = function (val) {
  * @returns {boolean}
  */
 String.prototype.eq = function (val) {
-  AssertUtil.isType(val, ['string', BigNumber])
+  AssertUtil.isType(val, 'string')
   AssertUtil.canCast(this, 'bignumber')
   const num1 = new BigNumber(this)
   return num1.comparedTo(val) === 0
@@ -114,7 +114,6 @@ String.prototype.addThousandSign = function (decimalRemain = null, remainMethod 
   const parts = this.split(".")
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   return parts[1] === '' ? parts[0] : parts.join(".")
-  // return new BigNumber(this).toFormat(decimalRemain, remainMethod)
 }
 
 /**

@@ -5,7 +5,6 @@
 global['logger'] = global['logger'] || console
 
 require('./assists/errorAssist')
-// require('./assists/objectAssist')
 require('./assists/stringAssist')
 require('./assists/arrayAssist')
 require('./assists/bufferAssist')
