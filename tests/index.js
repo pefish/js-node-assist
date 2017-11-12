@@ -65,7 +65,7 @@ require('../lib/index')
 // console.log(a)
 
 // Buffer
-const testBuffer = new Buffer('dgh')
+const testBuffer = new Buffer('d')
 console.log(testBuffer.toDecimalArray())
 logger.error(testBuffer.toBinString())
-
+console.log(testBuffer.toDecimal())
