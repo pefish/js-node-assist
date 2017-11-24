@@ -165,25 +165,25 @@ String.prototype.abs = function () {
  * 转换为二进制字符串
  * @returns {string}
  */
-String.prototype.toBinString = function () {
+String.prototype.decimalToBin = function () {
   AssertUtil.canCast(this, 'bignumber')
   return this.toInt().toString(2)
 }
 
 /**
- * 转换为八进制字符串
+ * 十进制转换为八进制字符串
  * @returns {string}
  */
-String.prototype.toOctString = function () {
+String.prototype.decimalToOct = function () {
   AssertUtil.canCast(this, 'bignumber')
   return this.toInt().toString(8)
 }
 
 /**
- * 转换为十六进制字符串
+ * 十进制转换为十六进制字符串
  * @returns {string}
  */
-String.prototype.toHexString = function () {
+String.prototype.decimalToHex = function () {
   AssertUtil.canCast(this, 'bignumber')
   return this.toInt().toString(16)
 }
@@ -215,6 +215,15 @@ String.prototype.hasPrecisionIssue = function () {
 }
 
 // 字符串处理
+
+/**
+ * 移除开头几位字符串
+ * @param num
+ * @returns {Array}
+ */
+String.prototype.removeFirst = function (num) {
+  return this.substring(num, this.length)
+}
 
 /**
  * 根据多个字符(串)分割
@@ -290,4 +299,16 @@ String.prototype.classify = function (splitStr1, splitStr2) {
     }
   }
   return results
+}
+
+/**
+ * 十六进制字符串转化为Buffer
+ * @returns {Array}
+ */
+String.prototype.hexToBuffer = function () {
+  let temp = this
+  if (temp.startsWith('0x')) {
+    temp = temp.substring(2, temp.length)
+  }
+  return Buffer.from(temp, 'hex')
 }

@@ -65,7 +65,9 @@ require('../lib/index')
 // console.log(a)
 
 // Buffer
-const testBuffer = new Buffer('d')
-console.log(testBuffer.toDecimalArray())
-logger.error(testBuffer.toBinString())
-console.log(testBuffer.toDecimal())
+// const testBuffer = new Buffer('d')
+// console.log(testBuffer.toDecimalArray())
+// logger.error(testBuffer.toBinString())
+// console.log(testBuffer.toDecimal())
+
+logger.error('23'.removeFirst(1))
