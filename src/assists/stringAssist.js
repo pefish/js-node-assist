@@ -226,6 +226,15 @@ String.prototype.removeFirst = function (num) {
 }
 
 /**
+ * 移除最后几位字符串
+ * @param num
+ * @returns {string}
+ */
+String.prototype.removeLast = function (num) {
+  return this.substring(0, this.length - num)
+}
+
+/**
  * 根据多个字符(串)分割
  * @param searchStrs
  * @returns {Array}

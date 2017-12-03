@@ -70,4 +70,4 @@ require('../lib/index')
 // logger.error(testBuffer.toBinString())
 // console.log(testBuffer.toDecimal())
 
-logger.error('23'.removeFirst(1))
+logger.error('23dfghdts'.removeLast(2))
