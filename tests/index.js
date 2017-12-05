@@ -70,4 +70,5 @@ require('../lib/index')
 // logger.error(testBuffer.toBinString())
 // console.log(testBuffer.toDecimal())
 
-logger.error('23dfghdts'.removeLast(2))
+logger.error(parseFloat('12345678901234567'))
+logger.error('4562562.4673'.toInt())

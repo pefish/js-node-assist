@@ -198,12 +198,16 @@ String.prototype.toInt = function () {
 }
 
 /**
- * 转换为float
+ * 转换为数值
  * @returns {Number}
  */
-String.prototype.toFloat = function () {
+String.prototype.toNumber = function () {
   AssertUtil.canCast(this, 'bignumber')
-  return parseFloat(this)
+  const BN = BigNumber.another({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(this)
+  return num.abs().toNumber()
 }
 
 /**
