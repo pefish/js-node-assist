@@ -1,24 +1,56 @@
-Error.prototype.setErrorCode = function (errorCode) {
+/** @module */
+
+/**
+ * 设置错误码
+ * @param errorCode
+ */
+const setErrorCode = function (errorCode) {
   this._errorCode = errorCode
 }
 
-Error.prototype.getErrorCode = function () {
+/**
+ * 获取错误码
+ * @returns {*}
+ */
+const getErrorCode = function () {
   return this._errorCode
 }
 
-Error.prototype.setErrorMessage = function (errorMessage) {
+/**
+ * 设置错误消息
+ * @param errorMessage
+ */
+const setErrorMessage = function (errorMessage) {
   this._errorMessage = errorMessage
 }
 
-Error.prototype.getErrorMessage = function () {
+/**
+ * 获取错误消息
+ * @returns {*}
+ */
+const getErrorMessage = function () {
   return this._errorMessage
 }
 
-Error.prototype.setErrorStorage = function (errorStorage) {
+/**
+ * 设置错误的附带内容
+ * @param errorStorage
+ */
+const setErrorStorage = function (errorStorage) {
   this._errorStorage = errorStorage
 }
 
-Error.prototype.getErrorStorage = function () {
+/**
+ * 获取错误的附带内容
+ * @returns {*}
+ */
+const getErrorStorage = function () {
   return this._errorStorage
 }
 
+Error.prototype.setErrorCode = setErrorCode
+Error.prototype.getErrorCode = getErrorCode
+Error.prototype.setErrorMessage = setErrorMessage
+Error.prototype.getErrorMessage = getErrorMessage
+Error.prototype.setErrorStorage = setErrorStorage
+Error.prototype.getErrorStorage = getErrorStorage

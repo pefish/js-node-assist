@@ -1,4 +1,12 @@
-Array.prototype.toTwoDimen = function (spliceNum = null, arrayNum = null) {
+/** @module */
+
+/**
+ * 转换为二维数组
+ * @param spliceNum
+ * @param arrayNum
+ * @returns {*}
+ */
+const toTwoDimen = function (spliceNum = null, arrayNum = null) {
   if (spliceNum !== null && arrayNum === null) {
     let num = this.length % spliceNum === 0 ? parseInt(this.length / spliceNum) : parseInt(this.length / spliceNum) + 1
     let newArrays = []
@@ -27,11 +35,18 @@ Array.prototype.toTwoDimen = function (spliceNum = null, arrayNum = null) {
   }
 }
 
-Array.prototype.uniq = function () {
+/**
+ * 简单去重
+ */
+const uniq = function () {
   return [...new Set(this)]
 }
 
-Array.prototype.removeEmpty = function () {
+/**
+ * 移除null、undefined以及空字符串
+ * @returns {Array}
+ */
+const removeEmpty = function () {
   const results = []
   this.forEach((ele) => {
     if (ele !== null && ele !== undefined && ele !== '') {
@@ -41,4 +56,37 @@ Array.prototype.removeEmpty = function () {
   return results
 }
 
+/**
+ * 计算平均数
+ * @returns {any}
+ */
+const getAverage = function () {
+  let sum = '0'
+  this.forEach((ele) => {
+    sum = sum.add(ele)
+  })
+  return sum.div(this.length.toString())
+}
 
+/**
+ * 取数组最后一个元素
+ * @returns {*}
+ */
+const getLastOne = function () {
+  return this[this.length - 1]
+}
+
+/**
+ * 取数组第一个元素
+ * @returns {*}
+ */
+const getFirstOne = function () {
+  return this[0]
+}
+
+Array.prototype.toTwoDimen = toTwoDimen
+Array.prototype.uniq = uniq
+Array.prototype.removeEmpty = removeEmpty
+Array.prototype.getAverage = getAverage
+Array.prototype.getLastOne = getLastOne
+Array.prototype.getFirstOne = getFirstOne

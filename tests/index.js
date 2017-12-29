@@ -1,6 +1,7 @@
 /**
  * Created by joy on 12/10/2017.
  */
+require('babel-polyfill')
 require('../lib/index')
 
 // String
@@ -70,5 +71,8 @@ require('../lib/index')
 // logger.error(testBuffer.toBinString())
 // console.log(testBuffer.toDecimal())
 
-logger.error(parseFloat('12345678901234567'))
-logger.error('4562562.4673'.toInt())
+// logger.error(parseFloat('12345678901234567'))
+// logger.error('4562562.4673'.toInt())
+//
+// const a = [12, 53, 46, 1]
+// logger.error(a.getFirstOne())

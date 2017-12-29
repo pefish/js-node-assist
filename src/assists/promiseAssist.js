@@ -1,6 +1,5 @@
-/**
- * 并行处理Promise, 传入对象，是对Promise.all()的补充
- */
+/** @module */
+
 // const test = await Promise.allKeys({
 //   a: Promise.resolve(1),
 //   b: {
@@ -15,6 +14,11 @@
 Object.defineProperty(Promise, 'allKeys', {
   configurable: true,
   writable: true,
+  /**
+   * 并行处理Promise, 传入对象，是对Promise.all()的补充
+   * @param object
+   * @returns {Promise<{}>}
+   */
   value: async (object) => {
     const resolved = {}
     const promises = Object.entries(object).map(async ([key, value]) => {

@@ -1,8 +1,10 @@
+/** @module */
+
 /**
  * 转换为二进制字符串
  * @returns {string}
  */
-Number.prototype.toBinString = function () {
+const toBinString = function () {
   return this.toString(2)
 }
 
@@ -10,7 +12,7 @@ Number.prototype.toBinString = function () {
  * 转换为八进制字符串
  * @returns {string}
  */
-Number.prototype.toOctString = function () {
+const toOctString = function () {
   return this.toString(8)
 }
 
@@ -18,8 +20,10 @@ Number.prototype.toOctString = function () {
  * 转换为十六进制字符串
  * @returns {string}
  */
-Number.prototype.toHexString = function () {
+const toHexString = function () {
   return this.toString(16)
 }
 
-
+Number.prototype.toBinString = toBinString
+Number.prototype.toOctString = toOctString
+Number.prototype.toHexString = toHexString

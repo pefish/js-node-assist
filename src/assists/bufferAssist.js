@@ -1,10 +1,12 @@
+/** @module */
+
 import BigNumber from 'bignumber.js'
 
 /**
  * 转换为十进制的bytes数组
  * @returns {string}
  */
-Buffer.prototype.toDecimalArray = function () {
+const toDecimalArray = function () {
   return [].slice.call(this)
 }
 
@@ -12,7 +14,7 @@ Buffer.prototype.toDecimalArray = function () {
  * 转化为二进制字符串
  * @returns {string}
  */
-Buffer.prototype.toBinString = function () {
+const toBinString = function () {
   return this.toDecimalArray().map(function (x) {
     let str = x.toString(2)
     while (str.length < 8) {
@@ -26,7 +28,7 @@ Buffer.prototype.toBinString = function () {
  * 转化为十六进制字符串
  * @returns {string}
  */
-Buffer.prototype.toHexString = function (prefix = true) {
+const toHexString = function (prefix = true) {
   let temp = this.toString('hex')
   temp === '' && (temp = '00')
   if (prefix === false) {
@@ -40,13 +42,19 @@ Buffer.prototype.toHexString = function (prefix = true) {
  * 转化为十进制数值
  * @returns {number}
  */
-Buffer.prototype.toDecimal = function () {
+const toDecimal = function () {
   return new BigNumber(this.toString('hex'), 16).toNumber()
 }
 
 /**
  * 获取字节数
  */
-Buffer.prototype.getBytesLength = function () {
+getBytesLength = function () {
   return this.length
 }
+
+Buffer.prototype.toDecimalArray = toDecimalArray
+Buffer.prototype.toBinString = toBinString
+Buffer.prototype.toHexString = toHexString
+Buffer.prototype.toDecimal = toDecimal
+Buffer.prototype.getBytesLength = getBytesLength
