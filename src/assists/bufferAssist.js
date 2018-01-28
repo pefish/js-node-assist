@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
  * 转换为十进制的bytes数组
  * @returns {string}
  */
-const toDecimalArray = function () {
+const toDecimalNumberArray = function () {
   return [].slice.call(this)
 }
 
@@ -42,19 +42,19 @@ const toHexString = function (prefix = true) {
  * 转化为十进制数值
  * @returns {number}
  */
-const toDecimal = function () {
+const toDecimalNumber = function () {
   return new BigNumber(this.toString('hex'), 16).toNumber()
 }
 
 /**
  * 获取字节数
  */
-getBytesLength = function () {
+const getBytesLength = function () {
   return this.length
 }
 
-Buffer.prototype.toDecimalArray = toDecimalArray
+Buffer.prototype.toDecimalNumberArray = toDecimalNumberArray
 Buffer.prototype.toBinString = toBinString
 Buffer.prototype.toHexString = toHexString
-Buffer.prototype.toDecimal = toDecimal
+Buffer.prototype.toDecimalNumber = toDecimalNumber
 Buffer.prototype.getBytesLength = getBytesLength

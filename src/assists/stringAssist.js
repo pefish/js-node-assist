@@ -155,7 +155,7 @@ const removeThousandSign = function () {
 /**
  * 保留小数点后几位
  * @param decimalRemain
- * @param remainMethod
+ * @param remainMethod {number} ROUND_UP 0, ROUND_DOWN 1, ROUND_CEIL 2, ROUND_FLOOR 3, ROUND_HALF_UP 4, ROUND_HALF_DOWN 5, ROUND_HALF_EVEN 6, ROUND_HALF_CEIL 7, ROUND_HALF_FLOOR 8, EUCLID 9
  * @returns {string}
  */
 const remainDecimal = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
@@ -192,7 +192,7 @@ const abs = function () {
  * 转换为二进制字符串
  * @returns {string}
  */
-const decimalToBin = function () {
+const decimalToBinString = function () {
   AssertUtil.canCast(this, 'bignumber')
   return this.toInt().toString(2)
 }
@@ -201,7 +201,7 @@ const decimalToBin = function () {
  * 十进制转换为八进制字符串
  * @returns {string}
  */
-const decimalToOct = function () {
+const decimalToOctString = function () {
   AssertUtil.canCast(this, 'bignumber')
   return this.toInt().toString(8)
 }
@@ -210,7 +210,7 @@ const decimalToOct = function () {
  * 十进制转换为十六进制字符串
  * @returns {string}
  */
-const decimalToHex = function () {
+const decimalToHexString = function () {
   AssertUtil.canCast(this, 'bignumber')
   return this.toInt().toString(16)
 }
@@ -355,7 +355,28 @@ const hexToBuffer = function () {
   if (temp.startsWith('0x')) {
     temp = temp.substring(2, temp.length)
   }
+  // 长度奇数前面加0
+  if (temp.length % 2 !== 0) {
+    temp = '0' + temp
+  }
   return Buffer.from(temp, 'hex')
+}
+
+/**
+ * 十六进制字符串转化为十进制字符串
+ * @returns {number|*}
+ */
+const hexToDecimalString = function () {
+  // return this.hexToBuffer().toDecimal()
+  return parseInt(this, 16).toString()
+}
+
+/**
+ * 二进制字符串转十进制字符串
+ * @returns {number}
+ */
+const binToDecimalString = function () {
+  return parseInt(this, 2).toString()
 }
 
 
@@ -365,17 +386,19 @@ String.prototype.multi = multi
 String.prototype.div = div
 String.prototype.gt = gt
 String.prototype.gtOrEq = gtOrEq
+String.prototype.gte = gtOrEq
 String.prototype.lt = lt
 String.prototype.ltOrEq = ltOrEq
+String.prototype.lte = ltOrEq
 String.prototype.eq = eq
 String.prototype.addThousandSign = addThousandSign
 String.prototype.removeThousandSign = removeThousandSign
 String.prototype.remainDecimal = remainDecimal
 String.prototype.decimalCount = decimalCount
 String.prototype.abs = abs
-String.prototype.decimalToBin = decimalToBin
-String.prototype.decimalToOct = decimalToOct
-String.prototype.decimalToHex = decimalToHex
+String.prototype.decimalToBinString = decimalToBinString
+String.prototype.decimalToOctString = decimalToOctString
+String.prototype.decimalToHexString = decimalToHexString
 String.prototype.toInt = toInt
 String.prototype.toNumber = toNumber
 String.prototype.hasPrecisionIssue = hasPrecisionIssue
@@ -386,3 +409,5 @@ String.prototype.replaceAll = replaceAll
 String.prototype.findAll = findAll
 String.prototype.classify = classify
 String.prototype.hexToBuffer = hexToBuffer
+String.prototype.hexToDecimalString = hexToDecimalString
+String.prototype.binToDecimalString = binToDecimalString
