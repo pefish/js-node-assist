@@ -36,3 +36,4 @@ const toHexString = function () {
 BigNumber.prototype.toBinString = toBinString
 BigNumber.prototype.toOctString = toOctString
 BigNumber.prototype.toHexString = toHexString
+BigNumber.prototype.toDecimalString = toDecimalString

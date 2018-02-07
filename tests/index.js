@@ -76,6 +76,6 @@ require('../lib/index')
 //
 // const a = [12, 53, 46, 1]
 // logger.error(a.getFirstOne())
-
-const BigNumber = require('bignumber.js')
-logger.error('abfeac'.hexToDecimalNumber())
+//
+// logger.error('test1', 'haha'.stringToUtf8HexString())
+logger.error(new Buffer('').correctEmptyBuffer())

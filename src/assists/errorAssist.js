@@ -29,7 +29,7 @@ const setErrorMessage = function (errorMessage) {
  * @returns {*}
  */
 const getErrorMessage = function () {
-  return this._errorMessage
+  return this._errorMessage || this['message']
 }
 
 /**

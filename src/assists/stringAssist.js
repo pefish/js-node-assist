@@ -379,6 +379,81 @@ const binToDecimalString = function () {
   return parseInt(this, 2).toString()
 }
 
+/**
+ * 检查是否是严格的hex数据
+ * @returns {boolean}
+ */
+const isStrictHexString = function () {
+  return /^(-)?0x[0-9a-f]*$/i.test(this)
+}
+
+/**
+ * 字符串转化为utf8编码的hex
+ * @returns {string}
+ */
+const stringToUtf8HexString = function () {
+  let str = require('utf8').encode(this)
+  let hex = ''
+  str = str.replace(/^(?:\u0000)*/,'')
+  str = str.split('').reverse().join('')
+  str = str.replace(/^(?:\u0000)*/,'')
+  str = str.split('').reverse().join('')
+
+  for(let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i)
+    const n = code.toString(16)
+    hex += n.length < 2 ? '0' + n : n
+  }
+
+  return '0x' + hex
+}
+
+/**
+ * 清空hex字符串左边或右边的00
+ * @param typeStr {string} left/right/both
+ * @returns {string | void | *} 结果不带0x
+ */
+const clearZeroZero = function (typeStr) {
+  let hex = this.replace(/^0x/i, '')
+  if (typeStr === 'left') {
+    hex = hex.replace(/^(?:00)*/, '')
+  } else if (typeStr === 'right') {
+    hex = hex.split('').reverse().join('')
+    hex = hex.replace(/^(?:00)*/,'')
+    hex = hex.split('').reverse().join('')
+  } else if (typeStr === 'both') {
+    hex = hex.replace(/^(?:00)*/, '')
+    hex = hex.split('').reverse().join('')
+    hex = hex.replace(/^(?:00)*/,'')
+    hex = hex.split('').reverse().join('')
+  }
+  return hex
+}
+
+/**
+ * utf8编码的hex转化为字符串
+ * @returns {*}
+ */
+const utf8HexStringToString = function () {
+  let str = ''
+  let code = 0
+  let hex = this.replace(/^0x/i,'')
+
+  hex = hex.replace(/^(?:00)*/,'')
+  hex = hex.split('').reverse().join('')
+  hex = hex.replace(/^(?:00)*/,'')
+  hex = hex.split('').reverse().join('')
+
+  const l = hex.length
+
+  for (let i=0; i < l; i+=2) {
+    code = parseInt(hex.substr(i, 2), 16)
+    str += String.fromCharCode(code)
+  }
+
+  return require('utf8').decode(str)
+}
+
 
 String.prototype.add = add
 String.prototype.sub = sub
@@ -411,3 +486,7 @@ String.prototype.classify = classify
 String.prototype.hexToBuffer = hexToBuffer
 String.prototype.hexToDecimalString = hexToDecimalString
 String.prototype.binToDecimalString = binToDecimalString
+String.prototype.stringToUtf8HexString = stringToUtf8HexString
+String.prototype.utf8HexStringToString = utf8HexStringToString
+String.prototype.isStrictHexString = isStrictHexString
+String.prototype.clearZeroZero = clearZeroZero
