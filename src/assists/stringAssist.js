@@ -132,15 +132,13 @@ const eq = function (val) {
 
 /**
  * 加千分号
- * @param decimalRemain
- * @param remainMethod
  * @returns {string}
  */
-const addThousandSign = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
+const addThousandSign = function () {
   AssertUtil.canCast(this, 'bignumber')
-  const parts = this.split(".")
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  return parts[1] === '' ? parts[0] : parts.join(".")
+  const parts = this.split('.')
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return parts[1] === '' ? parts[0] : parts.join('.')
 }
 
 /**

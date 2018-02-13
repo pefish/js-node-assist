@@ -78,4 +78,5 @@ require('../lib/index')
 // logger.error(a.getFirstOne())
 //
 // logger.error('test1', 'haha'.stringToUtf8HexString())
-logger.error(new Buffer('').correctEmptyBuffer())
+const amount = '1000000000000000000'.sub('10000000000000000').sub('10').toNumber()
+logger.error(amount)
