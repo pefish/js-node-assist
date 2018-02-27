@@ -45,7 +45,7 @@ const toHexString = function (prefix = true) {
  */
 const toDecimalString = function () {
   if (this.getBytesLength() === 0) {
-    return ''
+    return '0'
   }
   return new BigNumber(this.toString('hex'), 16).toString()
 }

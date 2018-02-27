@@ -55,17 +55,31 @@ const multi = function (val, retBigNumber = false) {
 /**
  * 除
  * @param val
- * @param retBigNumber
- * @returns {any}
+ * @returns {string}
  */
-const div = function (val, retBigNumber = false) {
+const div = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return retBigNumber === true ? num1.div(val) : num1.div(val).toString()
+  return num1.div(val).toString()
+}
+
+/**
+ * 求余
+ * @param val
+ * @returns {string}
+ */
+const mod = function (val) {
+  AssertUtil.canCast(this, 'bignumber')
+  val = val.toString()
+  const BN = BigNumber.another({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.mod(val).toString()
 }
 
 /**
@@ -265,7 +279,7 @@ const removeLast = function (num) {
 
 /**
  * 根据多个字符(串)分割
- * @param searchStrs
+ * @param searchStrs {array}
  * @returns {Array}
  */
 const splits = function (searchStrs) {
@@ -457,6 +471,7 @@ String.prototype.add = add
 String.prototype.sub = sub
 String.prototype.multi = multi
 String.prototype.div = div
+String.prototype.mod = mod
 String.prototype.gt = gt
 String.prototype.gtOrEq = gtOrEq
 String.prototype.gte = gtOrEq
