@@ -7,49 +7,61 @@ import AssertUtil from '../utils/AssertUtil'
 /**
  * 加
  * @param val
- * @param retBigNumber
  * @returns {any}
  */
-const add = function (val, retBigNumber = false) {
+const add = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return retBigNumber === true ? num1.add(val) : num1.add(val).toString()
+  return num1.add(val).toString()
 }
 
 /**
  * 减
  * @param val
- * @param retBigNumber
  * @returns {any}
  */
-const sub = function (val, retBigNumber = false) {
+const sub = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return retBigNumber === true ? num1.sub(val) : num1.sub(val).toString()
+  return num1.sub(val).toString()
 }
 
 /**
  * 乘
  * @param val
- * @param retBigNumber
  * @returns {any}
  */
-const multi = function (val, retBigNumber = false) {
+const multi = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
   const BN = BigNumber.another({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return retBigNumber === true ? num1.times(val) : num1.times(val).toString()
+  return num1.times(val).toString()
+}
+
+/**
+ * 乘方
+ * @param val
+ * @returns {any}
+ */
+const pow = function (val) {
+  AssertUtil.canCast(this, 'bignumber')
+  val = val.toString()
+  const BN = BigNumber.another({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.pow(val).toString()
 }
 
 /**
@@ -288,7 +300,7 @@ const splits = function (searchStrs) {
 }
 
 /**
- * 全部替换
+ * 全部替换(只能简单替换字符串)
  * @param regStr
  * @param replaceStr
  * @returns {string}
@@ -466,10 +478,15 @@ const utf8HexStringToString = function () {
   return require('utf8').decode(str)
 }
 
+const toBigNumber = function () {
+  return new BigNumber(this)
+}
+
 
 String.prototype.add = add
 String.prototype.sub = sub
 String.prototype.multi = multi
+String.prototype.pow = pow
 String.prototype.div = div
 String.prototype.mod = mod
 String.prototype.gt = gt
@@ -503,3 +520,4 @@ String.prototype.stringToUtf8HexString = stringToUtf8HexString
 String.prototype.utf8HexStringToString = utf8HexStringToString
 String.prototype.isStrictHexString = isStrictHexString
 String.prototype.clearZeroZero = clearZeroZero
+String.prototype.toBigNumber = toBigNumber

@@ -2,8 +2,8 @@
 
 /**
  * 转换为二维数组
- * @param spliceNum
- * @param arrayNum
+ * @param spliceNum 每个小数组几个元素
+ * @param arrayNum 分成几个小数组
  * @returns {*}
  */
 const toTwoDimen = function (spliceNum = null, arrayNum = null) {
@@ -76,6 +76,10 @@ const getLastOne = function () {
   return this[this.length - 1]
 }
 
+const removeLastOne = function () {
+  return this.slice(0, this.length - 1)
+}
+
 /**
  * 取数组第一个元素
  * @returns {*}
@@ -84,9 +88,25 @@ const getFirstOne = function () {
   return this[0]
 }
 
+const removeFirstOne = function () {
+  return this.slice(1, this.length)
+}
+
+const removeStart = function (num) {
+  return this.slice(num, this.length)
+}
+
+const removeEnd = function (num) {
+  return this.slice(0, this.length - num)
+}
+
 Array.prototype.toTwoDimen = toTwoDimen
 Array.prototype.uniq = uniq
 Array.prototype.removeEmpty = removeEmpty
 Array.prototype.getAverage = getAverage
 Array.prototype.getLastOne = getLastOne
 Array.prototype.getFirstOne = getFirstOne
+Array.prototype.removeFirstOne = removeFirstOne
+Array.prototype.removeLastOne = removeLastOne
+Array.prototype.removeStart = removeStart
+Array.prototype.removeEnd = removeEnd

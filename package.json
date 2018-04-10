@@ -1,6 +1,6 @@
 {
   "name": "node-assist",
-  "version": "0.2.5",
+  "version": "0.2.11",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -21,7 +21,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib",
-    "test": "yarn build && node tests/index.js",
+    "test": "mocha -R spec --compilers js:babel-core/register --require babel-polyfill tests/**/*.test.js",
     "publish-npm": "yarn test && yarn build && npm publish --tag latest",
     "doc": "rm -rf docs && jsdoc src -r -d docs"
   },

@@ -88,12 +88,21 @@ const getBytesLength = function () {
 }
 
 /**
- * 反转Buffer
+ * 反转Buffer, 不改变自身
  * @returns {Buffer}
  */
 const reverseBuffer = function () {
-  let temp = this.correctEmptyBuffer()
-  return temp.reverse()
+  return this.deepCopy().correctEmptyBuffer().reverse()
+}
+
+/**
+ * 深拷贝
+ * @returns {*}
+ */
+const deepCopy = function () {
+  const tempBuffer = Buffer.alloc(this.length)
+  this.copy(tempBuffer, 0, 0, this.length)
+  return tempBuffer
 }
 
 
@@ -106,3 +115,4 @@ Buffer.prototype.correctEmptyBuffer = correctEmptyBuffer
 Buffer.prototype.reverseBuffer = reverseBuffer
 Buffer.prototype.toHexNumber = toHexNumber
 Buffer.prototype.toDecimalString = toDecimalString
+Buffer.prototype.deepCopy = deepCopy

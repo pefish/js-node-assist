@@ -24,6 +24,20 @@ const toHexString = function () {
   return this.toString(16)
 }
 
+/**
+ * 为了调用此方法时不用区分主体是string还是number
+ * @returns {toNumber}
+ */
+const toNumber = function () {
+  return this
+}
+
+const toInt = function () {
+  return parseInt(this)
+}
+
 Number.prototype.toBinString = toBinString
 Number.prototype.toOctString = toOctString
 Number.prototype.toHexString = toHexString
+Number.prototype.toNumber = toNumber
+Number.prototype.toInt = toInt

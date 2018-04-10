@@ -78,4 +78,4 @@ require('../lib/index')
 // logger.error(a.getFirstOne())
 //
 // logger.error('test1', 'haha'.stringToUtf8HexString())
-logger.error('12'.mod(5))
+logger.error('a'.toBigNumber())
