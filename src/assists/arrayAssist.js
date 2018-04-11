@@ -77,6 +77,9 @@ const getLastOne = function () {
 }
 
 const removeLastOne = function () {
+  if (this.length === 0) {
+    return []
+  }
   return this.slice(0, this.length - 1)
 }
 
@@ -89,6 +92,9 @@ const getFirstOne = function () {
 }
 
 const removeFirstOne = function () {
+  if (this.length === 0) {
+    return []
+  }
   return this.slice(1, this.length)
 }
 
