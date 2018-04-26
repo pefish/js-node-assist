@@ -12,11 +12,24 @@ import AssertUtil from '../utils/AssertUtil'
 const add = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return num1.add(val).toString()
+  return num1.plus(val).toString()
+}
+
+/**
+ * 乘以10的几次方
+ * @param num
+ */
+const shiftedBy = function (num) {
+  AssertUtil.canCast(this, 'bignumber')
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.shiftedBy(num).toString()
 }
 
 /**
@@ -27,11 +40,11 @@ const add = function (val) {
 const sub = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return num1.sub(val).toString()
+  return num1.minus(val).toString()
 }
 
 /**
@@ -42,7 +55,7 @@ const sub = function (val) {
 const multi = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
@@ -56,8 +69,8 @@ const multi = function (val) {
  */
 const pow = function (val) {
   AssertUtil.canCast(this, 'bignumber')
-  val = val.toString()
-  const BN = BigNumber.another({
+  val = val.toNumber()
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
@@ -72,7 +85,7 @@ const pow = function (val) {
 const div = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
@@ -87,7 +100,7 @@ const div = function (val) {
 const mod = function (val) {
   AssertUtil.canCast(this, 'bignumber')
   val = val.toString()
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
@@ -184,7 +197,7 @@ const removeThousandSign = function () {
  */
 const remainDecimal = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
   AssertUtil.canCast(this, 'bignumber')
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
@@ -205,7 +218,7 @@ const decimalCount = function () {
  */
 const abs = function () {
   AssertUtil.canCast(this, 'bignumber')
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num = new BN(this)
@@ -254,7 +267,7 @@ const toInt = function () {
  */
 const toNumber = function () {
   AssertUtil.canCast(this, 'bignumber')
-  const BN = BigNumber.another({
+  const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num = new BN(this)
@@ -383,7 +396,7 @@ const hexToBuffer = function () {
   if (temp.length % 2 !== 0) {
     temp = '0' + temp
   }
-  return Buffer.from(temp, 'hex')
+  return Buffer.from ? Buffer.from(temp, 'hex') : new Buffer(temp)
 }
 
 /**
@@ -412,7 +425,7 @@ const isStrictHexString = function () {
 }
 
 /**
- * 字符串转化为utf8编码的hex
+ * 字符串转化为utf8编码的hex, 带0x
  * @returns {string}
  */
 const stringToUtf8HexString = function () {
@@ -455,7 +468,7 @@ const clearZeroZero = function (typeStr) {
 }
 
 /**
- * utf8编码的hex转化为字符串
+ * utf8编码的hex转化为字符串, 带0x
  * @returns {*}
  */
 const utf8HexStringToString = function () {
@@ -521,3 +534,4 @@ String.prototype.utf8HexStringToString = utf8HexStringToString
 String.prototype.isStrictHexString = isStrictHexString
 String.prototype.clearZeroZero = clearZeroZero
 String.prototype.toBigNumber = toBigNumber
+String.prototype.shiftedBy = shiftedBy
