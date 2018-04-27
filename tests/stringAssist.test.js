@@ -28,6 +28,11 @@ describe('stringAssist', () => {
     assert.strictEqual(result, `10`)
   })
 
+  it('remainDecimal', () => {
+    const result = `10.121565321`.remainDecimal(8, 0)
+    assert.strictEqual(result, `10.12156532`)
+  })
+
   it('eq', () => {
     const result = `0x0`.eq(0)
     assert.strictEqual(result, true)

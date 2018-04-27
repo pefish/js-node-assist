@@ -192,7 +192,7 @@ const removeThousandSign = function () {
 /**
  * 保留小数点后几位
  * @param decimalRemain
- * @param remainMethod {number} ROUND_UP 0, ROUND_DOWN 1, ROUND_CEIL 2, ROUND_FLOOR 3, ROUND_HALF_UP 4, ROUND_HALF_DOWN 5, ROUND_HALF_EVEN 6, ROUND_HALF_CEIL 7, ROUND_HALF_FLOOR 8, EUCLID 9
+ * @param remainMethod {number} ROUND_UP 0(直接截断，向上取整), ROUND_DOWN 1(直接截断，向下取整), ROUND_CEIL 2, ROUND_FLOOR 3, ROUND_HALF_UP 4(遇到.5的情况时往上近似,就是四舍五入), ROUND_HALF_DOWN 5(遇到.5的情况时往下近似), ROUND_HALF_EVEN 6, ROUND_HALF_CEIL 7, ROUND_HALF_FLOOR 8, EUCLID 9
  * @returns {string}
  */
 const remainDecimal = function (decimalRemain = null, remainMethod = BigNumber.ROUND_HALF_UP) {
