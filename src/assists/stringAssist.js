@@ -29,7 +29,25 @@ const shiftedBy = function (num) {
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return num1.shiftedBy(num).toString()
+  return num1.shiftedBy(num.toNumber()).toString()
+}
+
+const unShiftedBy = function (num) {
+  AssertUtil.canCast(this, 'bignumber')
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.shiftedBy(num.toString().negated().toNumber()).toString()
+}
+
+const negated = function () {
+  AssertUtil.canCast(this, 'bignumber')
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.negated().toString()
 }
 
 /**
@@ -271,7 +289,7 @@ const toNumber = function () {
     EXPONENTIAL_AT: 1e+9
   })
   const num = new BN(this)
-  return num.abs().toNumber()
+  return num.toNumber()
 }
 
 /**
@@ -491,8 +509,23 @@ const utf8HexStringToString = function () {
   return require('utf8').decode(str)
 }
 
+/**
+ * 转换成BigNumber对象
+ * @returns {BigNumber}
+ */
 const toBigNumber = function () {
   return new BigNumber(this)
+}
+
+/**
+ * 移除尾随的0
+ */
+const removeTrailingZeros = function () {
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(parseFloat(this))
+  return num1.toString()
 }
 
 
@@ -535,3 +568,6 @@ String.prototype.isStrictHexString = isStrictHexString
 String.prototype.clearZeroZero = clearZeroZero
 String.prototype.toBigNumber = toBigNumber
 String.prototype.shiftedBy = shiftedBy
+String.prototype.unShiftedBy = unShiftedBy
+String.prototype.negated = negated
+String.prototype.removeTrailingZeros = removeTrailingZeros

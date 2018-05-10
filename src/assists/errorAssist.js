@@ -1,5 +1,7 @@
 /** @module */
 
+import errorCodes from '../constants/errorCodes'
+
 /**
  * 设置错误码
  * @param errorCode
@@ -13,7 +15,7 @@ const setErrorCode = function (errorCode) {
  * @returns {*}
  */
 const getErrorCode = function () {
-  return this._errorCode
+  return this._errorCode || errorCodes['INTERNAL_ERROR']
 }
 
 /**
