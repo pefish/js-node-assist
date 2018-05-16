@@ -3,12 +3,15 @@
  */
 
 export default class ErrorHelper extends Error {
-  constructor (errorMessage, errorCode, errorStorage = null) {
+  constructor (errorMessage, errorCode, errorStorage = null, err = null) {
     // 抛出ErrorHelper，但catch到的是Error对象
-    super(JSON.stringify({
+    const message = {
       errorMessage,
-      errorCode
-    }))
+      errorCode,
+      errorStorage
+    }
+    err && logger.error('ERROR: ', err.message)
+    super(JSON.stringify(message))
     this.setErrorCode(errorCode)
     this.setErrorMessage(errorMessage)
     errorStorage && this.setErrorStorage(errorStorage)

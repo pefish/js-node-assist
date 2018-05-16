@@ -1,5 +1,7 @@
 /** @module */
 
+import ErrorHelper from '../utils/ErrorHelper'
+
 /**
  * 转换为二维数组
  * @param spliceNum 每个小数组几个元素
@@ -107,6 +109,9 @@ const removeEnd = function (num) {
 }
 
 const removeByIndex = function (index) {
+  if (index > this.length - 1) {
+    throw ErrorHelper(`索引超过数组长度`)
+  }
   const temp = this.deepCopy()
   temp.splice(index, 1)
   return temp
@@ -114,7 +119,11 @@ const removeByIndex = function (index) {
 
 const removeByValue = function (value) {
   const temp = this.deepCopy()
-  temp.splice(temp.indexOf(value), 1)
+  const index = temp.indexOf(value)
+  if (index === -1) {
+    throw ErrorHelper(`没有找到 ${value}`)
+  }
+  temp.splice(index, 1)
   return temp
 }
 

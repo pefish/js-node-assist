@@ -60,5 +60,14 @@ describe('arrayAssist', () => {
     assert.strictEqual(result[2], undefined)
     assert.strictEqual(arr[2], 3)
   })
+
+  it ('removeByValue', () => {
+    const arr = [1, 2, 3]
+    try {
+      const result = arr.removeByValue(4)
+    } catch (err) {
+      assert.strictEqual(typeof err, 'object')
+    }
+  })
 })
 
