@@ -106,6 +106,22 @@ const removeEnd = function (num) {
   return this.slice(0, this.length - num)
 }
 
+const removeByIndex = function (index) {
+  const temp = this.deepCopy()
+  temp.splice(index, 1)
+  return temp
+}
+
+const removeByValue = function (value) {
+  const temp = this.deepCopy()
+  temp.splice(temp.indexOf(value), 1)
+  return temp
+}
+
+const deepCopy = function () {
+  return Array.from(this)
+}
+
 Array.prototype.toTwoDimen = toTwoDimen
 Array.prototype.uniq = uniq
 Array.prototype.removeEmpty = removeEmpty
@@ -116,3 +132,6 @@ Array.prototype.removeFirstOne = removeFirstOne
 Array.prototype.removeLastOne = removeLastOne
 Array.prototype.removeStart = removeStart
 Array.prototype.removeEnd = removeEnd
+Array.prototype.removeByIndex = removeByIndex
+Array.prototype.deepCopy = deepCopy
+Array.prototype.removeByValue = removeByValue
