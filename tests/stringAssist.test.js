@@ -108,5 +108,23 @@ describe('stringAssist', () => {
     const result1 = '100000000000'.toInt()
     assert.strictEqual(result1, 100000000000)
   })
+
+  it('toArray', () => {
+    const result = '7cce3caf92eb2005ad8a6dd02625d1d8'.toArray(2)
+    // logger.error(result)
+    assert.strictEqual(result[0], '7c')
+  })
+
+  it('toArray', () => {
+    const result = '7cce3caf92eb2005ad8a6dd02625d1d8'.toArray(null, 4)
+    // logger.error(result)
+    assert.strictEqual(result[0], '7cce3caf')
+  })
+
+  it('hexToNumber', () => {
+    const result = '7c'.hexToNumber()
+    // logger.error(result)
+    assert.strictEqual(result, 124)
+  })
 })
 

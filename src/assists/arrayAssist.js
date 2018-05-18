@@ -131,6 +131,10 @@ const deepCopy = function () {
   return Array.from(this)
 }
 
+const append = function (arr) {
+  return this.concat(arr)
+}
+
 Array.prototype.toTwoDimen = toTwoDimen
 Array.prototype.uniq = uniq
 Array.prototype.removeEmpty = removeEmpty
@@ -144,3 +148,4 @@ Array.prototype.removeEnd = removeEnd
 Array.prototype.removeByIndex = removeByIndex
 Array.prototype.deepCopy = deepCopy
 Array.prototype.removeByValue = removeByValue
+Array.prototype.append = append

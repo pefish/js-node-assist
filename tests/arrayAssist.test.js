@@ -69,5 +69,12 @@ describe('arrayAssist', () => {
       assert.strictEqual(typeof err, 'object')
     }
   })
+
+  it ('append', () => {
+    const arr = [1, 2, 3]
+    const result = arr.append([4, 5])
+    assert.strictEqual(result[0], 1)
+    assert.strictEqual(result[3], 4)
+  })
 })
 

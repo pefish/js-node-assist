@@ -293,6 +293,23 @@ const toNumber = function () {
 }
 
 /**
+ * hex string转换为number
+ * @returns {number}
+ */
+const hexToNumber = function () {
+  let temp = this
+  if (!temp.startsWith('0x')) {
+    temp = '0x' + temp
+  }
+  AssertUtil.canCast(temp, 'bignumber')
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(temp)
+  return num.toNumber()
+}
+
+/**
  * 判断此值用于计算时是否具有精度问题
  */
 const hasPrecisionIssue = function () {
@@ -528,6 +545,35 @@ const removeTrailingZeros = function () {
   return num1.toString()
 }
 
+const toArray = function (len = null, arrLen = null) {
+  if (len !== null && arrLen === null) {
+    let num = this.length % len === 0 ? parseInt(this.length / len) : parseInt(this.length / len) + 1
+    let newArrays = []
+    for (let i = 0; i < num; i++) {
+      let arr = this.slice(len * i, len * (i + 1))
+      if (arr.length > 0) {
+        newArrays.push(arr)
+      }
+    }
+    return newArrays
+  } else if (len === null && arrLen !== null) {
+    let newArrays = []
+    const num = parseInt(this.length / arrLen)
+    for (let i = 0; i < arrLen; i++) {
+      let arr = this.slice(num * i, num * (i + 1))
+      if (arr.length > 0) {
+        newArrays.push(arr)
+      }
+    }
+    if (num * arrLen < this.length) {
+      newArrays[newArrays.length - 1] = newArrays[newArrays.length - 1].concat(this.slice(num * arrLen, this.length))
+    }
+    return newArrays
+  } else {
+    return null
+  }
+}
+
 
 String.prototype.add = add
 String.prototype.sub = sub
@@ -571,3 +617,5 @@ String.prototype.shiftedBy = shiftedBy
 String.prototype.unShiftedBy = unShiftedBy
 String.prototype.negated = negated
 String.prototype.removeTrailingZeros = removeTrailingZeros
+String.prototype.toArray = toArray
+String.prototype.hexToNumber = hexToNumber
