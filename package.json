@@ -1,6 +1,6 @@
 {
   "name": "node-assist",
-  "version": "0.2.25",
+  "version": "0.3.0",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -35,6 +35,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "jsdoc": "^3.5.5",
+    "urlencode": "^1.1.0",
     "utf8": "^3.0.0"
   }
 }

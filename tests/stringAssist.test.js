@@ -123,8 +123,63 @@ describe('stringAssist', () => {
 
   it('hexToNumber', () => {
     const result = '7c'.hexToNumber()
+    const result1 = '0x7c'.hexToNumber()
     // logger.error(result)
     assert.strictEqual(result, 124)
+    assert.strictEqual(result1, 124)
+  })
+
+  it('hexToDecimalString', () => {
+    const result = '6673064416959ab'.hexToDecimalString()
+    const result1 = '0x6673064416959ab'.hexToDecimalString()
+    // logger.error(result)
+    assert.strictEqual(result, '461390693981051307')
+    assert.strictEqual(result1, '461390693981051307')
+  })
+
+  it('binToDecimalString', () => {
+    const result = '11001100111001100000110010001000001011010010101100110101011'.binToDecimalString()
+    const result1 = '0b11001100111001100000110010001000001011010010101100110101011'.binToDecimalString()
+    // logger.error('test', result)
+    assert.strictEqual(result, '461390693981051307')
+    assert.strictEqual(result1, '461390693981051307')
+  })
+
+  it('decimalToBinString', () => {
+    const result = '461390693981051307'.decimalToBinString()
+    // logger.error(result)
+    assert.strictEqual(result, '0b11001100111001100000110010001000001011010010101100110101011')
+  })
+
+  it('decimalToHexString', () => {
+    const result = '461390693981051307'.decimalToHexString()
+    // logger.error(result)
+    assert.strictEqual(result, '0x6673064416959ab')
+  })
+
+  it('decimalToOctString', () => {
+    const result = '461390693981051307'.decimalToOctString()
+    // logger.error(result)
+    assert.strictEqual(result, '0o31471406210132254653')
+  })
+
+  it('decimalToBinString', () => {
+    const result = '461390693981051307'.decimalToBinString()
+    // logger.error(result)
+    assert.strictEqual(result, '0b11001100111001100000110010001000001011010010101100110101011')
+  })
+
+  it('urlEncode', () => {
+    const result = '分叉'.urlEncode()
+    // logger.error(result)
+    assert.strictEqual(result, '%E5%88%86%E5%8F%89')
+  })
+
+  it('urlDecode', () => {
+    const result = '%E5%88%86%E5%8F%89'.urlDecode()
+    // logger.error(result)
+    assert.strictEqual(result, '分叉')
   })
 })
+
 

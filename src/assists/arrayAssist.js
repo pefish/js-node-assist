@@ -135,6 +135,57 @@ const append = function (arr) {
   return this.concat(arr)
 }
 
+/**
+ * 取出最大值（值以及索引）,只适用于数值数组以及字符串数组, 返回值为字符串
+ */
+const getMax = function () {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+
+  let maxValue = this[0].toString()
+  let maxIndex = 0
+
+  for (let i = 1; i < this.length; i++) {
+    if (this[i].toString().gt(maxValue)) {
+      maxIndex = i
+      maxValue = this[i].toString()
+    }
+  }
+
+  return {
+    value: maxValue,
+    index: maxIndex
+  }
+}
+
+const getMin = function () {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+
+  let minValue = this[0].toString()
+  let minIndex = 0
+
+  for (let i = 1; i < this.length; i++) {
+    if (this[i].toString().lt(minValue)) {
+      minIndex = i
+      minValue = this[i].toString()
+    }
+  }
+
+  return {
+    value: minValue,
+    index: minIndex
+  }
+}
+
+const getSum = function () {
+  return this.reduce((acc, val) => {
+    return val.toString().add(acc)
+  })
+}
+
 Array.prototype.toTwoDimen = toTwoDimen
 Array.prototype.uniq = uniq
 Array.prototype.removeEmpty = removeEmpty
@@ -149,3 +200,6 @@ Array.prototype.removeByIndex = removeByIndex
 Array.prototype.deepCopy = deepCopy
 Array.prototype.removeByValue = removeByValue
 Array.prototype.append = append
+Array.prototype.getMax = getMax
+Array.prototype.getMin = getMin
+Array.prototype.getSum = getSum

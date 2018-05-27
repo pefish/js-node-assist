@@ -2,7 +2,7 @@
 
 import BigNumber from 'bignumber.js'
 import AssertUtil from '../utils/AssertUtil'
-
+// 进制计算的结果都要带上相应前缀 二进制0b 八进制0o 十六进制0x
 
 /**
  * 加
@@ -249,7 +249,11 @@ const abs = function () {
  */
 const decimalToBinString = function () {
   AssertUtil.canCast(this, 'bignumber')
-  return this.toInt().toString(2)
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(this)
+  return '0b' + num.toString(2)
 }
 
 /**
@@ -258,7 +262,11 @@ const decimalToBinString = function () {
  */
 const decimalToOctString = function () {
   AssertUtil.canCast(this, 'bignumber')
-  return this.toInt().toString(8)
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(this)
+  return '0o' + num.toString(8)
 }
 
 /**
@@ -267,7 +275,11 @@ const decimalToOctString = function () {
  */
 const decimalToHexString = function () {
   AssertUtil.canCast(this, 'bignumber')
-  return this.toInt().toString(16)
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(this)
+  return '0x' + num.toString(16)
 }
 
 /**
@@ -439,8 +451,16 @@ const hexToBuffer = function () {
  * @returns {number|*}
  */
 const hexToDecimalString = function () {
-  // return this.hexToBuffer().toDecimal()
-  return parseInt(this, 16).toString()
+  let temp = this
+  if (!temp.startsWith('0x')) {
+    temp = '0x' + temp
+  }
+  AssertUtil.canCast(temp, 'bignumber')
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(temp)
+  return num.toString(10)
 }
 
 /**
@@ -448,7 +468,16 @@ const hexToDecimalString = function () {
  * @returns {number}
  */
 const binToDecimalString = function () {
-  return parseInt(this, 2).toString()
+  let temp = this
+  if (!temp.startsWith('0b')) {
+    temp = '0b' + temp
+  }
+  AssertUtil.canCast(temp, 'bignumber')
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num = new BN(temp)
+  return num.toString(10)
 }
 
 /**
@@ -574,6 +603,16 @@ const toArray = function (len = null, arrLen = null) {
   }
 }
 
+const urlEncode = function (charset = 'utf-8') {
+  const urlencode = require('urlencode')
+  return urlencode(this, charset)
+}
+
+const urlDecode = function (charset = 'utf-8') {
+  const urlencode = require('urlencode')
+  return urlencode.decode(this, charset)
+}
+
 
 String.prototype.add = add
 String.prototype.sub = sub
@@ -619,3 +658,5 @@ String.prototype.negated = negated
 String.prototype.removeTrailingZeros = removeTrailingZeros
 String.prototype.toArray = toArray
 String.prototype.hexToNumber = hexToNumber
+String.prototype.urlEncode = urlEncode
+String.prototype.urlDecode = urlDecode

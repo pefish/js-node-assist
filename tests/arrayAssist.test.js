@@ -76,5 +76,25 @@ describe('arrayAssist', () => {
     assert.strictEqual(result[0], 1)
     assert.strictEqual(result[3], 4)
   })
+
+  it('getMax', () => {
+    const arr = [1, '2', 3]
+    const result = arr.getMax()
+    assert.strictEqual(result['value'], '3')
+    assert.strictEqual(result['index'], 2)
+  })
+
+  it('getMin', () => {
+    const arr = ['1', 2, '3']
+    const result = arr.getMin()
+    assert.strictEqual(result['value'], '1')
+    assert.strictEqual(result['index'], 0)
+  })
+
+  it('getSum', () => {
+    const arr = ['1', 2, '3']
+    const result = arr.getSum()
+    assert.strictEqual(result, '6')
+  })
 })
 
