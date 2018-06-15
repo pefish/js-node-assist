@@ -38,6 +38,11 @@ describe('stringAssist', () => {
     assert.strictEqual(result, true)
   })
 
+  it('gt', () => {
+    const result = `0.023`.gt('0.0011')
+    assert.strictEqual(result, true)
+  })
+
   it('shiftedBy "18"', () => {
     const result = `1353`.shiftedBy('18')
     assert.strictEqual(result, '1353000000000000000000')
@@ -179,6 +184,18 @@ describe('stringAssist', () => {
     const result = '%E5%88%86%E5%8F%89'.urlDecode()
     // logger.error(result)
     assert.strictEqual(result, '分叉')
+  })
+
+  it('getFirst', () => {
+    const result = 'th356hfgh3httr'.getFirst(4)
+    // logger.error(result)
+    assert.strictEqual(result, 'th35')
+  })
+
+  it('getLast', () => {
+    const result = 'th356hfgh3httr'.getLast(4)
+    // logger.error(result)
+    assert.strictEqual(result, 'httr')
   })
 })
 

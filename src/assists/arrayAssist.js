@@ -144,12 +144,17 @@ const getMax = function () {
   }
 
   let maxValue = this[0].toString()
-  let maxIndex = 0
 
   for (let i = 1; i < this.length; i++) {
     if (this[i].toString().gt(maxValue)) {
-      maxIndex = i
       maxValue = this[i].toString()
+    }
+  }
+
+  let maxIndex = []
+  for (let i = 0; i < this.length; i++) {
+    if (this[i].toString().eq(maxValue)) {
+      maxIndex.push(i)
     }
   }
 
@@ -165,12 +170,17 @@ const getMin = function () {
   }
 
   let minValue = this[0].toString()
-  let minIndex = 0
 
   for (let i = 1; i < this.length; i++) {
     if (this[i].toString().lt(minValue)) {
-      minIndex = i
       minValue = this[i].toString()
+    }
+  }
+
+  let minIndex = []
+  for (let i = 0; i < this.length; i++) {
+    if (this[i].toString().eq(minValue)) {
+      minIndex.push(i)
     }
   }
 
@@ -183,6 +193,29 @@ const getMin = function () {
 const getSum = function () {
   return this.reduce((acc, val) => {
     return val.toString().add(acc)
+  })
+}
+
+const select = function (indexes) {
+  if (indexes === null || indexes === undefined) {
+    return this
+  }
+  const result = []
+  indexes.forEach((index) => {
+    result.push(this[index])
+  })
+  return result
+}
+
+const toUpperCase = function () {
+  return this.map((element) => {
+    return element.toString().toUpperCase()
+  })
+}
+
+const toLowerCase = function () {
+  return this.map((element) => {
+    return element.toString().toLowerCase()
   })
 }
 
@@ -203,3 +236,6 @@ Array.prototype.append = append
 Array.prototype.getMax = getMax
 Array.prototype.getMin = getMin
 Array.prototype.getSum = getSum
+Array.prototype.select = select
+Array.prototype.toUpperCase = toUpperCase
+Array.prototype.toLowerCase = toLowerCase

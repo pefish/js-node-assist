@@ -350,13 +350,21 @@ const removeLast = function (num) {
 }
 
 /**
- * 根据多个字符(串)分割
- * @param searchStrs {array}
- * @returns {Array}
+ * 获取开头几位
+ * @param num
+ * @returns {string}
  */
-const splits = function (searchStrs) {
-  const str = searchStrs.join('|')
-  return this.split(new RegExp(str, 'gm'))
+const getFirst = function (num) {
+  return this.substring(0, num)
+}
+
+/**
+ * 获取最后几位
+ * @param num
+ * @returns {string}
+ */
+const getLast = function (num) {
+  return this.substring(this.length - num, this.length)
 }
 
 /**
@@ -640,7 +648,6 @@ String.prototype.toNumber = toNumber
 String.prototype.hasPrecisionIssue = hasPrecisionIssue
 String.prototype.removeFirst = removeFirst
 String.prototype.removeLast = removeLast
-String.prototype.splits = splits
 String.prototype.replaceAll = replaceAll
 String.prototype.findAll = findAll
 String.prototype.classify = classify
@@ -660,3 +667,5 @@ String.prototype.toArray = toArray
 String.prototype.hexToNumber = hexToNumber
 String.prototype.urlEncode = urlEncode
 String.prototype.urlDecode = urlDecode
+String.prototype.getFirst = getFirst
+String.prototype.getLast = getLast
