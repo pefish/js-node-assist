@@ -190,6 +190,61 @@ const getMin = function () {
   }
 }
 
+/**
+ * 取出最大值（值以及索引）,只适用于数值数组以及字符串数组, 返回值为字符串
+ */
+const getMaxV2 = function () {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+
+  let maxValue = this[0].toString()
+
+  for (let i = 1; i < this.length; i++) {
+    if (this[i].toString().gt(maxValue)) {
+      maxValue = this[i].toString()
+    }
+  }
+
+  let maxIndex = []
+  for (let i = 0; i < this.length; i++) {
+    if (this[i].toString().eq(maxValue)) {
+      maxIndex.push(i)
+    }
+  }
+
+  return {
+    value: maxValue,
+    indexes: maxIndex
+  }
+}
+
+const getMinV2 = function () {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+
+  let minValue = this[0].toString()
+
+  for (let i = 1; i < this.length; i++) {
+    if (this[i].toString().lt(minValue)) {
+      minValue = this[i].toString()
+    }
+  }
+
+  let minIndex = []
+  for (let i = 0; i < this.length; i++) {
+    if (this[i].toString().eq(minValue)) {
+      minIndex.push(i)
+    }
+  }
+
+  return {
+    value: minValue,
+    indexes: minIndex
+  }
+}
+
 const getSum = function () {
   return this.reduce((acc, val) => {
     return val.toString().add(acc)
@@ -219,6 +274,13 @@ const toLowerCase = function () {
   })
 }
 
+const random = function () {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+  return this[Math.floor(Math.random() * 1E4) % this.length]
+}
+
 Array.prototype.toTwoDimen = toTwoDimen
 Array.prototype.uniq = uniq
 Array.prototype.removeEmpty = removeEmpty
@@ -235,7 +297,10 @@ Array.prototype.removeByValue = removeByValue
 Array.prototype.append = append
 Array.prototype.getMax = getMax
 Array.prototype.getMin = getMin
+Array.prototype.getMaxV2 = getMaxV2
+Array.prototype.getMinV2 = getMinV2
 Array.prototype.getSum = getSum
 Array.prototype.select = select
 Array.prototype.toUpperCase = toUpperCase
 Array.prototype.toLowerCase = toLowerCase
+Array.prototype.random = random

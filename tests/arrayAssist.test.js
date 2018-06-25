@@ -122,5 +122,12 @@ describe('arrayAssist', () => {
     // logger.error(result)
     assert.strictEqual(result[0], 'drg')
   })
+
+  it('random', () => {
+    const arr = [2]
+    const result = arr.random()
+    logger.error(result)
+    // assert.strictEqual(result[0], 'drg')
+  })
 })
 

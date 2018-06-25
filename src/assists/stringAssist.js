@@ -455,6 +455,14 @@ const hexToBuffer = function () {
 }
 
 /**
+ * 普通字符串转buffer
+ * @returns {Buffer}
+ */
+const toBuffer = function () {
+  return new Buffer(this)
+}
+
+/**
  * 十六进制字符串转化为十进制字符串
  * @returns {number|*}
  */
@@ -652,6 +660,7 @@ String.prototype.replaceAll = replaceAll
 String.prototype.findAll = findAll
 String.prototype.classify = classify
 String.prototype.hexToBuffer = hexToBuffer
+String.prototype.toBuffer = toBuffer
 String.prototype.hexToDecimalString = hexToDecimalString
 String.prototype.binToDecimalString = binToDecimalString
 String.prototype.stringToUtf8HexString = stringToUtf8HexString
