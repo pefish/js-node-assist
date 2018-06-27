@@ -281,6 +281,10 @@ const random = function () {
   return this[Math.floor(Math.random() * 1E4) % this.length]
 }
 
+/**
+ * [190, 190] --> BEBE
+ * @returns {string}
+ */
 const numberArrayToHexString = function () {
   if (this.length === 0) {
     throw ErrorHelper(`空数组`)
@@ -288,6 +292,18 @@ const numberArrayToHexString = function () {
   return this.map((byte) => {
     return byte.toString().numberStrToHex()
   }).join('')
+}
+
+/**
+ * 取子数组。[start, end)
+ * @param start
+ * @param end
+ */
+const sub = function (start, end) {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+  return this.slice(start, end)
 }
 
 Array.prototype.toTwoDimen = toTwoDimen
@@ -314,3 +330,4 @@ Array.prototype.toUpperCase = toUpperCase
 Array.prototype.toLowerCase = toLowerCase
 Array.prototype.random = random
 Array.prototype.numberArrayToHexString = numberArrayToHexString
+Array.prototype.sub = sub
