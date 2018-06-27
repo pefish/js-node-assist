@@ -129,5 +129,12 @@ describe('arrayAssist', () => {
     logger.error(result)
     // assert.strictEqual(result[0], 'drg')
   })
+
+  it('numberArrayToHexString', () => {
+    const arr = [ 224, 220, 74, 72 ]
+    const result = arr.numberArrayToHexString()
+    // logger.error(result)
+    assert.strictEqual(result, 'E0DC4A48')
+  })
 })
 

@@ -281,6 +281,15 @@ const random = function () {
   return this[Math.floor(Math.random() * 1E4) % this.length]
 }
 
+const numberArrayToHexString = function () {
+  if (this.length === 0) {
+    throw ErrorHelper(`空数组`)
+  }
+  return this.map((byte) => {
+    return byte.toString().numberStrToHex()
+  }).join('')
+}
+
 Array.prototype.toTwoDimen = toTwoDimen
 Array.prototype.uniq = uniq
 Array.prototype.removeEmpty = removeEmpty
@@ -304,3 +313,4 @@ Array.prototype.select = select
 Array.prototype.toUpperCase = toUpperCase
 Array.prototype.toLowerCase = toLowerCase
 Array.prototype.random = random
+Array.prototype.numberArrayToHexString = numberArrayToHexString

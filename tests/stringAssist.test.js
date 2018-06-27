@@ -197,6 +197,45 @@ describe('stringAssist', () => {
     // logger.error(result)
     assert.strictEqual(result, 'httr')
   })
+
+  // numberStrToHex
+  it('numberStrToHex', () => {
+    const result = '190'.numberStrToHex()
+    // logger.error(result)
+    assert.strictEqual(result, 'BE')
+  })
+
+  it('hexStrToBase64', () => {
+    const result = '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4'.hexStrToBase64()
+    // logger.error(result)
+    // MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA==
+    assert.strictEqual(result, 'DGiv+88BpJVA5ZC8+Ir6TcYw61zg4TpbBnyRjw4cmvQ=')
+  })
+
+  it('strToBase64', () => {
+    const result = '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4'.strToBase64()
+    // logger.error(result)
+    assert.strictEqual(result, 'MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA==')
+  })
+
+  it('base64ToHexStr', () => {
+    const result = 'DGiv+88BpJVA5ZC8+Ir6TcYw61zg4TpbBnyRjw4cmvQ='.base64ToHexStr()
+    // logger.error(result)
+    assert.strictEqual(result, '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4')
+  })
+
+  it('base64ToStr', () => {
+    const result = 'MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA=='.base64ToStr()
+    // logger.error(result)
+    assert.strictEqual(result, '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4')
+  })
+
+  it('base64ToHexStr', () => {
+    const result = 'ChVBGyKPXZ+TTHuxiqqG+QQYkyiI57QSFUFg9CaWt9G5D7GVehsXlVsHOmxiNRgB'.base64ToHexStr()
+    logger.error(result)
+    // 0a15411b228f5d9f 934c7bb18aaa86f9 0418932888e7b412154160f42696b7d1b90fb1957a1b17955b073a6c62351801
+    // assert.strictEqual(result, '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4')
+  })
 })
 
 

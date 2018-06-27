@@ -322,6 +322,19 @@ const hexToNumber = function () {
 }
 
 /**
+ * '190' --> 'BE'
+ * @returns {string}
+ */
+const numberStrToHex = function () {
+  const byte = this.toNumber()
+  const hexByteMap = '0123456789ABCDEF'
+  let str = ''
+  str += hexByteMap.charAt(byte >> 4)
+  str += hexByteMap.charAt(byte & 0x0f)
+  return str
+}
+
+/**
  * 判断此值用于计算时是否具有精度问题
  */
 const hasPrecisionIssue = function () {
@@ -629,6 +642,21 @@ const urlDecode = function (charset = 'utf-8') {
   return urlencode.decode(this, charset)
 }
 
+const hexStrToBase64 = function () {
+  return Buffer.from(this, 'hex').toString('base64')
+}
+
+const base64ToHexStr = function () {
+  return Buffer.from(this, 'base64').toString('hex')
+}
+
+const strToBase64 = function () {
+  return Buffer.from(this).toString('base64')
+}
+
+const base64ToStr = function () {
+  return Buffer.from(this, 'base64').toString()
+}
 
 String.prototype.add = add
 String.prototype.sub = sub
@@ -674,7 +702,12 @@ String.prototype.negated = negated
 String.prototype.removeTrailingZeros = removeTrailingZeros
 String.prototype.toArray = toArray
 String.prototype.hexToNumber = hexToNumber
+String.prototype.numberStrToHex = numberStrToHex
 String.prototype.urlEncode = urlEncode
 String.prototype.urlDecode = urlDecode
 String.prototype.getFirst = getFirst
 String.prototype.getLast = getLast
+String.prototype.hexStrToBase64 = hexStrToBase64
+String.prototype.strToBase64 = strToBase64
+String.prototype.base64ToHexStr = base64ToHexStr
+String.prototype.base64ToStr = base64ToStr
