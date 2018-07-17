@@ -218,6 +218,13 @@ describe('stringAssist', () => {
     assert.strictEqual(result, 'MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA==')
   })
 
+  it('strToBase64', () => {
+    const result = 'www.baidu.com'.strToBase64()
+    logger.error(result)
+    // assert.strictEqual(result, 'MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA==')
+  })
+
+
   it('base64ToHexStr', () => {
     const result = 'DGiv+88BpJVA5ZC8+Ir6TcYw61zg4TpbBnyRjw4cmvQ='.base64ToHexStr()
     // logger.error(result)
