@@ -92,7 +92,7 @@ const pow = function (val) {
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return num1.pow(val).toString()
+  return num1.exponentiatedBy(val).toString()
 }
 
 /**
@@ -123,6 +123,20 @@ const mod = function (val) {
   })
   const num1 = new BN(this)
   return num1.mod(val).toString()
+}
+
+/**
+ * 开根号
+ * @returns {string}
+ */
+const sqrt = function () {
+  AssertUtil.canCast(this, 'bignumber')
+  val = val.toString()
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.sqrt().toString()
 }
 
 /**
@@ -518,27 +532,6 @@ const isStrictHexString = function () {
 }
 
 /**
- * 字符串转化为utf8编码的hex, 带0x
- * @returns {string}
- */
-const stringToUtf8HexString = function () {
-  let str = require('utf8').encode(this)
-  let hex = ''
-  str = str.replace(/^(?:\u0000)*/,'')
-  str = str.split('').reverse().join('')
-  str = str.replace(/^(?:\u0000)*/,'')
-  str = str.split('').reverse().join('')
-
-  for(let i = 0; i < str.length; i++) {
-    const code = str.charCodeAt(i)
-    const n = code.toString(16)
-    hex += n.length < 2 ? '0' + n : n
-  }
-
-  return '0x' + hex
-}
-
-/**
  * 清空hex字符串左边或右边的00
  * @param typeStr {string} left/right/both
  * @returns {string | void | *} 结果不带0x
@@ -558,30 +551,6 @@ const clearZeroZero = function (typeStr) {
     hex = hex.split('').reverse().join('')
   }
   return hex
-}
-
-/**
- * utf8编码的hex转化为字符串, 带0x
- * @returns {*}
- */
-const utf8HexStringToString = function () {
-  let str = ''
-  let code = 0
-  let hex = this.replace(/^0x/i,'')
-
-  hex = hex.replace(/^(?:00)*/,'')
-  hex = hex.split('').reverse().join('')
-  hex = hex.replace(/^(?:00)*/,'')
-  hex = hex.split('').reverse().join('')
-
-  const l = hex.length
-
-  for (let i=0; i < l; i+=2) {
-    code = parseInt(hex.substr(i, 2), 16)
-    str += String.fromCharCode(code)
-  }
-
-  return require('utf8').decode(str)
 }
 
 /**
@@ -632,16 +601,6 @@ const toArray = function (len = null, arrLen = null) {
   }
 }
 
-const urlEncode = function (charset = 'utf-8') {
-  const urlencode = require('urlencode')
-  return urlencode(this, charset)
-}
-
-const urlDecode = function (charset = 'utf-8') {
-  const urlencode = require('urlencode')
-  return urlencode.decode(this, charset)
-}
-
 const hexStrToBase64 = function () {
   return Buffer.from(this, 'hex').toString('base64')
 }
@@ -656,6 +615,17 @@ const strToBase64 = function () {
 
 const base64ToStr = function () {
   return Buffer.from(this, 'base64').toString()
+}
+
+const removeLastEnter = function () {
+  if (this.endsWith('\r\n')) {
+    return this.removeLast(2)
+  }
+
+  if (this.endsWith('\n')) {
+    return this.removeLast(1)
+  }
+  return this
 }
 
 String.prototype.add = add
@@ -691,8 +661,6 @@ String.prototype.hexToBuffer = hexToBuffer
 String.prototype.toBuffer = toBuffer
 String.prototype.hexToDecimalString = hexToDecimalString
 String.prototype.binToDecimalString = binToDecimalString
-String.prototype.stringToUtf8HexString = stringToUtf8HexString
-String.prototype.utf8HexStringToString = utf8HexStringToString
 String.prototype.isStrictHexString = isStrictHexString
 String.prototype.clearZeroZero = clearZeroZero
 String.prototype.toBigNumber = toBigNumber
@@ -703,11 +671,12 @@ String.prototype.removeTrailingZeros = removeTrailingZeros
 String.prototype.toArray = toArray
 String.prototype.hexToNumber = hexToNumber
 String.prototype.numberStrToHex = numberStrToHex
-String.prototype.urlEncode = urlEncode
-String.prototype.urlDecode = urlDecode
 String.prototype.getFirst = getFirst
 String.prototype.getLast = getLast
 String.prototype.hexStrToBase64 = hexStrToBase64
 String.prototype.strToBase64 = strToBase64
 String.prototype.base64ToHexStr = base64ToHexStr
 String.prototype.base64ToStr = base64ToStr
+String.prototype.sqrt = sqrt
+String.prototype.removeLastEnter = removeLastEnter
+

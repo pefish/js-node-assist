@@ -3,6 +3,22 @@ import assert from "assert"
 
 describe('stringAssist', () => {
 
+  it('removeLastEnter', () => {
+    const result = `2746\n`.removeLastEnter()
+    // logger.error(result)
+    assert.strictEqual(result, `2746`)
+
+    const result1 = `2746\r\n`.removeLastEnter()
+    // logger.error(result1)
+    assert.strictEqual(result1, `2746`)
+  })
+
+  it('pow', () => {
+    const result = `2`.pow(0.5)
+    logger.error(result)
+    assert.strictEqual(result, `1000000000000000000`)
+  })
+
   it('replaceAll', () => {
     const result = `145145abc451abc535`.replaceAll('abc', '111')
     assert.strictEqual(result, `145145111451111535`)
