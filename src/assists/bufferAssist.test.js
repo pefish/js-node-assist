@@ -1,4 +1,4 @@
-import '../src/index'
+import '../index'
 import assert from "assert"
 
 describe('bufferAssist', () => {

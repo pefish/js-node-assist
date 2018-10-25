@@ -1,7 +1,25 @@
-import '../src/index'
+import '../index'
 import assert from "assert"
 
 describe('stringAssist', () => {
+
+  it('removeFirstByStr', () => {
+    const result = `2,4`.removeFirstByStr(',')
+    logger.error(result)
+    assert.strictEqual(result, `4`)
+    const result1 = `2,4,8`.removeFirstByStr(',')
+    logger.error(result1)
+    assert.strictEqual(result1, `4,8`)
+  })
+
+  it('removeLastByStr', () => {
+    const result = `2,4`.removeLastByStr(',')
+    // logger.error(result)
+    assert.strictEqual(result, `2`)
+    const result1 = `2,4,8`.removeLastByStr(',')
+    // logger.error(result1)
+    assert.strictEqual(result1, `2,4`)
+  })
 
   it('removeLastEnter', () => {
     const result = `2746\n`.removeLastEnter()

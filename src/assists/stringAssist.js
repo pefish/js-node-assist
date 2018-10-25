@@ -628,6 +628,18 @@ const removeLastEnter = function () {
   return this
 }
 
+/**
+ * 移除字符串最后一段。
+ * @param str
+ */
+const removeLastByStr = function (str) {
+  return this.split(str).removeLastOne().join(str)
+}
+
+const removeFirstByStr = function (str) {
+  return this.split(str).removeFirstOne().join(str)
+}
+
 String.prototype.add = add
 String.prototype.sub = sub
 String.prototype.multi = multi
@@ -679,4 +691,6 @@ String.prototype.base64ToHexStr = base64ToHexStr
 String.prototype.base64ToStr = base64ToStr
 String.prototype.sqrt = sqrt
 String.prototype.removeLastEnter = removeLastEnter
+String.prototype.removeLastByStr = removeLastByStr
+String.prototype.removeFirstByStr = removeFirstByStr
 
