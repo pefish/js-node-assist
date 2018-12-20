@@ -3,6 +3,11 @@ import assert from "assert"
 
 describe('stringAssist', () => {
 
+  it('remainDecimal', () => {
+    const result = `10.12`.remainDecimal(4, 0)
+    assert.strictEqual(result, `10.1200`)
+  })
+
   it('removeFirstByStr', () => {
     const result = `2,4`.removeFirstByStr(',')
     logger.error(result)
