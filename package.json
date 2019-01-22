@@ -1,6 +1,6 @@
 {
   "name": "node-assist",
-  "version": "0.3.16",
+  "version": "0.4.0",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "bignumber.js": "^6.0.0",
-    "babel-polyfill": "^6.26.0"
+    "regenerator-runtime": "^0.13.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

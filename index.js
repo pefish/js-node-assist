@@ -1,2 +1,2 @@
-!global.regeneratorRuntime && require('babel-polyfill')
+!global.regeneratorRuntime && require('regenerator-runtime/runtime')
 require('./lib/index')
