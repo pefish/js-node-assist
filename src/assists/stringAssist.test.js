@@ -82,6 +82,11 @@ describe('stringAssist', () => {
     assert.strictEqual(result, true)
   })
 
+  it('shiftedBy "0"', () => {
+    const result = `1353`.shiftedBy('0')
+    assert.strictEqual(result, '1353')
+  })
+
   it('shiftedBy "18"', () => {
     const result = `1353`.shiftedBy('18')
     assert.strictEqual(result, '1353000000000000000000')
