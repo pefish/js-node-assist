@@ -640,6 +640,14 @@ const removeFirstByStr = function (str) {
   return this.split(str).removeFirstOne().join(str)
 }
 
+const toNoScientificString = function () {
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.toString()
+}
+
 String.prototype.add = add
 String.prototype.sub = sub
 String.prototype.multi = multi
@@ -693,4 +701,4 @@ String.prototype.sqrt = sqrt
 String.prototype.removeLastEnter = removeLastEnter
 String.prototype.removeLastByStr = removeLastByStr
 String.prototype.removeFirstByStr = removeFirstByStr
-
+String.prototype.toNoScientificString = toNoScientificString

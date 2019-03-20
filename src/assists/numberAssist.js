@@ -1,5 +1,7 @@
 /** @module */
 
+import BigNumber from 'bignumber.js/bignumber'
+
 /**
  * 转换为二进制字符串
  * @returns {string}
@@ -36,8 +38,17 @@ const toInt = function () {
   return parseInt(this)
 }
 
+const toNoScientificString = function () {
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  const num1 = new BN(this)
+  return num1.toString()
+}
+
 Number.prototype.toBinString = toBinString
 Number.prototype.toOctString = toOctString
 Number.prototype.toHexString = toHexString
 Number.prototype.toNumber = toNumber
 Number.prototype.toInt = toInt
+Number.prototype.toNoScientificString = toNoScientificString
