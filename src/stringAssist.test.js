@@ -1,7 +1,14 @@
-import '../index'
+import './index'
 import assert from "assert"
 
 describe('stringAssist', () => {
+
+  it('canCastNumber', () => {
+    const result = `10.12`.canCastNumber()
+    assert.strictEqual(result, true)
+    const result1 = `10.a`.canCastNumber()
+    assert.strictEqual(result1, false)
+  })
 
   it('remainDecimal', () => {
     const result = `10.12`.remainDecimal(4, 0)
@@ -10,10 +17,8 @@ describe('stringAssist', () => {
 
   it('removeFirstByStr', () => {
     const result = `2,4`.removeFirstByStr(',')
-    logger.error(result)
     assert.strictEqual(result, `4`)
     const result1 = `2,4,8`.removeFirstByStr(',')
-    logger.error(result1)
     assert.strictEqual(result1, `4,8`)
   })
 
@@ -34,12 +39,6 @@ describe('stringAssist', () => {
     const result1 = `2746\r\n`.removeLastEnter()
     // logger.error(result1)
     assert.strictEqual(result1, `2746`)
-  })
-
-  it('pow', () => {
-    const result = `2`.pow(0.5)
-    logger.error(result)
-    assert.strictEqual(result, `1000000000000000000`)
   })
 
   it('replaceAll', () => {
@@ -218,18 +217,6 @@ describe('stringAssist', () => {
     assert.strictEqual(result, '0b11001100111001100000110010001000001011010010101100110101011')
   })
 
-  it('urlEncode', () => {
-    const result = '分叉'.urlEncode()
-    // logger.error(result)
-    assert.strictEqual(result, '%E5%88%86%E5%8F%89')
-  })
-
-  it('urlDecode', () => {
-    const result = '%E5%88%86%E5%8F%89'.urlDecode()
-    // logger.error(result)
-    assert.strictEqual(result, '分叉')
-  })
-
   it('getFirst', () => {
     const result = 'th356hfgh3httr'.getFirst(4)
     // logger.error(result)
@@ -261,13 +248,6 @@ describe('stringAssist', () => {
     // logger.error(result)
     assert.strictEqual(result, 'MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA==')
   })
-
-  it('strToBase64', () => {
-    const result = 'www.baidu.com'.strToBase64()
-    logger.error(result)
-    // assert.strictEqual(result, 'MGM2OGFmZmJjZjAxYTQ5NTQwZTU5MGJjZjg4YWZhNGRjNjMwZWI1Y2UwZTEzYTViMDY3YzkxOGYwZTFjOWFmNA==')
-  })
-
 
   it('base64ToHexStr', () => {
     const result = 'DGiv+88BpJVA5ZC8+Ir6TcYw61zg4TpbBnyRjw4cmvQ='.base64ToHexStr()

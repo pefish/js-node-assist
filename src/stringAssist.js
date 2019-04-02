@@ -1,7 +1,7 @@
 /** @module */
 
 import BigNumber from 'bignumber.js'
-import AssertUtil from '../utils/AssertUtil'
+import AssertUtil from 'p-js-assert'
 // 进制计算的结果都要带上相应前缀 二进制0b 八进制0o 十六进制0x
 
 /**
@@ -41,6 +41,10 @@ const unShiftedBy = function (num) {
   return num1.shiftedBy(num.toString().negated().toNumber()).toString()
 }
 
+/**
+ * 取相反数
+ * @returns {string}
+ */
 const negated = function () {
   AssertUtil.canCast(this, 'bignumber')
   const BN = BigNumber.clone({
@@ -648,6 +652,18 @@ const toNoScientificString = function () {
   return num1.toString()
 }
 
+const canCastNumber = function () {
+  return AssertUtil.canCast(this, 'number', null, false)
+}
+
+const utf8HexStringToString = function () {
+  return this.hexToBuffer().toString('utf8')
+}
+
+const stringToUtf8HexString = function () {
+  return this.toBuffer().toHexString()
+}
+
 String.prototype.add = add
 String.prototype.sub = sub
 String.prototype.multi = multi
@@ -702,3 +718,6 @@ String.prototype.removeLastEnter = removeLastEnter
 String.prototype.removeLastByStr = removeLastByStr
 String.prototype.removeFirstByStr = removeFirstByStr
 String.prototype.toNoScientificString = toNoScientificString
+String.prototype.canCastNumber = canCastNumber
+String.prototype.utf8HexStringToString = utf8HexStringToString
+String.prototype.stringToUtf8HexString = stringToUtf8HexString

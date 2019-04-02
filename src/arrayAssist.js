@@ -1,6 +1,6 @@
 /** @module */
 
-import ErrorHelper from '../utils/ErrorHelper'
+import ErrorHelper from 'p-js-error'
 
 /**
  * 转换为二维数组

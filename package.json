@@ -1,6 +1,6 @@
 {
   "name": "node-assist",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -26,7 +26,9 @@
     "doc": "rm -rf docs && jsdoc src -r -d docs"
   },
   "dependencies": {
-    "bignumber.js": "^6.0.0",
+    "bignumber.js": "^8.1.1",
+    "p-js-assert": "^0.0.1",
+    "p-js-error": "^0.0.4",
     "regenerator-runtime": "^0.13.1"
   },
   "devDependencies": {

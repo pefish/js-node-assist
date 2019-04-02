@@ -1,4 +1,4 @@
-import '../index'
+import './index'
 import assert from "assert"
 
 describe('arrayAssist', () => {

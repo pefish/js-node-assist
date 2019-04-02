@@ -1,6 +1,6 @@
 /** @module */
 
-import BigNumber from 'bignumber.js/bignumber'
+import BigNumber from 'bignumber.js'
 
 /**
  * 转换为二进制字符串
