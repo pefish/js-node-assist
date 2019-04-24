@@ -540,7 +540,7 @@ const isStrictHexString = function () {
  * @param typeStr {string} left/right/both
  * @returns {string | void | *} 结果不带0x
  */
-const clearZeroZero = function (typeStr) {
+const clearHexZeroZero = function (typeStr) {
   let hex = this.replace(/^0x/i, '')
   if (typeStr === 'left') {
     hex = hex.replace(/^(?:00)*/, '')
@@ -698,7 +698,7 @@ String.prototype.toBuffer = toBuffer
 String.prototype.hexToDecimalString = hexToDecimalString
 String.prototype.binToDecimalString = binToDecimalString
 String.prototype.isStrictHexString = isStrictHexString
-String.prototype.clearZeroZero = clearZeroZero
+String.prototype.clearZeroZero = clearHexZeroZero
 String.prototype.toBigNumber = toBigNumber
 String.prototype.shiftedBy = shiftedBy
 String.prototype.unShiftedBy = unShiftedBy
