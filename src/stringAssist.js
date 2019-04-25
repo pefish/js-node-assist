@@ -291,13 +291,13 @@ const decimalToOctString = function () {
  * 十进制转换为十六进制字符串
  * @returns {string}
  */
-const decimalToHexString = function () {
+const decimalToHexString = function (prefix = true) {
   AssertUtil.canCast(this, 'bignumber')
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num = new BN(this)
-  return '0x' + num.toString(16)
+  return (prefix ? '0x' : '') + num.toString(16)
 }
 
 /**
@@ -609,8 +609,8 @@ const hexStrToBase64 = function () {
   return Buffer.from(this, 'hex').toString('base64')
 }
 
-const base64ToHexStr = function () {
-  return Buffer.from(this, 'base64').toString('hex')
+const base64ToHexStr = function (prefix = true) {
+  return Buffer.from(this, 'base64').toHexString(prefix)
 }
 
 const strToBase64 = function () {
@@ -660,8 +660,8 @@ const utf8HexStringToString = function () {
   return this.hexToBuffer().toString('utf8')
 }
 
-const stringToUtf8HexString = function () {
-  return this.toBuffer().toHexString()
+const stringToUtf8HexString = function (prefix = true) {
+  return this.toBuffer().toHexString(prefix)
 }
 
 String.prototype.add = add
