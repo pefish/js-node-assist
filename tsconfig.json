@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "commonjs",
+    "declaration": true,
+    "declarationDir": "./types",
+    "esModuleInterop": true,
+    "target": "es5",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "src/types/*"
+      ]
+    },
+    "downlevelIteration": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

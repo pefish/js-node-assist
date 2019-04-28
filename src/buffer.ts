@@ -2,12 +2,27 @@
 
 import BigNumber from 'bignumber.js'
 
+declare global {
+  interface Buffer {
+    toDecimalNumberArray_?: () => any[],
+    toBinString_?: () => string,
+    toHexString_?: (prefix?: boolean) => string,
+    toDecimalString_?: () => string,
+    toDecimalNumber_?: () => number,
+    toHexNumber_?: () => number,
+    correctEmptyBuffer_?: () => Buffer,
+    getBytesLength_?: () => number,
+    reverseBuffer_?: () => Buffer,
+    deepCopy_?: () => Buffer,
+  }
+}
+
 /**
  * 转换为十进制的bytes数组
  * @returns {string}
  */
-const toDecimalNumberArray = function () {
-  let temp = this.correctEmptyBuffer()
+Buffer.prototype.toDecimalNumberArray_ = function (): any[] {
+  const temp = this.correctEmptyBuffer()
   return [].slice.call(temp)
 }
 
@@ -15,8 +30,8 @@ const toDecimalNumberArray = function () {
  * 转化为二进制字符串
  * @returns {string}
  */
-const toBinString = function () {
-  let temp = this
+Buffer.prototype.toBinString_ = function (): string {
+  const temp = this
   return temp.toDecimalArray().map(function (x) {
     let str = x.toString(2)
     while (str.length < 8) {
@@ -30,8 +45,8 @@ const toBinString = function () {
  * 转化为十六进制字符串
  * @returns {string}
  */
-const toHexString = function (prefix = true) {
-  let temp = this.toString('hex')
+Buffer.prototype.toHexString_ = function (prefix: boolean = true): string {
+  const temp = this.toString('hex')
   if (prefix === false) {
     return temp
   } else {
@@ -43,7 +58,7 @@ const toHexString = function (prefix = true) {
  * 转化为十进制字符串
  * @returns {string}
  */
-const toDecimalString = function () {
+Buffer.prototype.toDecimalString_ = function (): string {
   if (this.getBytesLength() === 0) {
     return '0'
   }
@@ -54,8 +69,8 @@ const toDecimalString = function () {
  * 转化为十进制数值
  * @returns {number}
  */
-const toDecimalNumber = function () {
-  let temp = this.correctEmptyBuffer()
+Buffer.prototype.toDecimalNumber_ = function (): number {
+  const temp = this.correctEmptyBuffer()
   return new BigNumber(temp.toString('hex'), 16).toNumber()
 }
 
@@ -63,8 +78,8 @@ const toDecimalNumber = function () {
  * 转化为十六进制数值
  * @returns {number | *}
  */
-const toHexNumber = function () {
-  let temp = this.correctEmptyBuffer()
+Buffer.prototype.toHexNumber_ = function (): number {
+  const temp = this.correctEmptyBuffer()
   return temp.toHexString(false).toNumber()
 }
 
@@ -72,9 +87,9 @@ const toHexNumber = function () {
  * 纠正空buffer
  * @returns {correctEmptyBuffer}
  */
-const correctEmptyBuffer = function () {
+Buffer.prototype.correctEmptyBuffer_ = function (): Buffer {
   let temp = this
-  if (this.getBytesLength() === 0) {
+  if (this.getBytesLength_() === 0) {
     temp = new Buffer('00', 'hex')
   }
   return temp
@@ -83,7 +98,7 @@ const correctEmptyBuffer = function () {
 /**
  * 获取字节数
  */
-const getBytesLength = function () {
+Buffer.prototype.getBytesLength_ = function (): number {
   return this.length
 }
 
@@ -91,28 +106,18 @@ const getBytesLength = function () {
  * 反转Buffer, 不改变自身
  * @returns {Buffer}
  */
-const reverseBuffer = function () {
-  return this.deepCopy().correctEmptyBuffer().reverse()
+Buffer.prototype.reverseBuffer_ = function (): Buffer {
+  return this.deepCopy_().correctEmptyBuffer_().reverse()
 }
 
 /**
  * 深拷贝
  * @returns {*}
  */
-const deepCopy = function () {
+Buffer.prototype.deepCopy_ = function (): Buffer {
   const tempBuffer = Buffer.alloc(this.length)
   this.copy(tempBuffer, 0, 0, this.length)
   return tempBuffer
 }
 
-
-Buffer.prototype.toDecimalNumberArray = toDecimalNumberArray
-Buffer.prototype.toBinString = toBinString
-Buffer.prototype.toHexString = toHexString
-Buffer.prototype.toDecimalNumber = toDecimalNumber
-Buffer.prototype.getBytesLength = getBytesLength
-Buffer.prototype.correctEmptyBuffer = correctEmptyBuffer
-Buffer.prototype.reverseBuffer = reverseBuffer
-Buffer.prototype.toHexNumber = toHexNumber
-Buffer.prototype.toDecimalString = toDecimalString
-Buffer.prototype.deepCopy = deepCopy
+export {};

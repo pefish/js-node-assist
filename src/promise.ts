@@ -38,3 +38,5 @@ Object.defineProperty(Promise, 'allKeys', {
     return resolved
   }
 })
+
+export {};
