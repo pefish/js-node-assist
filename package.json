@@ -1,6 +1,6 @@
 {
   "name": "js-node-assist",
-  "version": "0.5.1",
+  "version": "0.5.5",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -19,11 +19,11 @@
     "url": "https://github.com/pefish/js-node-assist"
   },
   "main": "./lib/index.js",
-  "types": "./types/*.d.ts",
+  "types": "./types/string.d.ts",
   "scripts": {
-    "build": "tsc && yarn tslint",
+    "build": "rm -rf lib && rm -rf types && tsc && yarn tslint",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "yarn build && mocha --require ts-node/register lib/**/*.test.ts",
+    "test": "yarn build && mocha --require ts-node/register lib/**/*.test.js",
     "doc": "rm -rf docs && jsdoc src -r -d docs"
   },
   "dependencies": {
