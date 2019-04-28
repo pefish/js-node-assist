@@ -1,6 +1,6 @@
 {
-  "name": "node-assist",
-  "version": "0.4.4",
+  "name": "js-node-assist",
+  "version": "0.5.1",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -19,7 +19,7 @@
     "url": "https://github.com/pefish/js-node-assist"
   },
   "main": "./lib/index.js",
-  "types": "./types/index.d.ts",
+  "types": "./types/*.d.ts",
   "scripts": {
     "build": "tsc && yarn tslint",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
