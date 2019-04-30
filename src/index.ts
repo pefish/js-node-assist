@@ -1,4 +1,12 @@
-global['logger'] = global['logger'] || console
+declare global {
+  namespace NodeJS {
+    interface Global {
+      logger: any,
+    }
+  }
+}
+
+global.logger = global.logger || console
 
 require('./error')
 require('./string')
