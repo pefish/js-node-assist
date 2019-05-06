@@ -19,7 +19,7 @@
     "url": "https://github.com/pefish/js-node-assist"
   },
   "main": "./lib/index.js",
-  "types": "./types/string.d.ts",
+  "types": "./types/index.d.ts",
   "scripts": {
     "build": "rm -rf lib && rm -rf types && tsc && yarn tslint",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
