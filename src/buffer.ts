@@ -59,7 +59,7 @@ Buffer.prototype.toHexString_ = function (prefix: boolean = true): string {
  * @returns {string}
  */
 Buffer.prototype.toDecimalString_ = function (): string {
-  if (this.getBytesLength() === 0) {
+  if (this.getBytesLength_() === 0) {
     return '0'
   }
   return new BigNumber(this.toString('hex'), 16).toString()
