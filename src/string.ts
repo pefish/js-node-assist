@@ -404,12 +404,8 @@ String.prototype.hexToNumber_ = function (): number {
  * @returns {string}
  */
 String.prototype.numberStrToHex_ = function (): string {
-  const byte = this.toNumber_()
-  const hexByteMap = '0123456789ABCDEF'
-  let str = ''
-  str += hexByteMap.charAt(byte >> 4)
-  str += hexByteMap.charAt(byte & 0x0f)
-  return str
+  const number = this.toNumber_()
+  return number.toString(16).toUpperCase()
 }
 
 /**
@@ -542,7 +538,7 @@ String.prototype.hexToBuffer_ = function (): Buffer {
   if (temp.length % 2 !== 0) {
     temp = '0' + temp
   }
-  return Buffer.from ? Buffer.from(temp, 'hex') : new Buffer(temp)
+  return Buffer.from ? Buffer.from(temp, 'hex') : new Buffer(temp, `hex`)
 }
 
 /**

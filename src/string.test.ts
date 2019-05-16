@@ -236,6 +236,12 @@ describe('stringAssist', () => {
     assert.strictEqual(result, 'BE')
   })
 
+  it('numberStrToHex', () => {
+    const result = '4124'.numberStrToHex_()
+    // global.logger.error(result)
+    assert.strictEqual(result, '101C')
+  })
+
   it('hexStrToBase64', () => {
     const result = '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4'.hexStrToBase64_()
     // logger.error(result)
