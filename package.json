@@ -1,6 +1,6 @@
 {
-  "name": "js-node-assist",
-  "version": "0.5.8",
+  "name": "@pefish/js-node-assist",
+  "version": "0.6.0",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -24,7 +24,8 @@
     "build": "rm -rf lib && rm -rf types && tsc && yarn tslint",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "yarn build && mocha --require ts-node/register lib/**/*.test.js",
-    "doc": "rm -rf docs && jsdoc src -r -d docs"
+    "doc": "rm -rf docs && jsdoc src -r -d docs",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "bignumber.js": "^8.1.1",
