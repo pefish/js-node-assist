@@ -1,7 +1,7 @@
 /** @module */
 
 import BigNumber from 'bignumber.js'
-import AssertUtil from 'p-js-assert'
+import AssertUtil from '@pefish/js-helper-assert'
 // 进制计算的结果都要带上相应前缀 二进制0b 八进制0o 十六进制0x
 
 declare global {

@@ -1,6 +1,6 @@
 /** @module */
 
-import ErrorHelper from 'p-js-error'
+import ErrorHelper from '@pefish/js-error'
 
 declare global {
   interface Array<T> {

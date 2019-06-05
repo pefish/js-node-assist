@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-node-assist",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -28,17 +28,15 @@
     "prepublish": "yarn build && yarn test"
   },
   "dependencies": {
-    "bignumber.js": "^8.1.1",
-    "p-js-assert": "^0.0.1",
-    "p-js-error": "^0.0.4"
+    "@pefish/js-error": "^0.0.5",
+    "@pefish/js-helper-assert": "^0.0.2",
+    "bignumber.js": "^8.1.1"
   },
   "devDependencies": {
-    "jsdoc": "^3.5.5",
-    "urlencode": "^1.1.0",
-    "utf8": "^3.0.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "@types/node": "^11.13.7",
+    "jsdoc": "^3.5.5",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
