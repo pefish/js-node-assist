@@ -74,11 +74,17 @@ describe('stringAssist', () => {
   it('eq', () => {
     const result = `0x0`.eq_(0)
     assert.strictEqual(result, true)
+
+    const result1 = `0x12`.eq_(18)
+    assert.strictEqual(result1, true)
   })
 
   it('gt', () => {
     const result = `0.023`.gt_('0.0011')
     assert.strictEqual(result, true)
+
+    const result1 = `0x12`.gt_(17)
+    assert.strictEqual(result1, true)
   })
 
   it('shiftedBy_ "0"', () => {
