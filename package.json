@@ -24,6 +24,7 @@
     "build": "rm -rf lib && rm -rf types && tsc && yarn tslint",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "mocha --require ts-node/register src/**/*.test.ts",
+    "t": "mocha --require ts-node/register",
     "doc": "rm -rf docs && jsdoc src -r -d docs",
     "prepublish": "yarn build && yarn test"
   },
