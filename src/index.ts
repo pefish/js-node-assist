@@ -8,6 +8,7 @@ declare global {
 
 global.logger = global.logger || console
 
+require('./object')
 require('./error')
 require('./string')
 require('./array')
@@ -16,6 +17,7 @@ require('./number')
 require('./promise')
 require('./bignumber')
 
+export * from './object'
 export * from './error'
 export * from './string'
 export * from './array'

@@ -1,4 +1,3 @@
-
 declare global {
   interface Error {
     setErrorCode_?: (errorCode: number) => void,
@@ -8,6 +7,7 @@ declare global {
     setErrorStorage_?: (errorStorage: any) => void,
     getErrorStorage_?: () => any,
   }
+
 }
 
 /**
