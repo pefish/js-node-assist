@@ -5,7 +5,6 @@ declare global {
         }
     }
 }
-export * from './object';
 export * from './error';
 export * from './string';
 export * from './array';
