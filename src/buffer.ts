@@ -62,7 +62,7 @@ Buffer.prototype.toDecimalString_ = function (): string {
   if (this.getBytesLength_() === 0) {
     return '0'
   }
-  return new BigNumber(this.toString('hex'), 16).toString()
+  return new BigNumber(this.toString('hex'), 16).toString(10)
 }
 
 /**
