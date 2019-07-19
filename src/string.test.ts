@@ -10,6 +10,12 @@ describe('stringAssist', () => {
     assert.strictEqual(result1, false)
   })
 
+  it('multi_', () => {
+    const result = `20000000000`.multi_(20730).unShiftedBy_(18)
+    // global.logger.error(result)
+    assert.strictEqual(result, `0.0004146`)
+  })
+
   it('remainDecimal_', () => {
     const result = `10.12`.remainDecimal_(4, 0)
     assert.strictEqual(result, `10.1200`)
