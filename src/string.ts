@@ -1,7 +1,7 @@
 /** @module */
 
 import BigNumber from 'bignumber.js'
-import AssertUtil from '@pefish/js-helper-assert'
+import ErrorHelper from '@pefish/js-error'
 // 进制计算的结果都要带上相应前缀 二进制0b 八进制0o 十六进制0x
 
 declare global {
@@ -65,13 +65,21 @@ declare global {
 }
 
 
+function canCastBigNumber (value: any): void {
+  try {
+    const _ = new BigNumber(value)
+  } catch (err) {
+    throw new ErrorHelper(`can not cast to bignumber`)
+  }
+}
+
 /**
  * 加
  * @param val
  * @returns {any}
  */
 String.prototype.add_ = function (val: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -85,7 +93,7 @@ String.prototype.add_ = function (val: string | number): string {
  * @param num
  */
 String.prototype.shiftedBy_ = function (num: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -94,7 +102,7 @@ String.prototype.shiftedBy_ = function (num: string | number): string {
 }
 
 String.prototype.unShiftedBy_ = function (num: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -107,7 +115,7 @@ String.prototype.unShiftedBy_ = function (num: string | number): string {
  * @returns {string}
  */
 String.prototype.negated_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -121,7 +129,7 @@ String.prototype.negated_ = function (): string {
  * @returns {any}
  */
 String.prototype.sub_ = function (val: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -136,7 +144,7 @@ String.prototype.sub_ = function (val: string | number): string {
  * @returns {any}
  */
 String.prototype.multi_ = function (val: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -151,7 +159,7 @@ String.prototype.multi_ = function (val: string | number): string {
  * @returns {any}
  */
 String.prototype.pow_ = function (val: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toNumber_()
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -166,7 +174,7 @@ String.prototype.pow_ = function (val: string | number): string {
  * @returns {string}
  */
 String.prototype.div_ = function (val: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -181,7 +189,7 @@ String.prototype.div_ = function (val: string | number): string {
  * @returns {string}
  */
 String.prototype.mod_ = function (val: string | number): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -195,7 +203,7 @@ String.prototype.mod_ = function (val: string | number): string {
  * @returns {string}
  */
 String.prototype.sqrt_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -209,7 +217,7 @@ String.prototype.sqrt_ = function (): string {
  * @returns {boolean}
  */
 String.prototype.gt_ = function (val: string | number): boolean {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const num1 = new BigNumber(this)
   return num1.comparedTo(val) === 1
@@ -221,7 +229,7 @@ String.prototype.gt_ = function (val: string | number): boolean {
  * @returns {boolean}
  */
 String.prototype.gte_ = function (val: string | number): boolean {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const num1 = new BigNumber(this)
   const result = num1.comparedTo(val)
@@ -234,7 +242,7 @@ String.prototype.gte_ = function (val: string | number): boolean {
  * @returns {boolean}
  */
 String.prototype.lt_ = function (val: string | number): boolean {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const num1 = new BigNumber(this)
   return num1.comparedTo(val) === -1
@@ -246,7 +254,7 @@ String.prototype.lt_ = function (val: string | number): boolean {
  * @returns {boolean}
  */
 String.prototype.lte_ = function (val: string | number): boolean {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const num1 = new BigNumber(this)
   const result = num1.comparedTo(val)
@@ -259,7 +267,7 @@ String.prototype.lte_ = function (val: string | number): boolean {
  * @returns {boolean}
  */
 String.prototype.eq_ = function (val: string | number): boolean {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   val = val.toString()
   const num1 = new BigNumber(this)
   return num1.comparedTo(val) === 0
@@ -270,7 +278,7 @@ String.prototype.eq_ = function (val: string | number): boolean {
  * @returns {string}
  */
 String.prototype.addThousandSign_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const parts = this.split('.')
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return parts[1] === '' ? parts[0] : parts.join('.')
@@ -281,7 +289,7 @@ String.prototype.addThousandSign_ = function (): string {
  * @returns {string}
  */
 String.prototype.removeThousandSign_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   return this.replace(new RegExp(',', 'g'), '')
 }
 
@@ -292,7 +300,7 @@ String.prototype.removeThousandSign_ = function (): string {
  * @returns {string}
  */
 String.prototype.remainDecimal_ = function (decimalRemain: number, remainMethod: number = BigNumber.ROUND_HALF_UP): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -304,7 +312,7 @@ String.prototype.remainDecimal_ = function (decimalRemain: number, remainMethod:
  * 获取小数部分的个数
  */
 String.prototype.decimalCount_ = function (): number {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   return this.split('.')[1].length
 }
 
@@ -313,7 +321,7 @@ String.prototype.decimalCount_ = function (): number {
  * @returns {string}
  */
 String.prototype.abs_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -326,7 +334,7 @@ String.prototype.abs_ = function (): string {
  * @returns {string}
  */
 String.prototype.decimalToBinString_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -339,7 +347,7 @@ String.prototype.decimalToBinString_ = function (): string {
  * @returns {string}
  */
 String.prototype.decimalToOctString_ = function (): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -352,7 +360,7 @@ String.prototype.decimalToOctString_ = function (): string {
  * @returns {string}
  */
 String.prototype.decimalToHexString_ = function (prefix: boolean = true): string {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -365,7 +373,7 @@ String.prototype.decimalToHexString_ = function (prefix: boolean = true): string
  * @returns {Number}
  */
 String.prototype.toInt_ = function (): number {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   return parseInt(this)
 }
 
@@ -374,7 +382,7 @@ String.prototype.toInt_ = function (): number {
  * @returns {Number}
  */
 String.prototype.toNumber_ = function (): number {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -391,7 +399,7 @@ String.prototype.hexToNumber_ = function (): number {
   if (!temp.startsWith('0x')) {
     temp = '0x' + temp
   }
-  AssertUtil.canCast(temp, 'bignumber')
+  canCastBigNumber(temp)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -412,7 +420,7 @@ String.prototype.numberStrToHex_ = function (): string {
  * 判断此值用于计算时是否具有精度问题
  */
 String.prototype.hasPrecisionIssue_ = function (): boolean {
-  AssertUtil.canCast(this, 'bignumber')
+  canCastBigNumber(this)
   return this.gt('9007199254740992')
 }
 
@@ -558,7 +566,7 @@ String.prototype.hexToDecimalString_ = function (): string {
   if (!temp.startsWith('0x')) {
     temp = '0x' + temp
   }
-  AssertUtil.canCast(temp, 'bignumber')
+  canCastBigNumber(temp)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -575,7 +583,7 @@ String.prototype.binToDecimalString_ = function (): string {
   if (!temp.startsWith('0b')) {
     temp = '0b' + temp
   }
-  AssertUtil.canCast(temp, 'bignumber')
+  canCastBigNumber(temp)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
@@ -709,7 +717,7 @@ String.prototype.toNoScientificString_ = function (): string {
 }
 
 String.prototype.canCastNumber_ = function (): boolean {
-  return AssertUtil.canCast(this, 'number', null, false)
+  return !isNaN(Number(this))
 }
 
 String.prototype.utf8HexStringToString_ = function (): string {

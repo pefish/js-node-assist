@@ -138,7 +138,7 @@ Array.prototype.removeEnd_ = function (num: number): any[] {
 
 Array.prototype.removeByIndex_ = function (index: number): any[] {
   if (index > this.length - 1) {
-    throw ErrorHelper(`索引超过数组长度`)
+    throw new ErrorHelper(`索引超过数组长度`)
   }
   const temp = this.deepCopy_()
   temp.splice(index, 1)
@@ -149,7 +149,7 @@ Array.prototype.removeByValue_ = function (value: any): any[] {
   const temp = this.deepCopy_()
   const index = temp.indexOf(value)
   if (index === -1) {
-    throw ErrorHelper(`没有找到 ${value}`)
+    throw new ErrorHelper(`没有找到 ${value}`)
   }
   temp.splice(index, 1)
   return temp
@@ -168,7 +168,7 @@ Array.prototype.append_ = function (arr: any[]): any[] {
  */
 Array.prototype.getMax_ = function (): object {
   if (this.length === 0) {
-    throw ErrorHelper(`空数组`)
+    throw new ErrorHelper(`空数组`)
   }
 
   let maxValue = this[0].toString()
@@ -194,7 +194,7 @@ Array.prototype.getMax_ = function (): object {
 
 Array.prototype.getMin_ = function (): object {
   if (this.length === 0) {
-    throw ErrorHelper(`空数组`)
+    throw new ErrorHelper(`空数组`)
   }
 
   let minValue = this[0].toString()
@@ -249,7 +249,7 @@ Array.prototype.toLowerCase_ = function (): string[] {
 
 Array.prototype.random_ = function (): any {
   if (this.length === 0) {
-    throw ErrorHelper(`空数组`)
+    throw new ErrorHelper(`空数组`)
   }
   return this[Math.floor(Math.random() * 1E4) % this.length]
 }
@@ -260,7 +260,7 @@ Array.prototype.random_ = function (): any {
  */
 Array.prototype.numberArrayToHexString_ = function (): string {
   if (this.length === 0) {
-    throw ErrorHelper(`空数组`)
+    throw new ErrorHelper(`空数组`)
   }
   return this.map((byte) => {
     return byte.toString().numberStrToHex_()
@@ -274,7 +274,7 @@ Array.prototype.numberArrayToHexString_ = function (): string {
  */
 Array.prototype.subArray_ = function (start: number, end: number): any[] {
   if (this.length === 0) {
-    throw ErrorHelper(`空数组`)
+    throw new ErrorHelper(`空数组`)
   }
   return this.slice(start, end)
 }

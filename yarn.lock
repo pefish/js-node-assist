@@ -18,18 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@pefish/js-error@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@pefish/js-error/-/js-error-0.0.5.tgz#be50104cb7e6cb115a31ccdc55dafcf09a65a4ec"
-  integrity sha512-Eypll4OykI0EWj61wx8/cVMVldGjiPJVic/KzK76z1RZiNN9Q2TF7DJif+qg7MBlGbJHAQZ77wIBv5x9fndxpw==
-
-"@pefish/js-helper-assert@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@pefish/js-helper-assert/-/js-helper-assert-0.0.2.tgz#5adfb94e9308f1b825cf16e1982cf687b8775037"
-  integrity sha512-y37Tr+gLYOzSwiqMEGJT/TlnHBM+CeHhGNjpSKnXhu8dgPdNDY4c3G6/8rvu+M5NBhvoeM+fSHvmU/bqZ6H8Lg==
-  dependencies:
-    bignumber.js "^8.1.1"
-    p-js-error "^0.0.4"
+"@pefish/js-error@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@pefish/js-error/-/js-error-0.1.1.tgz#d3e6f4a1362206aaf73afd628465364c3a581ed2"
+  integrity sha512-JNLY0twr0fVEnGgrMetZsBZrStDGmHDX0dY9amDChTzVqrGEd6dvpzkR9BxINGhWgeAX6naTzI2FZn3ZwGlrsw==
 
 "@types/chai@^4.1.7":
   version "4.1.7"
@@ -178,12 +170,6 @@ has-flag@^3.0.0:
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
   integrity sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
 
-iconv-lite@~0.4.11:
-  version "0.4.23"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
-  dependencies:
-    safer-buffer ">= 2.1.2 < 3"
-
 inflight@^1.0.4:
   version "1.0.6"
   resolved "http://registry.npm.taobao.org/inflight/download/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -268,11 +254,6 @@ once@^1.3.0:
   dependencies:
     wrappy "1"
 
-p-js-error@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/p-js-error/-/p-js-error-0.0.4.tgz#ae7dbba4f998576012bb818227961b7961cc9902"
-  integrity sha512-voF6p/u1QP+7UMMqZLucmnXHN5JncAvyeKjlvGVRQ9HuFhIL/RBxZ0gN0g1UXaRNdsOorWNfnNHuTGKNMN7toA==
-
 path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/path-is-absolute/download/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
@@ -294,10 +275,6 @@ resolve@^1.3.2:
   integrity sha512-KuIe4mf++td/eFb6wkaPbMDnP6kObCaEtIDuHOUED6MNUo4K670KZUHuuvYPZDxNF0WVLw49n06M2m2dXphEzA==
   dependencies:
     path-parse "^1.0.6"
-
-"safer-buffer@>= 2.1.2 < 3":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
 semver@^5.3.0:
   version "5.4.1"
@@ -396,16 +373,6 @@ underscore@1.6.0, underscore@~1.6.0:
 underscore@~1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
-
-urlencode@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/urlencode/-/urlencode-1.1.0.tgz#1f2ba26f013c85f0133f7a3ad6ff2730adf7cbb7"
-  dependencies:
-    iconv-lite "~0.4.11"
-
-utf8@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
 
 wrappy@1:
   version "1.0.2"
