@@ -28,6 +28,22 @@ describe('stringAssist', () => {
     assert.strictEqual(result1, `4,8`)
   })
 
+  it('removeFirstStr_', () => {
+    const result = `2,4`.removeFirstStr_('2')
+    assert.strictEqual(result, `,4`)
+    const result1 = `\n4,8`.removeFirstStr_('\n')
+    assert.strictEqual(result1, `4,8`)
+    const result2 = `\n4,8`.removeFirstStr_('4')
+    assert.strictEqual(result2, `\n4,8`)
+  })
+
+  it('removeLastStr_', () => {
+    const result = `2,4`.removeLastStr_('2')
+    assert.strictEqual(result, `2,4`)
+    const result1 = `4,8\n`.removeLastStr_('\n')
+    assert.strictEqual(result1, `4,8`)
+  })
+
   it('removeLastByStr_', () => {
     const result = `2,4`.removeLastByStr_(',')
     // logger.error(result)
@@ -35,6 +51,11 @@ describe('stringAssist', () => {
     const result1 = `2,4,8`.removeLastByStr_(',')
     // logger.error(result1)
     assert.strictEqual(result1, `2,4`)
+    const result2 = "dghjsd\n".removeLastByStr_("\n")
+    assert.strictEqual(result2, `dghjsd`)
+    const result3 = "dghjsd".removeLastByStr_("\n")
+    // console.log(`11`, result3)
+    assert.strictEqual(result3, `dghjsd`)
   })
 
   it('removeLastEnter_', () => {

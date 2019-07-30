@@ -57,6 +57,8 @@ declare global {
         canCastNumber_?: () => boolean;
         utf8HexStringToString_?: () => string;
         stringToUtf8HexString_?: (prefix?: boolean) => string;
+        removeLastStr_: (str: string) => string;
+        removeFirstStr_: (str: string) => string;
     }
 }
 export {};

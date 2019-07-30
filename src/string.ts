@@ -61,6 +61,8 @@ declare global {
     canCastNumber_?: () => boolean,
     utf8HexStringToString_?: () => string,
     stringToUtf8HexString_?: (prefix?: boolean) => string,
+    removeLastStr_: (str: string) => string,
+    removeFirstStr_: (str: string) => string,
   }
 }
 
@@ -697,15 +699,43 @@ String.prototype.removeLastEnter_ = function (): string {
 }
 
 /**
+ * 移除最后一段字符串
+ */
+String.prototype.removeLastStr_ = function (str: string): string {
+  if (!this.endsWith(str)) {
+    return this
+  }
+  return this.substring(0, this.length - str.length)
+}
+
+/**
+ * 移除开头一段字符串
+ */
+String.prototype.removeFirstStr_ = function (str: string): string {
+  if (!this.startsWith(str)) {
+    return this
+  }
+  return this.substring(str.length, this.length)
+}
+
+/**
  * 移除字符串最后一段。
  * @param str
  */
 String.prototype.removeLastByStr_ = function (str: string): string {
-  return this.split(str).removeLastOne_().join(str)
+  const arr = this.split(str)
+  if (arr.length  === 1) {
+    return this
+  }
+  return arr.removeLastOne_().join(str)
 }
 
 String.prototype.removeFirstByStr_ = function (str: string): string {
-  return this.split(str).removeFirstOne_().join(str)
+  const arr = this.split(str)
+  if (arr.length  === 1) {
+    return this
+  }
+  return arr.removeFirstOne_().join(str)
 }
 
 String.prototype.toNoScientificString_ = function (): string {
