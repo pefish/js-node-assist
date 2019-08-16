@@ -136,5 +136,12 @@ describe('arrayAssist', () => {
     // logger.error(result)
     assert.strictEqual(result, 'E0DC4A48')
   })
+
+  it('getMaxWithPriority_', () => {
+    const arr = [["1", 4], ["2", 5], ["2", 4], [1, 1]]
+    const result = arr.sortWithPriority_(`asc`)
+    global.logger.error(result)
+    // assert.strictEqual(result, 'E0DC4A48')
+  })
 })
 

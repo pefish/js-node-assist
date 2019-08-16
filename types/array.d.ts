@@ -1,8 +1,9 @@
 /** @module */
 interface GetMaxMinResult {
-    value: any;
+    value: string;
     indexes: number[];
 }
+declare type Order = (`desc` | `asc`);
 declare global {
     interface Array<T> {
         toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[][];
@@ -21,6 +22,7 @@ declare global {
         append_?: (arr: any[]) => any[];
         getMax_?: () => GetMaxMinResult;
         getMin_?: () => GetMaxMinResult;
+        sortWithPriority_?: (order: Order) => (string | number)[][];
         getSum_?: () => string;
         select_?: (indexes: number[]) => any[];
         toUpperCase_?: () => string[];

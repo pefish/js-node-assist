@@ -3,9 +3,11 @@
 import ErrorHelper from '@pefish/js-error'
 
 interface GetMaxMinResult {
-  value: any,
+  value: string,
   indexes: number[]
 }
+
+type Order = (`desc`|`asc`)
 
 declare global {
   interface Array<T> {
@@ -25,6 +27,7 @@ declare global {
     append_?: (arr: any[]) => any[],
     getMax_?: () => GetMaxMinResult,
     getMin_?: () => GetMaxMinResult,
+    sortWithPriority_?: (order: Order) => (string | number)[][],
     getSum_?: () => string,
     select_?: (indexes: number[]) => any[],
     toUpperCase_?: () => string[],
@@ -195,6 +198,21 @@ Array.prototype.getMax_ = function (): GetMaxMinResult {
     value: maxValue,
     indexes: maxIndex
   }
+}
+
+Array.prototype.sortWithPriority_ = function (order: Order): (string | number)[][] {
+  if (this.length === 0) {
+    throw new ErrorHelper(`空数组`)
+  }
+
+  this.sort(([val, priority], [val1, priority1]) => {
+    if (val.toString().eq_(val1)) {
+      return order === `desc` ? priority.toString().lt_(priority1) : priority.toString().gt_(priority1)
+    } else {
+      return order === `desc` ? val.toString().lt_(val1) : val.toString().gt_(val1)
+    }
+  })
+  return this
 }
 
 Array.prototype.getMin_ = function (): GetMaxMinResult {
