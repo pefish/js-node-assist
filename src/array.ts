@@ -2,9 +2,14 @@
 
 import ErrorHelper from '@pefish/js-error'
 
+interface GetMaxMinResult {
+  value: any,
+  indexes: number[]
+}
+
 declare global {
   interface Array<T> {
-    toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[],
+    toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[][],
     uniq_?: () => any[],
     removeEmpty_?: () => any[],
     getAverage_?: () => string,
@@ -18,8 +23,8 @@ declare global {
     removeByValue_?: (value: number) => any[],
     deepCopy_?: () => any[],
     append_?: (arr: any[]) => any[],
-    getMax_?: () => object,
-    getMin_?: () => object,
+    getMax_?: () => GetMaxMinResult,
+    getMin_?: () => GetMaxMinResult,
     getSum_?: () => string,
     select_?: (indexes: number[]) => any[],
     toUpperCase_?: () => string[],
@@ -36,7 +41,7 @@ declare global {
  * @param arrayNum 分成几个小数组
  * @returns {*}
  */
-Array.prototype.toTwoDimen_ = function (spliceNum: number = null, arrayNum: number = null): any[] {
+Array.prototype.toTwoDimen_ = function (spliceNum: number = null, arrayNum: number = null): any[][] {
   if (spliceNum !== null && arrayNum === null) {
     const num = this.length % spliceNum === 0 ? parseInt((this.length / spliceNum).toString()) : parseInt((this.length / spliceNum).toString()) + 1
     const newArrays = []
@@ -61,7 +66,7 @@ Array.prototype.toTwoDimen_ = function (spliceNum: number = null, arrayNum: numb
     }
     return newArrays
   } else {
-    return null
+    throw new ErrorHelper(`spliceNum or arrayNum error`)
   }
 }
 
@@ -166,7 +171,7 @@ Array.prototype.append_ = function (arr: any[]): any[] {
 /**
  * 取出最大值（值以及索引）,只适用于数值数组以及字符串数组, 返回值为字符串
  */
-Array.prototype.getMax_ = function (): object {
+Array.prototype.getMax_ = function (): GetMaxMinResult {
   if (this.length === 0) {
     throw new ErrorHelper(`空数组`)
   }
@@ -192,7 +197,7 @@ Array.prototype.getMax_ = function (): object {
   }
 }
 
-Array.prototype.getMin_ = function (): object {
+Array.prototype.getMin_ = function (): GetMaxMinResult {
   if (this.length === 0) {
     throw new ErrorHelper(`空数组`)
   }

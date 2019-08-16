@@ -1,7 +1,7 @@
 /** @module */
 declare global {
     interface Array<T> {
-        toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[];
+        toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[][];
         uniq_?: () => any[];
         removeEmpty_?: () => any[];
         getAverage_?: () => string;
