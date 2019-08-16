@@ -1,4 +1,8 @@
 /** @module */
+interface GetMaxMinResult {
+    value: any;
+    indexes: number[];
+}
 declare global {
     interface Array<T> {
         toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[][];
@@ -15,8 +19,8 @@ declare global {
         removeByValue_?: (value: number) => any[];
         deepCopy_?: () => any[];
         append_?: (arr: any[]) => any[];
-        getMax_?: () => object;
-        getMin_?: () => object;
+        getMax_?: () => GetMaxMinResult;
+        getMin_?: () => GetMaxMinResult;
         getSum_?: () => string;
         select_?: (indexes: number[]) => any[];
         toUpperCase_?: () => string[];

@@ -35,7 +35,6 @@ declare global {
         getFirst_?: (num: number) => string;
         getLast_?: (num: number) => string;
         replaceAll_?: (regStr: string, replaceStr: string) => string;
-        findAll_?: (regStr: string) => object[];
         classify_?: (splitStr1: string, splitStr2: string) => object[];
         hexToBuffer_?: () => Buffer;
         toBuffer_?: () => Buffer;
