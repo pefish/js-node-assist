@@ -1,3 +1,5 @@
+import { INTERNAL_ERROR, INTERNAL_ERROR_MESSAGE } from "@pefish/js-error";
+
 declare global {
   interface Error {
     setErrorCode_?: (errorCode: number) => void,
@@ -23,7 +25,7 @@ Error.prototype.setErrorCode_ = function (errorCode: number): void {
  * @returns {*}
  */
 Error.prototype.getErrorCode_ = function (): number {
-  return this._errorCode || 1
+  return this._errorCode || INTERNAL_ERROR
 }
 
 /**
@@ -39,7 +41,7 @@ Error.prototype.setErrorMessage_ = function (errorMessage: string): void {
  * @returns {*}
  */
 Error.prototype.getErrorMessage_ = function (): string {
-  return this._errorMessage || this['message']
+  return this._errorMessage || this['message'] || INTERNAL_ERROR_MESSAGE
 }
 
 /**
