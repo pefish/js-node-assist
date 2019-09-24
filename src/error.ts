@@ -23,7 +23,7 @@ Error.prototype.setErrorCode_ = function (errorCode: number): void {
  * @returns {*}
  */
 Error.prototype.getErrorCode_ = function (): number {
-  return this._errorCode || 0
+  return this._errorCode || 1
 }
 
 /**
