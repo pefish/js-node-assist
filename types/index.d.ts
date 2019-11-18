@@ -1,10 +1,3 @@
-declare global {
-    namespace NodeJS {
-        interface Global {
-            logger: any;
-        }
-    }
-}
 export * from './error';
 export * from './string';
 export * from './array';
