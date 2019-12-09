@@ -8,8 +8,7 @@ declare global {
     toBinString_?: () => string,
     toHexString_?: (prefix?: boolean) => string,
     toDecimalString_?: () => string,
-    toDecimalNumber_?: () => number,
-    toHexNumber_?: () => number,
+    toNumber_?: () => number,
     correctEmptyBuffer_?: () => Buffer,
     getBytesLength_?: () => number,
     reverseBuffer_?: () => Buffer,
@@ -22,7 +21,7 @@ declare global {
  * @returns {string}
  */
 Buffer.prototype.toDecimalNumberArray_ = function (): any[] {
-  const temp = this.correctEmptyBuffer()
+  const temp = this.correctEmptyBuffer_()
   return [].slice.call(temp)
 }
 
@@ -32,7 +31,7 @@ Buffer.prototype.toDecimalNumberArray_ = function (): any[] {
  */
 Buffer.prototype.toBinString_ = function (): string {
   const temp = this
-  return temp.toDecimalArray().map(function (x) {
+  return temp.toDecimalNumberArray_().map(function (x) {
     let str = x.toString(2)
     while (str.length < 8) {
       str = '0' + str
@@ -69,18 +68,9 @@ Buffer.prototype.toDecimalString_ = function (): string {
  * 转化为十进制数值
  * @returns {number}
  */
-Buffer.prototype.toDecimalNumber_ = function (): number {
-  const temp = this.correctEmptyBuffer()
+Buffer.prototype.toNumber_ = function (): number {
+  const temp = this.correctEmptyBuffer_()
   return new BigNumber(temp.toString('hex'), 16).toNumber()
-}
-
-/**
- * 转化为十六进制数值
- * @returns {number | *}
- */
-Buffer.prototype.toHexNumber_ = function (): number {
-  const temp = this.correctEmptyBuffer()
-  return temp.toHexString(false).toNumber()
 }
 
 /**
