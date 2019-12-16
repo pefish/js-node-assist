@@ -1,10 +1,7 @@
 # js-node-assist
-node的辅助工具或修复工具，如修复Number的精度问题等等
+makes JavaScript easier to use, and improve coding efficiency
 
-## 安装
+## Install
 ```shell
 npm install @pefish/js-node-assist
 ```
-
-## 文档
-
