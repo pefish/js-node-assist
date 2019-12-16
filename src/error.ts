@@ -41,7 +41,7 @@ Error.prototype.setErrorMessage_ = function (errorMessage: string): void {
  * @returns {*}
  */
 Error.prototype.getErrorMessage_ = function (): string {
-  return this._errorMessage || this['message'] || INTERNAL_ERROR_MESSAGE
+  return this._errorMessage || this.message || INTERNAL_ERROR_MESSAGE
 }
 
 /**

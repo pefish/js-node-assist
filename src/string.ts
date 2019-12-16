@@ -294,13 +294,27 @@ String.prototype.removeThousandSign_ = function (): string {
   return this.replace(new RegExp(',', 'g'), '')
 }
 
+
+export enum RoundingMode {
+  ROUND_UP = 0,
+  ROUND_DOWN,
+  ROUND_CEIL,
+  ROUND_FLOOR,
+  ROUND_HALF_UP,
+  ROUND_HALF_DOWN,
+  ROUND_HALF_EVEN,
+  ROUND_HALF_CEIL,
+  ROUND_HALF_FLOOR,
+  EUCLID,
+}
+
 /**
  * 保留小数点后几位
  * @param decimalRemain
  * @param remainMethod {number} ROUND_UP 0(直接截断，向上取整), ROUND_DOWN 1(直接截断，向下取整), ROUND_CEIL 2, ROUND_FLOOR 3, ROUND_HALF_UP 4(遇到.5的情况时往上近似,就是四舍五入), ROUND_HALF_DOWN 5(遇到.5的情况时往下近似), ROUND_HALF_EVEN 6, ROUND_HALF_CEIL 7, ROUND_HALF_FLOOR 8, EUCLID 9
  * @returns {string}
  */
-String.prototype.remainDecimal_ = function (decimalRemain: number, remainMethod: number = BigNumber.ROUND_HALF_UP): string {
+String.prototype.remainDecimal_ = function (decimalRemain: number, remainMethod: RoundingMode = RoundingMode.ROUND_HALF_UP): string {
   canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -538,7 +552,7 @@ String.prototype.hexToBuffer_ = function (): Buffer {
  * @returns {Buffer}
  */
 String.prototype.toBuffer_ = function (): Buffer {
-  return new Buffer(this)
+  return Buffer.from ? Buffer.from(this) : new Buffer(this)
 }
 
 /**

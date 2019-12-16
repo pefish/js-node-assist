@@ -5,8 +5,7 @@ declare global {
         toBinString_?: () => string;
         toHexString_?: (prefix?: boolean) => string;
         toDecimalString_?: () => string;
-        toDecimalNumber_?: () => number;
-        toHexNumber_?: () => number;
+        toNumber_?: () => number;
         correctEmptyBuffer_?: () => Buffer;
         getBytesLength_?: () => number;
         reverseBuffer_?: () => Buffer;

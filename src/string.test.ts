@@ -1,5 +1,5 @@
-import './index'
 import assert from 'assert'
+import { RoundingMode } from './index';
 
 describe('stringAssist', () => {
 
@@ -17,7 +17,7 @@ describe('stringAssist', () => {
   })
 
   it('remainDecimal_', () => {
-    const result = `10.12`.remainDecimal_(4, 0)
+    const result = `10.12`.remainDecimal_(4, RoundingMode.ROUND_UP)
     assert.strictEqual(result, `10.1200`)
   })
 
