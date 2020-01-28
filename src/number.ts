@@ -10,6 +10,7 @@ declare global {
     toNumber_?: () => number,
     toInt_?: () => number,
     toNoScientificString_?: () => string,
+    toBuffer_?: (endian?: Endian) => Buffer,
   }
 }
 
@@ -49,6 +50,18 @@ Number.prototype.toInt_ = function (): number {
   return parseInt(this)
 }
 
+Number.prototype.toBuffer_ = function (endian: Endian = Endian.Little_Endian): Buffer {
+  const buf = Buffer.alloc(8)
+  if (endian === Endian.Big_Endian) {
+    buf.writeDoubleBE(this, 0)
+  } else if (endian === Endian.Little_Endian) {
+    buf.writeDoubleLE(this, 0)
+  } else {
+    throw new Error(`endian error`)
+  }
+  return buf
+}
+
 Number.prototype.toNoScientificString_ = function (): string {
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
@@ -58,3 +71,8 @@ Number.prototype.toNoScientificString_ = function (): string {
 }
 
 export {};
+
+export enum Endian {
+  Big_Endian = 0,
+  Little_Endian,
+}

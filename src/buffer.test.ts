@@ -40,10 +40,10 @@ describe('bufferAssist', () => {
   })
 
   it('toDecimalString_', () => {
-    const test = Buffer.from([0x66, 0x73, 0x06, 0x44, 0x16, 0x95, 0x9a])
+    const test = Buffer.from([0x66, 0x73, 0x06, 0x44])
     const result = test.toDecimalString_()
     // console.log(result)
-    assert.strictEqual(result, `28836918373815706`)
+    assert.strictEqual(result, `1718814276`)
   })
 
   it('getBytesLength_', () => {

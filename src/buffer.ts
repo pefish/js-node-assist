@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 
 declare global {
   interface Buffer {
-    toDecimalNumberArray_?: () => any[],
+    toDecimalNumberArray_?: () => number[],
     toBinString_?: () => string,
     toHexString_?: (prefix?: boolean) => string,
     toDecimalString_?: () => string,
@@ -17,16 +17,16 @@ declare global {
 }
 
 /**
- * 转换为十进制的bytes数组
+ * 以hex编码转换为十进制的bytes数组
  * @returns {string}
  */
-Buffer.prototype.toDecimalNumberArray_ = function (): any[] {
-  const temp = this.correctEmptyBuffer_()
+Buffer.prototype.toDecimalNumberArray_ = function (): number[] {
+  const temp: Buffer = this.correctEmptyBuffer_()
   return [].slice.call(temp)
 }
 
 /**
- * 转化为二进制字符串
+ * 以hex编码转化为二进制字符串
  * @returns {string}
  */
 Buffer.prototype.toBinString_ = function (): string {
@@ -41,11 +41,11 @@ Buffer.prototype.toBinString_ = function (): string {
 }
 
 /**
- * 转化为十六进制字符串
+ * 以hex编码转化为十六进制字符串。
  * @returns {string}
  */
 Buffer.prototype.toHexString_ = function (prefix: boolean = true): string {
-  const temp = this.toString('hex')
+  const temp: string = (this as Buffer).toString('hex')
   if (prefix === false) {
     return temp
   } else {
@@ -54,7 +54,7 @@ Buffer.prototype.toHexString_ = function (prefix: boolean = true): string {
 }
 
 /**
- * 转化为十进制字符串
+ * 以hex编码转化为十进制字符串
  * @returns {string}
  */
 Buffer.prototype.toDecimalString_ = function (): string {
@@ -62,15 +62,6 @@ Buffer.prototype.toDecimalString_ = function (): string {
     return '0'
   }
   return new BigNumber(this.toString('hex'), 16).toString(10)
-}
-
-/**
- * 转化为十进制数值
- * @returns {number}
- */
-Buffer.prototype.toNumber_ = function (): number {
-  const temp = this.correctEmptyBuffer_()
-  return new BigNumber(temp.toString('hex'), 16).toNumber()
 }
 
 /**

@@ -299,6 +299,12 @@ describe('stringAssist', () => {
     // logger.error(result)
     assert.strictEqual(result, '0c68affbcf01a49540e590bcf88afa4dc630eb5ce0e13a5b067c918f0e1c9af4')
   })
+
+  it('toBuffer_', () => {
+    const result = '1'.toBuffer_()
+    // console.error(result[0])
+    assert.strictEqual(result[0], 49)
+  })
 })
 
 
