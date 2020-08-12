@@ -41,14 +41,14 @@ declare global {
     replaceAll_?: (regStr: string, replaceStr: string) => string,
     classify_?: (splitStr1: string, splitStr2: string) => object[],
     hexToBuffer_?: () => Buffer,
-    toBuffer_?: () => Buffer,
+    toUtf8Buffer_?: () => Buffer,
     hexToDecimalString_?: () => string,
     binToDecimalString_?: () => string,
     isStrictHexString_?: () => boolean,
     clearHexZeroZero_?: (typeStr: string) => string,
     toBigNumber_?: () => BigNumber,
     removeTrailingZeros_?: () => string,
-    toArray_?: (len?: number, arrLen?: number) => any[],
+    toArray_?: (len?: number, arrLen?: number) => string[],
     hexStrToBase64_?: () => string,
     base64ToHexStr_?: (prefix?: boolean) => string,
     strToBase64_?: () => string,
@@ -59,9 +59,10 @@ declare global {
     toNoScientificString_?: () => string,
     canCastNumber_?: () => boolean,
     utf8HexStringToString_?: () => string,
-    stringToUtf8HexString_?: (prefix?: boolean) => string,
+    toUtf8HexString_?: (prefix?: boolean) => string,
     removeLastStr_: (str: string) => string,
     removeFirstStr_: (str: string) => string,
+    toUtf8Uint8Array_: () => Uint8Array,
   }
 }
 
@@ -532,7 +533,7 @@ String.prototype.classify_ = function (splitStr1: string, splitStr2: string): {
 }
 
 /**
- * 十六进制字符串转化为Buffer
+ * 十六进制字符串转化为Buffer。与Buffer.toHexString_相反
  * @returns {Array}
  */
 String.prototype.hexToBuffer_ = function (): Buffer {
@@ -551,7 +552,7 @@ String.prototype.hexToBuffer_ = function (): Buffer {
  * 普通字符串转buffer
  * @returns {Buffer}
  */
-String.prototype.toBuffer_ = function (): Buffer {
+String.prototype.toUtf8Buffer_ = function (): Buffer {
   return Buffer.from ? Buffer.from(this) : new Buffer(this)
 }
 
@@ -638,18 +639,18 @@ String.prototype.removeTrailingZeros_ = function (): string {
   return num1.toString()
 }
 
-String.prototype.toArray_ = function (len: number = null, arrLen: number = null): any[] {
-  if (len !== null && arrLen === null) {
-    const num = this.length % len === 0 ? parseInt((this.length / len).toString()) : parseInt((this.length / len).toString()) + 1
+String.prototype.toArray_ = function (eleLen: number = null, arrLen: number = null): string[] {
+  if (eleLen !== null && arrLen === null) {
+    const num = this.length % eleLen === 0 ? parseInt((this.length / eleLen).toString()) : parseInt((this.length / eleLen).toString()) + 1
     const newArrays = []
     for (let i = 0; i < num; i++) {
-      const arr = this.slice(len * i, len * (i + 1))
+      const arr = this.slice(eleLen * i, eleLen * (i + 1))
       if (arr.length > 0) {
         newArrays.push(arr)
       }
     }
     return newArrays
-  } else if (len === null && arrLen !== null) {
+  } else if (eleLen === null && arrLen !== null) {
     const newArrays = []
     const num = parseInt((this.length / arrLen).toString())
     for (let i = 0; i < arrLen; i++) {
@@ -663,7 +664,7 @@ String.prototype.toArray_ = function (len: number = null, arrLen: number = null)
     }
     return newArrays
   } else {
-    return []
+    throw new Error("eleLen and arrLen must only one to be set!!")
   }
 }
 
@@ -750,8 +751,12 @@ String.prototype.utf8HexStringToString_ = function (): string {
   return this.hexToBuffer_().toString('utf8')
 }
 
-String.prototype.stringToUtf8HexString_ = function (prefix: boolean = true): string {
-  return this.toBuffer_().toHexString_(prefix)
+String.prototype.toUtf8HexString_ = function (prefix: boolean = true): string {
+  return this.toUtf8Buffer_().toHexString_(prefix)
+}
+
+String.prototype.toUtf8Uint8Array_ = function (): Uint8Array {
+  return new TextEncoder().encode(this)
 }
 
 export {};

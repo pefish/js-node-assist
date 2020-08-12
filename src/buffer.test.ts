@@ -53,12 +53,11 @@ describe('bufferAssist', () => {
     assert.strictEqual(result, 4)
   })
 
-  it('toNumber_', () => {
-    const test = Buffer.from([0x66, 0x73, 0x06, 0x44])
-    const result = test.toNumber_()
+  it('toUint8Array_', () => {
+    const test = Buffer.from('1shfgdjewarta')
+    const result = test.toUint8Array_()
     // console.log(result)
-    assert.strictEqual(result, 0x66730644)
-    assert.strictEqual(result, 1718814276)
+    assert.strictEqual(JSON.stringify(result), `{"0":49,"1":115,"2":104,"3":102,"4":103,"5":100,"6":106,"7":101,"8":119,"9":97,"10":114,"11":116,"12":97}`)
   })
 })
 

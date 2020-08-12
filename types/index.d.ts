@@ -5,3 +5,4 @@ export * from './buffer';
 export * from './number';
 export * from './promise';
 export * from './bignumber';
+export * from './uint8array';

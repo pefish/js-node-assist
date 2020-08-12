@@ -46,11 +46,13 @@ Number.prototype.toNumber_ = function (): number {
   return this
 }
 
+// 转成int类型，直接溢出截取
 Number.prototype.toInt_ = function (): number {
-  return parseInt(this)
+  return parseInt(this.toString(10), 10)
 }
 
-Number.prototype.toBuffer_ = function (endian: Endian = Endian.Little_Endian): Buffer {
+// number写入字节集
+Number.prototype.toBuffer_ = function (endian: Endian = Endian.Big_Endian): Buffer {
   const buf = Buffer.alloc(8)
   if (endian === Endian.Big_Endian) {
     buf.writeDoubleBE(this, 0)

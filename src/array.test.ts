@@ -140,8 +140,8 @@ describe('arrayAssist', () => {
   it('getMaxWithPriority_', () => {
     const arr = [["1", 4], ["2", 5], ["2", 4], [1, 1]]
     const result = arr.sortWithPriority_(`asc`)
-    console.error(result)
-    // assert.strictEqual(result, 'E0DC4A48')
+    // console.error(result)
+    assert.strictEqual(JSON.stringify(result), '[["1",4],["2",5],["2",4],[1,1]]')
   })
 })
 

@@ -278,7 +278,7 @@ Array.prototype.random_ = function (): any {
 }
 
 /**
- * [190, 190] --> BEBE
+ * [190, 190] --> BEBE 十进制转成16进制
  * @returns {string}
  */
 Array.prototype.numberArrayToHexString_ = function (): string {

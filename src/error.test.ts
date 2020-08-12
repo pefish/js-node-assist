@@ -1,5 +1,6 @@
 import './index'
 import * as util from 'util'
+import assert from 'assert'
 
 describe('errorAssist', () => {
 
@@ -17,7 +18,7 @@ describe('errorAssist', () => {
         }
       }
     } catch (err) {
-      console.log(util.inspect(err))
+      assert.strictEqual(err.message, "123")
     }
   })
 })

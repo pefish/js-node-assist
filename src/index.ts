@@ -5,6 +5,7 @@ require('./buffer')
 require('./number')
 require('./promise')
 require('./bignumber')
+require('./uint8array')
 
 export * from './error'
 export * from './string'
@@ -13,4 +14,5 @@ export * from './buffer'
 export * from './number'
 export * from './promise'
 export * from './bignumber'
+export * from './uint8array'
 

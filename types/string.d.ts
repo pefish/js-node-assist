@@ -37,14 +37,14 @@ declare global {
         replaceAll_?: (regStr: string, replaceStr: string) => string;
         classify_?: (splitStr1: string, splitStr2: string) => object[];
         hexToBuffer_?: () => Buffer;
-        toBuffer_?: () => Buffer;
+        toUtf8Buffer_?: () => Buffer;
         hexToDecimalString_?: () => string;
         binToDecimalString_?: () => string;
         isStrictHexString_?: () => boolean;
         clearHexZeroZero_?: (typeStr: string) => string;
         toBigNumber_?: () => BigNumber;
         removeTrailingZeros_?: () => string;
-        toArray_?: (len?: number, arrLen?: number) => any[];
+        toArray_?: (len?: number, arrLen?: number) => string[];
         hexStrToBase64_?: () => string;
         base64ToHexStr_?: (prefix?: boolean) => string;
         strToBase64_?: () => string;
@@ -55,9 +55,10 @@ declare global {
         toNoScientificString_?: () => string;
         canCastNumber_?: () => boolean;
         utf8HexStringToString_?: () => string;
-        stringToUtf8HexString_?: (prefix?: boolean) => string;
+        toUtf8HexString_?: (prefix?: boolean) => string;
         removeLastStr_: (str: string) => string;
         removeFirstStr_: (str: string) => string;
+        toUtf8Uint8Array_: () => Uint8Array;
     }
 }
 export declare enum RoundingMode {

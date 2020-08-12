@@ -13,6 +13,7 @@ declare global {
     getBytesLength_?: () => number,
     reverseBuffer_?: () => Buffer,
     deepCopy_?: () => Buffer,
+    toUint8Array_: () => Uint8Array,
   }
 }
 
@@ -41,7 +42,7 @@ Buffer.prototype.toBinString_ = function (): string {
 }
 
 /**
- * 以hex编码转化为十六进制字符串。
+ * 字节集直接转化为十六进制字符串。
  * @returns {string}
  */
 Buffer.prototype.toHexString_ = function (prefix: boolean = true): string {
@@ -99,6 +100,10 @@ Buffer.prototype.deepCopy_ = function (): Buffer {
   const tempBuffer = Buffer.alloc(this.length)
   this.copy(tempBuffer, 0, 0, this.length)
   return tempBuffer
+}
+
+Buffer.prototype.toUint8Array_ = function (): Uint8Array {
+  return new Uint8Array(this)
 }
 
 export {};

@@ -1,7 +1,7 @@
 /** @module */
 declare global {
     interface Buffer {
-        toDecimalNumberArray_?: () => any[];
+        toDecimalNumberArray_?: () => number[];
         toBinString_?: () => string;
         toHexString_?: (prefix?: boolean) => string;
         toDecimalString_?: () => string;
@@ -10,6 +10,7 @@ declare global {
         getBytesLength_?: () => number;
         reverseBuffer_?: () => Buffer;
         deepCopy_?: () => Buffer;
+        toUint8Array_: () => Uint8Array;
     }
 }
 export {};
