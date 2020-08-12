@@ -1,5 +1,6 @@
-# js-node-assist
-makes JavaScript easier to use, and improve coding efficiency
+# Js-node-assist
+
+Makes JavaScript easier to use, and improve coding efficiency
 
 ## Install
 ```shell
