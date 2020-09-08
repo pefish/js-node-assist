@@ -23,7 +23,7 @@ declare global {
     eq_?: (val: string | number) => boolean,
     addThousandSign_?: () => string,
     removeThousandSign_?: () => string,
-    remainDecimal_?: (decimalRemain: number, remainMethod?: RoundingMode) => string,
+    remainDecimal_?: (decimalRemain: number, remainMethod?: RoundingMode, withZero?: boolean) => string,
     decimalCount_?: () => number,
     abs_?: () => string,
     decimalToBinString_?: () => string,
@@ -297,12 +297,12 @@ String.prototype.removeThousandSign_ = function (): string {
 
 
 export enum RoundingMode {
-  ROUND_UP = 0,
-  ROUND_DOWN,
+  ROUND_UP = 0,  // 直接截断，向上取整
+  ROUND_DOWN,  // 直接截断，向下取整
   ROUND_CEIL,
   ROUND_FLOOR,
-  ROUND_HALF_UP,
-  ROUND_HALF_DOWN,
+  ROUND_HALF_UP,  // 遇到.5的情况时往上近似,就是四舍五入
+  ROUND_HALF_DOWN,  // 遇到.5的情况时往下近似
   ROUND_HALF_EVEN,
   ROUND_HALF_CEIL,
   ROUND_HALF_FLOOR,
@@ -310,18 +310,28 @@ export enum RoundingMode {
 }
 
 /**
- * 保留小数点后几位
+ * 保留小数点后几位。默认小数部分最后不带0
  * @param decimalRemain
- * @param remainMethod {number} ROUND_UP 0(直接截断，向上取整), ROUND_DOWN 1(直接截断，向下取整), ROUND_CEIL 2, ROUND_FLOOR 3, ROUND_HALF_UP 4(遇到.5的情况时往上近似,就是四舍五入), ROUND_HALF_DOWN 5(遇到.5的情况时往下近似), ROUND_HALF_EVEN 6, ROUND_HALF_CEIL 7, ROUND_HALF_FLOOR 8, EUCLID 9
+ * @param remainMethod {number}
  * @returns {string}
  */
-String.prototype.remainDecimal_ = function (decimalRemain: number, remainMethod: RoundingMode = RoundingMode.ROUND_HALF_UP): string {
+String.prototype.remainDecimal_ = function (decimalRemain: number, remainMethod: RoundingMode = RoundingMode.ROUND_HALF_UP, withZero: boolean = false): string {
   canCastBigNumber(this)
   const BN = BigNumber.clone({
     EXPONENTIAL_AT: 1e+9
   })
   const num1 = new BN(this)
-  return num1.toFixed(decimalRemain, remainMethod as BigNumber.RoundingMode)
+  let result = num1.toFixed(decimalRemain, remainMethod as BigNumber.RoundingMode)
+  if (result.indexOf(".") !== -1 && withZero === false) {  // 是小数
+    while (true) {
+      const temp = result.removeLastStr_("0")
+      if (result === temp) {
+        return result
+      }
+      result = temp
+    }
+  }
+  return result
 }
 
 /**

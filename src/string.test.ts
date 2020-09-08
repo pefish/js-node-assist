@@ -18,7 +18,16 @@ describe('stringAssist', () => {
 
   it('remainDecimal_', () => {
     const result = `10.12`.remainDecimal_(4, RoundingMode.ROUND_UP)
-    assert.strictEqual(result, `10.1200`)
+    assert.strictEqual(result, `10.12`)
+
+    const result1 = `10.12`.remainDecimal_(4, RoundingMode.ROUND_UP, true)
+    assert.strictEqual(result1, `10.1200`)
+
+    const result2 = `10.12`.remainDecimal_(1, RoundingMode.ROUND_UP)
+    assert.strictEqual(result2, `10.2`)
+
+    const result3 = `10.12`.remainDecimal_(0, RoundingMode.ROUND_UP)
+    assert.strictEqual(result3, `11`)
   })
 
   it('removeFirstByStr_', () => {

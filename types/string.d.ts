@@ -19,7 +19,7 @@ declare global {
         eq_?: (val: string | number) => boolean;
         addThousandSign_?: () => string;
         removeThousandSign_?: () => string;
-        remainDecimal_?: (decimalRemain: number, remainMethod?: RoundingMode) => string;
+        remainDecimal_?: (decimalRemain: number, remainMethod?: RoundingMode, withZero?: boolean) => string;
         decimalCount_?: () => number;
         abs_?: () => string;
         decimalToBinString_?: () => string;
