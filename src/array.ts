@@ -1,305 +1,279 @@
-/** @module */
 
 import ErrorHelper from '@pefish/js-error'
+import StringUtil from './string';
 
 interface GetMaxMinResult {
   value: string,
   indexes: number[]
 }
 
-type Order = (`desc`|`asc`)
+type Order = (`desc` | `asc`)
 
-declare global {
-  interface Array<T> {
-    toTwoDimen_?: (spliceNum?: number, arrayNum?: number) => any[][],
-    uniq_?: () => any[],
-    removeEmpty_?: () => any[],
-    getAverage_?: () => string,
-    getLastOne_?: () => any,
-    removeLastOne_?: () => any[],
-    getFirstOne_?: () => any,
-    removeFirstOne_?: () => any[],
-    removeStart_?: (num: number) => any[],
-    removeEnd_?: (num: number) => any[],
-    removeByIndex_?: (index: number) => any[],
-    removeByValue_?: (value: number) => any[],
-    deepCopy_?: () => any[],
-    append_?: (arr: any[]) => any[],
-    getMax_?: () => GetMaxMinResult,
-    getMin_?: () => GetMaxMinResult,
-    sortWithPriority_?: (order: Order) => (string | number)[][],
-    getSum_?: () => string,
-    select_?: (indexes: number[]) => any[],
-    toUpperCase_?: () => string[],
-    toLowerCase_?: () => string[],
-    random_?: () => any,
-    numberArrayToHexString_?: () => string,
-    subArray_?: (start: number, end: number) => any,
-  }
-}
-
-/**
+export default class ArrayUtil {
+  /**
  * 转换为二维数组
  * @param spliceNum 每个小数组几个元素
  * @param arrayNum 分成几个小数组
  * @returns {*}
  */
-Array.prototype.toTwoDimen_ = function (spliceNum: number = null, arrayNum: number = null): any[][] {
-  if (spliceNum !== null && arrayNum === null) {
-    const num = this.length % spliceNum === 0 ? parseInt((this.length / spliceNum).toString()) : parseInt((this.length / spliceNum).toString()) + 1
-    const newArrays = []
-    for (let i = 0; i < num; i++) {
-      const arr = this.slice(spliceNum * i, spliceNum * (i + 1))
-      if (arr.length > 0) {
-        newArrays.push(arr)
+  static toTwoDimen_(src: any[], spliceNum?: number, arrayNum?: number): any[][] {
+    if (spliceNum !== undefined && arrayNum === undefined) {
+      const num = src.length % spliceNum === 0 ? parseInt((src.length / spliceNum).toString()) : parseInt((src.length / spliceNum).toString()) + 1
+      const newArrays: any[][] = []
+      for (let i = 0; i < num; i++) {
+        const arr: any[] = src.slice(spliceNum * i, spliceNum * (i + 1))
+        if (arr.length > 0) {
+          newArrays.push(arr)
+        }
       }
-    }
-    return newArrays
-  } else if (spliceNum === null && arrayNum !== null) {
-    const newArrays = []
-    const num = parseInt((this.length / arrayNum).toString())
-    for (let i = 0; i < arrayNum; i++) {
-      const arr = this.slice(num * i, num * (i + 1))
-      if (arr.length > 0) {
-        newArrays.push(arr)
+      return newArrays
+    } else if (spliceNum === undefined && arrayNum !== undefined) {
+      const newArrays: any[][] = []
+      const num = parseInt((src.length / arrayNum).toString())
+      for (let i = 0; i < arrayNum; i++) {
+        const arr: any[] = src.slice(num * i, num * (i + 1))
+        if (arr.length > 0) {
+          newArrays.push(arr)
+        }
       }
+      if (num * arrayNum < src.length) {
+        newArrays[newArrays.length - 1] = newArrays[newArrays.length - 1].concat(src.slice(num * arrayNum, src.length))
+      }
+      return newArrays
+    } else {
+      throw new ErrorHelper(`spliceNum or arrayNum error`)
     }
-    if (num * arrayNum < this.length) {
-      newArrays[newArrays.length - 1] = newArrays[newArrays.length - 1].concat(this.slice(num * arrayNum, this.length))
-    }
-    return newArrays
-  } else {
-    throw new ErrorHelper(`spliceNum or arrayNum error`)
   }
-}
 
-/**
+  /**
  * 简单去重
  */
-Array.prototype.uniq_ = function (): any[] {
-  return [...new Set(this)]
-}
+  static uniq_(src: any[]): any[] {
+    return [...new Set(src)]
+  }
 
-/**
- * 移除null、undefined以及空字符串
- * @returns {Array}
- */
-Array.prototype.removeEmpty_ = function (): any[] {
-  const results = []
-  this.forEach((ele) => {
-    if (ele !== null && ele !== undefined && ele !== '') {
-      results.push(ele)
+  /**
+   * 移除null、undefined以及空字符串
+   * @returns {Array}
+   */
+  static removeEmpty_(src: any[]): any[] {
+    const results: any[] = []
+    src.forEach((ele) => {
+      if (ele !== undefined && ele !== undefined && ele !== '') {
+        results.push(ele)
+      }
+    })
+    return results
+  }
+
+  /**
+   * 计算平均数
+   * @returns {any}
+   */
+  static getAverage_(src: any[]): string {
+    let sum = '0'
+    src.forEach((ele) => {
+      sum = StringUtil.add_(sum, ele)
+    })
+    return StringUtil.div_(sum, src.length.toString())
+  }
+
+  /**
+   * 取数组最后一个元素
+   * @returns {*}
+   */
+  static getLastOne_(src: any[]): any {
+    return src[src.length - 1]
+  }
+
+  static removeLastOne_(src: any[]): any[] {
+    if (src.length === 0) {
+      return []
     }
-  })
-  return results
-}
-
-/**
- * 计算平均数
- * @returns {any}
- */
-Array.prototype.getAverage_ = function (): string {
-  let sum = '0'
-  this.forEach((ele) => {
-    sum = sum.add_(ele)
-  })
-  return sum.div_(this.length.toString())
-}
-
-/**
- * 取数组最后一个元素
- * @returns {*}
- */
-Array.prototype.getLastOne_ = function (): any {
-  return this[this.length - 1]
-}
-
-Array.prototype.removeLastOne_ = function (): any[] {
-  if (this.length === 0) {
-    return []
-  }
-  return this.slice(0, this.length - 1)
-}
-
-/**
- * 取数组第一个元素
- * @returns {*}
- */
-Array.prototype.getFirstOne_ = function (): any {
-  return this[0]
-}
-
-Array.prototype.removeFirstOne_ = function (): any[] {
-  if (this.length === 0) {
-    return []
-  }
-  return this.slice(1, this.length)
-}
-
-Array.prototype.removeStart_ = function (num: number): any[] {
-  return this.slice(num, this.length)
-}
-
-Array.prototype.removeEnd_ = function (num: number): any[] {
-  return this.slice(0, this.length - num)
-}
-
-Array.prototype.removeByIndex_ = function (index: number): any[] {
-  if (index > this.length - 1) {
-    throw new ErrorHelper(`索引超过数组长度`)
-  }
-  const temp = this.deepCopy_()
-  temp.splice(index, 1)
-  return temp
-}
-
-Array.prototype.removeByValue_ = function (value: any): any[] {
-  const temp = this.deepCopy_()
-  const index = temp.indexOf(value)
-  if (index === -1) {
-    throw new ErrorHelper(`没有找到 ${value}`)
-  }
-  temp.splice(index, 1)
-  return temp
-}
-
-Array.prototype.deepCopy_ = function (): any[] {
-  return Array.from(this)
-}
-
-Array.prototype.append_ = function (arr: any[]): any[] {
-  return this.concat(arr)
-}
-
-/**
- * 取出最大值（值以及索引）,只适用于数值数组以及字符串数组, 返回值为字符串
- */
-Array.prototype.getMax_ = function (): GetMaxMinResult {
-  if (this.length === 0) {
-    throw new ErrorHelper(`空数组`)
+    return src.slice(0, src.length - 1)
   }
 
-  let maxValue = this[0].toString()
+  /**
+   * 取数组第一个元素
+   * @returns {*}
+   */
+  static getFirstOne_(src: any[]): any {
+    return src[0]
+  }
 
-  for (let i = 1; i < this.length; i++) {
-    if (this[i].toString().gt_(maxValue)) {
-      maxValue = this[i].toString()
+  static removeFirstOne_(src: any[]): any[] {
+    if (src.length === 0) {
+      return []
     }
+    return src.slice(1, src.length)
   }
 
-  const maxIndex = []
-  for (let i = 0; i < this.length; i++) {
-    if (this[i].toString().eq_(maxValue)) {
-      maxIndex.push(i)
+  static removeStart_(src: any[], num: number): any[] {
+    return src.slice(num, src.length)
+  }
+
+  static removeEnd_(src: any[], num: number): any[] {
+    return src.slice(0, src.length - num)
+  }
+
+  static removeByIndex_(src: any[], index: number): any[] {
+    if (index > src.length - 1) {
+      throw new ErrorHelper(`索引超过数组长度`)
     }
+    const temp = this.deepCopy_(src)
+    temp.splice(index, 1)
+    return temp
   }
 
-  return {
-    value: maxValue,
-    indexes: maxIndex
-  }
-}
-
-Array.prototype.sortWithPriority_ = function (order: Order): (string | number)[][] {
-  if (this.length === 0) {
-    throw new ErrorHelper(`空数组`)
-  }
-
-  this.sort(([val, priority], [val1, priority1]) => {
-    if (val.toString().eq_(val1)) {
-      return order === `desc` ? priority.toString().lt_(priority1) : priority.toString().gt_(priority1)
-    } else {
-      return order === `desc` ? val.toString().lt_(val1) : val.toString().gt_(val1)
+  static removeByValue_(src: any[], value: any): any[] {
+    const temp = this.deepCopy_(src)
+    const index = temp.indexOf(value)
+    if (index === -1) {
+      throw new ErrorHelper(`没有找到 ${value}`)
     }
-  })
-  return this
-}
-
-Array.prototype.getMin_ = function (): GetMaxMinResult {
-  if (this.length === 0) {
-    throw new ErrorHelper(`空数组`)
+    temp.splice(index, 1)
+    return temp
   }
 
-  let minValue = this[0].toString()
+  static deepCopy_(src: any[]): any[] {
+    return Array.from(src)
+  }
 
-  for (let i = 1; i < this.length; i++) {
-    if (this[i].toString().lt_(minValue)) {
-      minValue = this[i].toString()
+  static append_(src: any[], arr: any[]): any[] {
+    return src.concat(arr)
+  }
+
+  /**
+   * 取出最大值（值以及索引）,只适用于数值数组以及字符串数组, 返回值为字符串
+   */
+  static getMax_(src: any[]): GetMaxMinResult {
+    if (src.length === 0) {
+      throw new ErrorHelper(`空数组`)
+    }
+
+    let maxValue = src[0].toString()
+
+    for (let i = 1; i < src.length; i++) {
+      if (StringUtil.gt_(src[i].toString(), maxValue)) {
+        maxValue = src[i].toString()
+      }
+    }
+
+    const maxIndex: number[] = []
+    for (let i = 0; i < src.length; i++) {
+      if (StringUtil.eq_(src[i].toString(), maxValue)) {
+        maxIndex.push(i)
+      }
+    }
+
+    return {
+      value: maxValue,
+      indexes: maxIndex
     }
   }
 
-  const minIndex = []
-  for (let i = 0; i < this.length; i++) {
-    if (this[i].toString().eq_(minValue)) {
-      minIndex.push(i)
+  static sortWithPriority_(src: any[], order: Order): (string | number)[][] {
+    if (src.length === 0) {
+      throw new ErrorHelper(`空数组`)
+    }
+
+    src.sort(([val, priority], [val1, priority1]) => {
+      if (StringUtil.eq_(val.toString(), val1)) {
+        return order === `desc` ? priority.toString().lt_(priority1) : StringUtil.gt_(priority.toString(), priority1)
+      } else {
+        return order === `desc` ? val.toString().lt_(val1) : StringUtil.gt_(val.toString(), val1)
+      }
+    })
+    return src
+  }
+
+  static getMin_(src: any[]): GetMaxMinResult {
+    if (src.length === 0) {
+      throw new ErrorHelper(`空数组`)
+    }
+
+    let minValue = src[0].toString()
+
+    for (let i = 1; i < src.length; i++) {
+      if (StringUtil.lt_(src[i].toString(), minValue)) {
+        minValue = src[i].toString()
+      }
+    }
+
+    const minIndex: number[] = []
+    for (let i = 0; i < src.length; i++) {
+      if (StringUtil.eq_(src[i].toString(), minValue)) {
+        minIndex.push(i)
+      }
+    }
+
+    return {
+      value: minValue,
+      indexes: minIndex
     }
   }
 
-  return {
-    value: minValue,
-    indexes: minIndex
+  static getSum_(src: any[]): string {
+    return src.reduce((acc, val) => {
+      return StringUtil.add_(val.toString(), acc)
+    })
   }
-}
 
-Array.prototype.getSum_ = function (): string {
-  return this.reduce((acc, val) => {
-    return val.toString().add_(acc)
-  })
-}
-
-Array.prototype.select_ = function (indexes: number[]): any[] {
-  if (indexes === null || indexes === undefined) {
-    return this
+  static select_(src: any[], indexes: number[]): any[] {
+    if (indexes === undefined || indexes === undefined) {
+      return src
+    }
+    const result: any[] = []
+    indexes.forEach((index) => {
+      result.push(src[index])
+    })
+    return result
   }
-  const result = []
-  indexes.forEach((index) => {
-    result.push(this[index])
-  })
-  return result
-}
 
-Array.prototype.toUpperCase_ = function (): string[] {
-  return this.map((element) => {
-    return element.toString().toUpperCase()
-  })
-}
-
-Array.prototype.toLowerCase_ = function (): string[] {
-  return this.map((element) => {
-    return element.toString().toLowerCase()
-  })
-}
-
-Array.prototype.random_ = function (): any {
-  if (this.length === 0) {
-    throw new ErrorHelper(`空数组`)
+  static toUpperCase_(src: any[]): string[] {
+    return src.map((element) => {
+      return element.toString().toUpperCase()
+    })
   }
-  return this[Math.floor(Math.random() * 1E4) % this.length]
-}
 
-/**
- * [190, 190] --> BEBE 十进制转成16进制
- * @returns {string}
- */
-Array.prototype.numberArrayToHexString_ = function (): string {
-  if (this.length === 0) {
-    throw new ErrorHelper(`空数组`)
+  static toLowerCase_(src: any[]): string[] {
+    return src.map((element) => {
+      return element.toString().toLowerCase()
+    })
   }
-  return this.map((byte) => {
-    return byte.toString().numberStrToHex_()
-  }).join('')
-}
 
-/**
- * 取子数组。[start, end)
- * @param start
- * @param end
- */
-Array.prototype.subArray_ = function (start: number, end: number): any[] {
-  if (this.length === 0) {
-    throw new ErrorHelper(`空数组`)
+  static random_(src: any[]): any {
+    if (src.length === 0) {
+      throw new ErrorHelper(`空数组`)
+    }
+    return src[Math.floor(Math.random() * 1E4) % src.length]
   }
-  return this.slice(start, end)
+
+  /**
+   * [190, 190] --> BEBE 十进制转成16进制
+   * @returns {string}
+   */
+  static numberArrayToHexString_(src: any[]): string {
+    if (src.length === 0) {
+      throw new ErrorHelper(`空数组`)
+    }
+    return src.map((byte) => {
+      return StringUtil.numberStrToHex_(byte.toString())
+    }).join('')
+  }
+
+  /**
+   * 取子数组。[start, end)
+   * @param start
+   * @param end
+   */
+  static subArray_(src: any[], start: number, end: number): any[] {
+    if (src.length === 0) {
+      throw new ErrorHelper(`空数组`)
+    }
+    return src.slice(start, end)
+  }
+
+
 }
 
-export {};

@@ -1,45 +1,36 @@
-/** @module */
+
 import BigNumber from 'bignumber.js'
 
-declare module 'bignumber.js' {
-  interface BigNumber {
-    toBinString_?: () => string,
-    toOctString_?: () => string,
-    toDecimalString_?: () => string,
-    toHexString_?: () => string,
+export default class BigNumberUtil {
+  /**
+   * 转换为二进制字符串
+   * @returns {string}
+   */
+  static toBinString_(src: BigNumber): string {
+    return src.toString(2)
+  }
+
+  /**
+   * 转换为八进制字符串
+   * @returns {string}
+   */
+  static toOctString_(src: BigNumber): string {
+    return src.toString(8)
+  }
+
+  /**
+   * 转换为十进制字符串
+   * @returns {string}
+   */
+  static toDecimalString_(src: BigNumber): string {
+    return src.toString(10)
+  }
+
+  /**
+   * 转换为十六进制字符串
+   * @returns {string}
+   */
+  static toHexString_(src: BigNumber): string {
+    return src.toString(16)
   }
 }
-
-/**
- * 转换为二进制字符串
- * @returns {string}
- */
-BigNumber.prototype.toBinString_ = function (): string {
-  return this.toString(2)
-}
-
-/**
- * 转换为八进制字符串
- * @returns {string}
- */
-BigNumber.prototype.toOctString_ = function (): string {
-  return this.toString(8)
-}
-
-/**
- * 转换为十进制字符串
- * @returns {string}
- */
-BigNumber.prototype.toDecimalString_ = function (): string {
-  return this.toString(10)
-}
-
-/**
- * 转换为十六进制字符串
- * @returns {string}
- */
-BigNumber.prototype.toHexString_ = function (): string {
-  return this.toString(16)
-}
-
-export {};

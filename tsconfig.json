@@ -11,7 +11,8 @@
     "sourceMap": true,
     "outDir": "lib",
     "baseUrl": ".",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "strict": true
   },
   "include": [
     "src/**/*"

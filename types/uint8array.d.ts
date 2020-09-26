@@ -1,8 +1,5 @@
-/** @module */
-declare global {
-    interface Uint8Array {
-        toUtf8String_?: () => string;
-        toBuffer_?: () => Buffer;
-    }
+/// <reference types="node" />
+export default class Uint8ArrayUtil {
+    static toUtf8String_(src: Uint8Array): string;
+    static toBuffer_(src: Uint8Array): Buffer;
 }
-export {};

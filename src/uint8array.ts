@@ -1,19 +1,10 @@
-/** @module */
 
-
-declare global {
-  interface Uint8Array {
-    toUtf8String_?: () => string,
-    toBuffer_?: () => Buffer,
+export default class Uint8ArrayUtil {
+  static toUtf8String_ (src: Uint8Array): string {
+    return new TextDecoder().decode(src)
+  }
+  
+  static toBuffer_ (src: Uint8Array): Buffer {
+    return Buffer.from(src)
   }
 }
-
-Uint8Array.prototype.toUtf8String_ = function (): string {
-  return new TextDecoder().decode(this)
-}
-
-Uint8Array.prototype.toBuffer_ = function (): Buffer {
-  return Buffer.from(this)
-}
-
-export {};
