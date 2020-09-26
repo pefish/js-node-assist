@@ -1,4 +1,5 @@
 /** @module */
+import BigNumber from 'bignumber.js';
 declare global {
     interface Number {
         toBinString_?: () => string;
@@ -8,6 +9,7 @@ declare global {
         toInt_?: () => number;
         toNoScientificString_?: () => string;
         toBuffer_?: (endian?: Endian) => Buffer;
+        toBigNumber_?: () => BigNumber;
     }
 }
 export {};

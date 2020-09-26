@@ -11,7 +11,19 @@ declare global {
     toInt_?: () => number,
     toNoScientificString_?: () => string,
     toBuffer_?: (endian?: Endian) => Buffer,
+    toBigNumber_?: () => BigNumber,
   }
+}
+
+/**
+ * 转换成BigNumber对象
+ * @returns {BigNumber}
+ */
+String.prototype.toBigNumber_ = function (): BigNumber {
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  return new BN(this)
 }
 
 /**

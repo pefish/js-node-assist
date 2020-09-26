@@ -635,7 +635,10 @@ String.prototype.clearHexZeroZero_ = function (typeStr: string): string {
  * @returns {BigNumber}
  */
 String.prototype.toBigNumber_ = function (): BigNumber {
-  return new BigNumber(this)
+  const BN = BigNumber.clone({
+    EXPONENTIAL_AT: 1e+9
+  })
+  return new BN(this)
 }
 
 /**
