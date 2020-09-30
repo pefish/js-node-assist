@@ -29,6 +29,9 @@ describe('stringAssist', () => {
 
     const result3 = StringUtil.remainDecimal_(`10.12`, 0, RoundingMode.ROUND_UP)
     assert.strictEqual(result3, `11`)
+
+    const result4 = StringUtil.remainDecimal_(`10`, 4, RoundingMode.ROUND_UP)
+    assert.strictEqual(result4, `10`)
   })
 
   it('removeFirstByStr_', () => {

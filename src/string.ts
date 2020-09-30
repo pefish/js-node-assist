@@ -255,7 +255,10 @@ export default class StringUtil {
     if (result.indexOf(".") !== -1 && withZero === false) {  // 是小数
       while (true) {
         const temp = this.removeLastStr_(result, "0")
-        if (result === temp) {
+        if (result === temp) {  // 说明上面无0可去了
+          if (result.endsWith(".")) {
+            result = result.substr(0, result.length - 1)
+          }
           return result
         }
         result = temp
