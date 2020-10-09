@@ -1,6 +1,6 @@
 
 import ErrorHelper from '@pefish/js-error'
-import StringUtil from './string';
+import StringUtil, { Calculator } from './string';
 
 interface GetMaxMinResult {
   value: string,
@@ -71,11 +71,11 @@ export default class ArrayUtil {
    * @returns {any}
    */
   static getAverage_(src: any[]): string {
-    let sum = '0'
+    let sum: Calculator = new Calculator('0')
     src.forEach((ele) => {
-      sum = StringUtil.add_(sum, ele)
+      sum = sum.add(ele)
     })
-    return StringUtil.div_(sum, src.length.toString())
+    return sum.div(src.length.toString()).end()
   }
 
   /**
@@ -154,14 +154,14 @@ export default class ArrayUtil {
     let maxValue = src[0].toString()
 
     for (let i = 1; i < src.length; i++) {
-      if (StringUtil.gt_(src[i].toString(), maxValue)) {
+      if (StringUtil.start(src[i].toString()).gt(maxValue)) {
         maxValue = src[i].toString()
       }
     }
 
     const maxIndex: number[] = []
     for (let i = 0; i < src.length; i++) {
-      if (StringUtil.eq_(src[i].toString(), maxValue)) {
+      if (StringUtil.start(src[i].toString()).eq(maxValue)) {
         maxIndex.push(i)
       }
     }
@@ -178,10 +178,10 @@ export default class ArrayUtil {
     }
 
     src.sort(([val, priority], [val1, priority1]) => {
-      if (StringUtil.eq_(val.toString(), val1)) {
-        return order === `desc` ? priority.toString().lt_(priority1) : StringUtil.gt_(priority.toString(), priority1)
+      if (StringUtil.start(val.toString()).eq(val1)) {
+        return order === `desc` ? priority.toString().lt_(priority1) : StringUtil.start(priority.toString()).gt(priority1)
       } else {
-        return order === `desc` ? val.toString().lt_(val1) : StringUtil.gt_(val.toString(), val1)
+        return order === `desc` ? val.toString().lt_(val1) : StringUtil.start(val.toString()).gt(val1)
       }
     })
     return src
@@ -195,14 +195,14 @@ export default class ArrayUtil {
     let minValue = src[0].toString()
 
     for (let i = 1; i < src.length; i++) {
-      if (StringUtil.lt_(src[i].toString(), minValue)) {
+      if (StringUtil.start(src[i].toString()).lt(minValue)) {
         minValue = src[i].toString()
       }
     }
 
     const minIndex: number[] = []
     for (let i = 0; i < src.length; i++) {
-      if (StringUtil.eq_(src[i].toString(), minValue)) {
+      if (StringUtil.start(src[i].toString()).eq(minValue)) {
         minIndex.push(i)
       }
     }
@@ -214,8 +214,8 @@ export default class ArrayUtil {
   }
 
   static getSum_(src: any[]): string {
-    return src.reduce((acc, val) => {
-      return StringUtil.add_(val.toString(), acc)
+    return src.reduce((acc, val): string => {
+      return StringUtil.start(val.toString()).add(acc).end()
     })
   }
 
@@ -258,7 +258,7 @@ export default class ArrayUtil {
       throw new ErrorHelper(`空数组`)
     }
     return src.map((byte) => {
-      return StringUtil.numberStrToHex_(byte.toString())
+      return StringUtil.numberStrToHex(byte.toString())
     }).join('')
   }
 
