@@ -1,6 +1,6 @@
 import assert from 'assert'
 import { RoundingMode } from './index';
-import StringUtil from './string';
+import StringUtil, { Calculator } from './string';
 
 describe('stringAssist', () => {
 
@@ -12,7 +12,7 @@ describe('stringAssist', () => {
   })
 
   it('multi_', () => {
-    const result = StringUtil.start(`20000000000`).multi(20730).unShiftedBy(18).end()
+    const result = StringUtil.start(`20000000000`).multi(`20730`).unShiftedBy(new Calculator(18)).end()
     // global.console.error(result)
     assert.strictEqual(result, `0.0004146`)
   })

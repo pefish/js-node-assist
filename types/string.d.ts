@@ -14,19 +14,20 @@ export declare enum RoundingMode {
 }
 export declare class Calculator {
     private data;
-    constructor(data?: string);
+    constructor(data?: number | string | Calculator);
+    toString(): string;
     /**
      * 加
      * @param val
      * @returns {any}
      */
-    add(val: string | number): Calculator;
+    add(val: string | number | Calculator): Calculator;
     /**
      * 乘以10的几次方
      * @param num
      */
-    shiftedBy(num: number): Calculator;
-    unShiftedBy(num: string | number): Calculator;
+    shiftedBy(num: number | string | Calculator): Calculator;
+    unShiftedBy(num: string | number | Calculator): Calculator;
     /**
      * 取相反数
      * @returns {string}
@@ -37,31 +38,31 @@ export declare class Calculator {
      * @param val
      * @returns {any}
      */
-    sub(val: string | number): Calculator;
+    sub(val: string | number | Calculator): Calculator;
     /**
      * 乘
      * @param val
      * @returns {any}
      */
-    multi(val: string | number): Calculator;
+    multi(val: string | number | Calculator): Calculator;
     /**
      * 乘方
      * @param val
      * @returns {any}
      */
-    pow(val: number): Calculator;
+    pow(val: number | string | Calculator): Calculator;
     /**
      * 除
      * @param val
      * @returns {string}
      */
-    div(val: string | number): Calculator;
+    div(val: string | number | Calculator): Calculator;
     /**
      * 求余
      * @param val
      * @returns {string}
      */
-    mod(val: string | number): Calculator;
+    mod(val: string | number | Calculator): Calculator;
     /**
      * 开根号
      * @returns {string}
@@ -72,31 +73,31 @@ export declare class Calculator {
      * @param val
      * @returns {boolean}
      */
-    gt(val: string | number): boolean;
+    gt(val: string | number | Calculator): boolean;
     /**
      * 大于或等于
      * @param val
      * @returns {boolean}
      */
-    gte(val: string | number): boolean;
+    gte(val: string | number | Calculator): boolean;
     /**
      * 是否小于
      * @param val
      * @returns {boolean}
      */
-    lt(val: string | number): boolean;
+    lt(val: string | number | Calculator): boolean;
     /**
      * 小于或等于
      * @param val
      * @returns {boolean}
      */
-    lte(val: string | number): boolean;
+    lte(val: string | number | Calculator): boolean;
     /**
      * 是否相等
      * @param val
      * @returns {boolean}
      */
-    eq(val: string | number): boolean;
+    eq(val: string | number | Calculator): boolean;
     /**
      * 保留小数点后几位。默认小数部分最后不带0
      * @param decimalRemain

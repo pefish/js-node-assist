@@ -23,8 +23,12 @@ export enum RoundingMode {
 export class Calculator {
   private data: string
 
-  constructor (data: string = `0`) {
-    this.data = data
+  constructor (data: number | string | Calculator = `0`) {
+    this.data = data.toString()
+  }
+
+  toString (): string {
+    return this.data
   }
 
   /**
@@ -32,7 +36,7 @@ export class Calculator {
    * @param val
    * @returns {any}
    */
-  add(val: string | number): Calculator {
+  add(val: string | number | Calculator): Calculator {
     canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
@@ -47,17 +51,17 @@ export class Calculator {
    * 乘以10的几次方
    * @param num
    */
-  shiftedBy(num: number): Calculator {
+  shiftedBy(num: number | string | Calculator): Calculator {
     canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.shiftedBy(num).toString()
+    this.data = num1.shiftedBy(new Calculator(num.toString()).toNumber()).toString()
     return this
   }
 
-  unShiftedBy(num: string | number): Calculator {
+  unShiftedBy(num: string | number | Calculator): Calculator {
     canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
@@ -86,7 +90,7 @@ export class Calculator {
    * @param val
    * @returns {any}
    */
-  sub(val: string | number): Calculator {
+  sub(val: string | number | Calculator): Calculator {
     canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
@@ -102,7 +106,7 @@ export class Calculator {
    * @param val
    * @returns {any}
    */
-  multi(val: string | number): Calculator {
+  multi(val: string | number | Calculator): Calculator {
     canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
@@ -118,13 +122,13 @@ export class Calculator {
    * @param val
    * @returns {any}
    */
-  pow(val: number): Calculator {
+  pow(val: number | string | Calculator): Calculator {
     canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.exponentiatedBy(val).toString()
+    this.data = num1.exponentiatedBy(new Calculator(val.toString()).toNumber()).toString()
     return this
   }
 
@@ -133,7 +137,7 @@ export class Calculator {
    * @param val
    * @returns {string}
    */
-  div(val: string | number): Calculator {
+  div(val: string | number | Calculator): Calculator {
     canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
@@ -149,7 +153,7 @@ export class Calculator {
    * @param val
    * @returns {string}
    */
-  mod(val: string | number): Calculator {
+  mod(val: string | number | Calculator): Calculator {
     canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
@@ -179,7 +183,7 @@ export class Calculator {
    * @param val
    * @returns {boolean}
    */
-  gt(val: string | number): boolean {
+  gt(val: string | number | Calculator): boolean {
     canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
@@ -191,7 +195,7 @@ export class Calculator {
    * @param val
    * @returns {boolean}
    */
-  gte(val: string | number): boolean {
+  gte(val: string | number | Calculator): boolean {
     canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
@@ -204,7 +208,7 @@ export class Calculator {
    * @param val
    * @returns {boolean}
    */
-  lt(val: string | number): boolean {
+  lt(val: string | number | Calculator): boolean {
     canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
@@ -216,7 +220,7 @@ export class Calculator {
    * @param val
    * @returns {boolean}
    */
-  lte(val: string | number): boolean {
+  lte(val: string | number | Calculator): boolean {
     canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
@@ -229,7 +233,7 @@ export class Calculator {
    * @param val
    * @returns {boolean}
    */
-  eq(val: string | number): boolean {
+  eq(val: string | number | Calculator): boolean {
     canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
