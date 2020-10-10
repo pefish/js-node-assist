@@ -148,7 +148,7 @@ export declare class Calculator {
     end(): string;
 }
 export default class StringUtil {
-    static start(data: string): Calculator;
+    static start(data: number | string | Calculator): Calculator;
     /**
      * 移除开头几位字符串
      * @param num

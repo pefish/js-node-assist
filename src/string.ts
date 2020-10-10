@@ -360,7 +360,7 @@ export class Calculator {
 export default class StringUtil {
 
   // 支持"0x12"这种十六进制字串
-  static start (data: string): Calculator {
+  static start (data: number | string | Calculator): Calculator {
     canCastBigNumber(data)
     return new Calculator(data)
   }
@@ -752,9 +752,9 @@ export default class StringUtil {
 }
 
 
-function canCastBigNumber(value: any): void {
+function canCastBigNumber(value: number | string | Calculator): void {
   try {
-    const _ = new BigNumber(value)
+    const _ = new BigNumber(value.toString())
   } catch (err) {
     throw new ErrorHelper(`can not cast to bignumber`)
   }

@@ -12,7 +12,7 @@ describe('stringAssist', () => {
   })
 
   it('multi_', () => {
-    const result = StringUtil.start(`20000000000`).multi(`20730`).unShiftedBy(new Calculator(18)).end()
+    const result = StringUtil.start(20000000000).multi(`20730`).unShiftedBy(new Calculator(18)).end()
     // global.console.error(result)
     assert.strictEqual(result, `0.0004146`)
 
@@ -22,7 +22,7 @@ describe('stringAssist', () => {
   })
 
   it('remainDecimal_', () => {
-    const result = StringUtil.start(`10.12`).remainDecimal(4, RoundingMode.ROUND_UP).end()
+    const result = StringUtil.start(new Calculator(`10.12`)).remainDecimal(4, RoundingMode.ROUND_UP).end()
     assert.strictEqual(result, `10.12`)
 
     const result1 = StringUtil.start(`10.12`).remainDecimal(4, RoundingMode.ROUND_UP, true).end()
