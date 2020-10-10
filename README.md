@@ -10,12 +10,12 @@ npm install @pefish/js-node-assist
 ### Example
 ```js
 
-import { RoundingMode } from "@pefish/js-node-assist";
+import { RoundingMode, StringUtil } from "../src/index";
 
-console.log(`10.12`.canCastNumber_()); // true
-console.log(`10.a`.canCastNumber_()); // false
-console.log(`10.12`.remainDecimal_(4, RoundingMode.ROUND_UP)); // 10.1200
-console.log(`10`.add_('1')); // 11
+console.log(StringUtil.canCastNumber(`10.12`)); // true
+console.log(StringUtil.canCastNumber(`10.a`)); // false
+console.log(StringUtil.start(`10.12`).remainDecimal(4, RoundingMode.ROUND_UP).end()); // 10.12
+console.log(StringUtil.start(`10`).add('5').multi(10).div(5).end()); // (10 + 5) * 10 / 5 = 30
 // ...
 
 ```
