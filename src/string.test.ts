@@ -15,6 +15,10 @@ describe('stringAssist', () => {
     const result = StringUtil.start(`20000000000`).multi(`20730`).unShiftedBy(new Calculator(18)).end()
     // global.console.error(result)
     assert.strictEqual(result, `0.0004146`)
+
+    const result1 = StringUtil.start(`0x2`).multi(`11`).end()
+    // global.console.error(result)
+    assert.strictEqual(result1, `22`)
   })
 
   it('remainDecimal_', () => {
@@ -232,33 +236,43 @@ describe('stringAssist', () => {
   })
 
   it('binToDecimalString_', () => {
-    const result: string = StringUtil.binToDecimalString('11001100111001100000110010001000001011010010101100110101011')
-    const result1: string = StringUtil.binToDecimalString('0b11001100111001100000110010001000001011010010101100110101011')
+    const result: string = StringUtil.start("0b11001100111001100000110010001000001011010010101100110101011").toDecimalString().end()
     // console.error('test', result)
     assert.strictEqual(result, '461390693981051307')
-    assert.strictEqual(result1, '461390693981051307')
   })
 
   it('decimalToBinString', () => {
-    const result: string = StringUtil.decimalToBinString('461390693981051307')
+    const result: string = StringUtil.start("461390693981051307").toBinString().end()
     // console.error(result)
     assert.strictEqual(result, '0b11001100111001100000110010001000001011010010101100110101011')
+
+    const result1: string = StringUtil.start("11").toBinString().end()
+    // console.error(result)
+    assert.strictEqual(StringUtil.start(result1).add("10").end(), '21')
+
+    const result2: string = StringUtil.start("0x2").toBinString().end()
+    // console.error(result)
+    assert.strictEqual(StringUtil.start(result2).add("10").end(), '12')
   })
 
   it('decimalToHexString', () => {
-    const result: string = StringUtil.decimalToHexString('461390693981051307')
+    const result: string = StringUtil.start('461390693981051307').toHexString().end()
     // console.error(result)
     assert.strictEqual(result, '0x6673064416959ab')
   })
 
   it('decimalToOctString', () => {
-    const result: string = StringUtil.decimalToOctString('461390693981051307')
+    const result: string = StringUtil.start('461390693981051307').toOctString().end()
     // console.error(result)
     assert.strictEqual(result, '0o31471406210132254653')
+
+    const result1: string = StringUtil.start('32').toOctString().end()
+    // console.error(result)
+    assert.strictEqual(StringUtil.start(result1).add(12).end(), '44')
   })
 
   it('decimalToBinString', () => {
-    const result: string = StringUtil.decimalToBinString('461390693981051307')
+    const result: string = StringUtil.start('461390693981051307').toBinString().end()
     // console.error(result)
     assert.strictEqual(result, '0b11001100111001100000110010001000001011010010101100110101011')
   })

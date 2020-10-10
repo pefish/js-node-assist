@@ -4,51 +4,51 @@ import NumberUtil, { EndianType } from './number';
 
 describe('numberAssist', () => {
 
-  it('toBinString_', () => {
+  it('toBinString', () => {
     const test = 100
-    const result = NumberUtil.toBinString_(test)
+    const result = NumberUtil.toBinString(test)
     // console.log(result)
     assert.strictEqual(result, "1100100")
   })
 
-  it('toOctString_', () => {
+  it('toOctString', () => {
     const test = 100
-    const result = NumberUtil.toOctString_(test)
+    const result = NumberUtil.toOctString(test)
     // console.log(result)
     assert.strictEqual(result, "144")
   })
 
-  it('toHexString_', () => {
+  it('toHexString', () => {
     const test = 100
-    const result = NumberUtil.toHexString_(test)
+    const result = NumberUtil.toHexString(test)
     // console.log(result)
     assert.strictEqual(result, "64")
   })
 
-  it('toInt_', () => {
+  it('toInt', () => {
     const test = 100.11
-    const result = NumberUtil.toInt_(test)
+    const result = NumberUtil.toInt(test)
     // console.log(result)
     assert.strictEqual(result, 100)
   })
 
-  it('toInt_1', () => {
+  it('toInt1', () => {
     const test = 100.67
-    const result = NumberUtil.toInt_(test)
+    const result = NumberUtil.toInt(test)
     // console.log(result)
     assert.strictEqual(result, 100)
   })
 
-  it('toNoScientificString_', () => {
+  it('toNoScientificString', () => {
     const test = 100846783
-    const result = NumberUtil.toNoScientificString_(test)
+    const result = NumberUtil.toNoScientificString(test)
     // console.log(result)
     assert.strictEqual(result, "100846783")
   })
 
-  it('toBuffer_', () => {
+  it('toBuffer', () => {
     const test = 1
-    const result = NumberUtil.toBuffer_(test, EndianType.Little_Endian)
+    const result = NumberUtil.toBuffer(test, EndianType.LittleEndian)
     assert.strictEqual(JSON.stringify(result), `{"type":"Buffer","data":[0,0,0,0,0,0,240,63]}`)
   })
 })

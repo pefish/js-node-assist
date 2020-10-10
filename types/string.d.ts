@@ -5,11 +5,11 @@ export declare enum RoundingMode {
     ROUND_DOWN = 1,
     ROUND_CEIL = 2,
     ROUND_FLOOR = 3,
-    ROUND_HALF_UP = 4,
-    ROUND_HALF_DOWN = 5,
-    ROUND_HALF_EVEN = 6,
-    ROUND_HALF_CEIL = 7,
-    ROUND_HALF_FLOOR = 8,
+    ROUND_HALFUP = 4,
+    ROUND_HALFDOWN = 5,
+    ROUND_HALFEVEN = 6,
+    ROUND_HALFCEIL = 7,
+    ROUND_HALFFLOOR = 8,
     EUCLID = 9
 }
 export declare class Calculator {
@@ -121,10 +121,30 @@ export declare class Calculator {
      */
     toNumber(): number;
     /**
-   * 转换成BigNumber对象
-   * @returns {BigNumber}
-   */
+     * 转换成BigNumber对象
+     * @returns {BigNumber}
+     */
     toBigNumber(): BigNumber;
+    /**
+     * 转换为二进制字符串
+     * @returns {string}
+     */
+    toBinString(): Calculator;
+    /**
+     * 转换为八进制字符串
+     * @returns {string}
+     */
+    toOctString(): Calculator;
+    /**
+     * 转十进制字符串
+     * @returns {number}
+     */
+    toDecimalString(): Calculator;
+    /**
+     * 转换为十六进制字符串
+     * @returns {string}
+     */
+    toHexString(): Calculator;
     end(): string;
 }
 export default class StringUtil {
@@ -149,21 +169,6 @@ export default class StringUtil {
      * @returns {string}
      */
     static removeThousandSign(src: string): string;
-    /**
-   * 转换为二进制字符串
-   * @returns {string}
-   */
-    static decimalToBinString(src: string): string;
-    /**
-     * 十进制转换为八进制字符串
-     * @returns {string}
-     */
-    static decimalToOctString(src: string): string;
-    /**
-     * 十进制转换为十六进制字符串
-     * @returns {string}
-     */
-    static decimalToHexString(src: string, prefix?: boolean): string;
     /**
      * hex string转换为number
      * @returns {number}
@@ -221,7 +226,7 @@ export default class StringUtil {
         input: string;
     }[];
     /**
-     * 十六进制字符串转化为Buffer。与Buffer.toHexString_相反
+     * 十六进制字符串转化为Buffer。与Buffer.toHexString相反
      * @returns {Array}
      */
     static hexToBuffer(src: string): Buffer;
@@ -235,11 +240,6 @@ export default class StringUtil {
      * @returns {number|*}
      */
     static hexToDecimalString(src: string): string;
-    /**
-     * 二进制字符串转十进制字符串
-     * @returns {number}
-     */
-    static binToDecimalString(src: string): string;
     /**
      * 检查是否是严格的hex数据
      * @returns {boolean}

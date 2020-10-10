@@ -11,11 +11,11 @@ export enum RoundingMode {
   ROUND_DOWN,  // 直接截断，向下取整
   ROUND_CEIL,
   ROUND_FLOOR,
-  ROUND_HALF_UP,  // 遇到.5的情况时往上近似,就是四舍五入
-  ROUND_HALF_DOWN,  // 遇到.5的情况时往下近似
-  ROUND_HALF_EVEN,
-  ROUND_HALF_CEIL,
-  ROUND_HALF_FLOOR,
+  ROUND_HALFUP,  // 遇到.5的情况时往上近似,就是四舍五入
+  ROUND_HALFDOWN,  // 遇到.5的情况时往下近似
+  ROUND_HALFEVEN,
+  ROUND_HALFCEIL,
+  ROUND_HALFFLOOR,
   EUCLID,
 }
 
@@ -37,7 +37,6 @@ export class Calculator {
    * @returns {any}
    */
   add(val: string | number | Calculator): Calculator {
-    canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
@@ -52,7 +51,6 @@ export class Calculator {
    * @param num
    */
   shiftedBy(num: number | string | Calculator): Calculator {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -62,7 +60,6 @@ export class Calculator {
   }
 
   unShiftedBy(num: string | number | Calculator): Calculator {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -76,7 +73,6 @@ export class Calculator {
    * @returns {string}
    */
   negated(): Calculator {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -91,7 +87,6 @@ export class Calculator {
    * @returns {any}
    */
   sub(val: string | number | Calculator): Calculator {
-    canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
@@ -107,7 +102,6 @@ export class Calculator {
    * @returns {any}
    */
   multi(val: string | number | Calculator): Calculator {
-    canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
@@ -123,7 +117,6 @@ export class Calculator {
    * @returns {any}
    */
   pow(val: number | string | Calculator): Calculator {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -138,7 +131,6 @@ export class Calculator {
    * @returns {string}
    */
   div(val: string | number | Calculator): Calculator {
-    canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
@@ -154,7 +146,6 @@ export class Calculator {
    * @returns {string}
    */
   mod(val: string | number | Calculator): Calculator {
-    canCastBigNumber(this.data)
     val = val.toString()
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
@@ -169,7 +160,6 @@ export class Calculator {
    * @returns {string}
    */
   sqrt(): Calculator {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -184,7 +174,6 @@ export class Calculator {
    * @returns {boolean}
    */
   gt(val: string | number | Calculator): boolean {
-    canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
     return num1.comparedTo(val) === 1
@@ -196,7 +185,6 @@ export class Calculator {
    * @returns {boolean}
    */
   gte(val: string | number | Calculator): boolean {
-    canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
     const result = num1.comparedTo(val)
@@ -209,7 +197,6 @@ export class Calculator {
    * @returns {boolean}
    */
   lt(val: string | number | Calculator): boolean {
-    canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
     return num1.comparedTo(val) === -1
@@ -221,7 +208,6 @@ export class Calculator {
    * @returns {boolean}
    */
   lte(val: string | number | Calculator): boolean {
-    canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
     const result = num1.comparedTo(val)
@@ -234,7 +220,6 @@ export class Calculator {
    * @returns {boolean}
    */
   eq(val: string | number | Calculator): boolean {
-    canCastBigNumber(this.data)
     val = val.toString()
     const num1 = new BigNumber(this.data)
     return num1.comparedTo(val) === 0
@@ -247,8 +232,7 @@ export class Calculator {
    * @param remainMethod {number}
    * @returns {string}
    */
-  remainDecimal(decimalRemain: number, remainMethod: RoundingMode = RoundingMode.ROUND_HALF_UP, withZero: boolean = false): Calculator {
-    canCastBigNumber(this.data)
+  remainDecimal(decimalRemain: number, remainMethod: RoundingMode = RoundingMode.ROUND_HALFUP, withZero: boolean = false): Calculator {
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -276,7 +260,6 @@ export class Calculator {
    * @returns {string}
    */
   abs(): Calculator {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -290,7 +273,6 @@ export class Calculator {
    * @returns {Number}
    */
   toInt(): number {
-    canCastBigNumber(this.data)
     return parseInt(this.data)
   }
 
@@ -299,7 +281,6 @@ export class Calculator {
    * @returns {Number}
    */
   toNumber(): number {
-    canCastBigNumber(this.data)
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -307,7 +288,7 @@ export class Calculator {
     return num.toNumber()
   }
 
-    /**
+  /**
    * 转换成BigNumber对象
    * @returns {BigNumber}
    */
@@ -318,6 +299,59 @@ export class Calculator {
     return new BN(this.data)
   }
 
+
+  /**
+   * 转换为二进制字符串
+   * @returns {string}
+   */
+  toBinString(): Calculator {
+    const BN = BigNumber.clone({
+      EXPONENTIAL_AT: 1e+9
+    })
+    const num = new BN(this.data)
+    this.data = '0b' + num.toString(2)
+    return this
+  }
+
+  /**
+   * 转换为八进制字符串
+   * @returns {string}
+   */
+  toOctString(): Calculator {
+    const BN = BigNumber.clone({
+      EXPONENTIAL_AT: 1e+9
+    })
+    const num = new BN(this.data)
+    this.data = '0o' + num.toString(8)
+    return this
+  }
+
+  /**
+   * 转十进制字符串
+   * @returns {number}
+   */
+  toDecimalString(): Calculator {
+    const BN = BigNumber.clone({
+      EXPONENTIAL_AT: 1e+9
+    })
+    const num = new BN(this.data)
+    this.data = num.toString(10)
+    return this
+  }
+
+  /**
+   * 转换为十六进制字符串
+   * @returns {string}
+   */
+  toHexString (): Calculator {
+    const BN = BigNumber.clone({
+      EXPONENTIAL_AT: 1e+9
+    })
+    const num = new BN(this.data)
+    this.data = '0x' + num.toString(16)
+    return this
+  }
+
   end (): string {
     return this.data
   }
@@ -325,6 +359,7 @@ export class Calculator {
 
 export default class StringUtil {
 
+  // 支持"0x12"这种十六进制字串
   static start (data: string): Calculator {
     canCastBigNumber(data)
     return new Calculator(data)
@@ -366,45 +401,6 @@ export default class StringUtil {
   static removeThousandSign(src: string): string {
     canCastBigNumber(src)
     return src.replace(new RegExp(',', 'g'), '')
-  }
-
-    /**
-   * 转换为二进制字符串
-   * @returns {string}
-   */
-  static decimalToBinString(src: string): string {
-    canCastBigNumber(src)
-    const BN = BigNumber.clone({
-      EXPONENTIAL_AT: 1e+9
-    })
-    const num = new BN(src)
-    return '0b' + num.toString(2)
-  }
-
-  /**
-   * 十进制转换为八进制字符串
-   * @returns {string}
-   */
-  static decimalToOctString(src: string): string {
-    canCastBigNumber(src)
-    const BN = BigNumber.clone({
-      EXPONENTIAL_AT: 1e+9
-    })
-    const num = new BN(src)
-    return '0o' + num.toString(8)
-  }
-
-  /**
-   * 十进制转换为十六进制字符串
-   * @returns {string}
-   */
-  static decimalToHexString (src: string, prefix: boolean = true): string {
-    canCastBigNumber(src)
-    const BN = BigNumber.clone({
-      EXPONENTIAL_AT: 1e+9
-    })
-    const num = new BN(src)
-    return (prefix ? '0x' : '') + num.toString(16)
   }
 
   /**
@@ -553,7 +549,7 @@ export default class StringUtil {
   }
 
   /**
-   * 十六进制字符串转化为Buffer。与Buffer.toHexString_相反
+   * 十六进制字符串转化为Buffer。与Buffer.toHexString相反
    * @returns {Array}
    */
   static hexToBuffer(src: string): Buffer {
@@ -584,23 +580,6 @@ export default class StringUtil {
     let temp = src
     if (!temp.startsWith('0x')) {
       temp = '0x' + temp
-    }
-    canCastBigNumber(temp)
-    const BN = BigNumber.clone({
-      EXPONENTIAL_AT: 1e+9
-    })
-    const num = new BN(temp)
-    return num.toString(10)
-  }
-
-  /**
-   * 二进制字符串转十进制字符串
-   * @returns {number}
-   */
-  static binToDecimalString(src: string): string {
-    let temp = src
-    if (!temp.startsWith('0b')) {
-      temp = '0b' + temp
     }
     canCastBigNumber(temp)
     const BN = BigNumber.clone({
@@ -685,7 +664,7 @@ export default class StringUtil {
   }
 
   static base64ToHexStr (src: string, prefix: boolean = true): string {
-    return BufferUtil.toHexString_(Buffer.from(src, 'base64'), prefix)
+    return BufferUtil.toHexString(Buffer.from(src, 'base64'), prefix)
   }
 
   static strToBase64(src: string): string {
@@ -736,7 +715,7 @@ export default class StringUtil {
     if (arr.length === 1) {
       return src
     }
-    return ArrayUtil.removeLastOne_(arr).join(str)
+    return ArrayUtil.removeLastOne(arr).join(str)
   }
 
   static removeFirstByStr (src: string, str: string): string {
@@ -744,7 +723,7 @@ export default class StringUtil {
     if (arr.length === 1) {
       return src
     }
-    return ArrayUtil.removeFirstOne_(arr).join(str)
+    return ArrayUtil.removeFirstOne(arr).join(str)
   }
 
   static toNoScientificString(src: string): string {
@@ -764,7 +743,7 @@ export default class StringUtil {
   }
 
   static toUtf8HexString (src: string, prefix: boolean = true): string {
-    return BufferUtil.toHexString_(this.toUtf8Buffer(src), prefix)
+    return BufferUtil.toHexString(this.toUtf8Buffer(src), prefix)
   }
 
   static toUtf8Uint8Array(src: string): Uint8Array {
