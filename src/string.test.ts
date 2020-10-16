@@ -349,6 +349,14 @@ describe('stringAssist', () => {
     const result: string = StringUtil.toPretty(`123`)
     // console.log(JSON.stringify(result))
     assert.strictEqual(result, `123`)
+
+    const result1: string = StringUtil.toPretty(`[{"a": 2}]`)
+    // console.log(result1)
+    assert.strictEqual(result1, `[\n\t{\n\t\t"a": 2\n\t}\n]`)
+
+    const result2: string = StringUtil.toPretty(`{"a": 2}`)
+    // console.log(result1)
+    assert.strictEqual(result2, `{\n\t"a": 2\n}`)
   })
 })
 

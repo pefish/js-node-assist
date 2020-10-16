@@ -751,7 +751,7 @@ export default class StringUtil {
   }
 
   static toPretty(src: string): string {
-    return JSON.stringify(JSON.parse(src), null, 2)
+    return format(src, "\t")
   }
 }
 
@@ -764,3 +764,84 @@ function canCastBigNumber(value: number | string | Calculator): void {
   }
 }
 
+function format(data: string, indentChar?: string, indentBase?: string): string {
+	indentChar = indentChar ? indentChar : "\t";
+	indentBase = indentBase ? indentBase : "";
+
+	let formattedJSON = "";
+	let dataObject: any = undefined;
+	try{
+		dataObject = JSON.parse(data);
+	} catch(Error){
+		throw new TypeError("data parameter is not a valid JSON string !");
+	}
+  let dataIsArray = JSONtypeOf(dataObject) == "array";
+  let dataIsObject = JSONtypeOf(dataObject) == "object";
+
+	// OPEN
+	if(dataIsArray){
+		if(data.length == 0) // Test empty array case
+			return "[]";
+		formattedJSON = "[";
+	}else if (dataIsObject) {
+		let objectsCount = 0;
+		for(let _ in dataObject){
+			objectsCount++;
+			break;
+		}
+		if(objectsCount == 0) // Test empty object case
+			return "{}";
+		formattedJSON = "{";
+	} else {
+    return data
+  }
+	// CONTENT
+	let objectsCount = 0;
+	let keys = Object.keys(dataObject);
+	for(let keyID = 0; keyID < keys.length; ++keyID){
+		if(objectsCount > 0)
+			formattedJSON += ",";
+		if(dataIsArray)
+			formattedJSON += `\n${indentBase}${indentChar}`
+		else
+			formattedJSON += `\n${indentBase}${indentChar}"${keys[keyID]}": `;
+
+		switch(JSONtypeOf(dataObject[keys[keyID]])){
+			case "array":
+			case "object":
+				formattedJSON += format(JSON.stringify(dataObject[keys[keyID]]), indentChar, indentBase + indentChar);
+				break;
+			case "number":
+				formattedJSON += dataObject[keys[keyID]].toString();
+				break;
+			case "null":
+				formattedJSON += "null";
+				break;
+			case "string":
+				formattedJSON += `"${dataObject[keys[keyID]]}"`;
+				break;
+			case "boolean":
+				formattedJSON += dataObject[keys[keyID]];
+				break;
+		}
+		objectsCount++;
+	}
+
+	// CLOSE
+	if(dataIsArray)
+		formattedJSON += `\n${indentBase}]`;
+	else
+		formattedJSON += `\n${indentBase}}`;
+
+	return formattedJSON;
+}
+
+function JSONtypeOf(obj) {
+	let typeOf = typeof(obj);
+	if (typeOf == "object") {
+		if (obj === null) return "null";
+		if (Array.isArray(obj)) return "array";
+		return "object";
+	}
+	return typeOf;
+}
