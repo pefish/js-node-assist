@@ -344,6 +344,12 @@ describe('stringAssist', () => {
     // console.log(JSON.stringify(result))
     assert.strictEqual(JSON.stringify(result), `{"type":"Buffer","data":[102,115,6,68]}`)
   })
+
+  it('toPretty', () => {
+    const result: string = StringUtil.toPretty(`123`)
+    // console.log(JSON.stringify(result))
+    assert.strictEqual(result, `123`)
+  })
 })
 
 

@@ -280,4 +280,5 @@ export default class StringUtil {
     static utf8HexStringToString(src: string): string;
     static toUtf8HexString(src: string, prefix?: boolean): string;
     static toUtf8Uint8Array(src: string): Uint8Array;
+    static toPretty(src: string): string;
 }

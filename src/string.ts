@@ -749,6 +749,10 @@ export default class StringUtil {
   static toUtf8Uint8Array(src: string): Uint8Array {
     return new TextEncoder().encode(src)
   }
+
+  static toPretty(src: string): string {
+    return JSON.stringify(JSON.parse(src), null, 2)
+  }
 }
 
 
