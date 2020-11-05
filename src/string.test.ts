@@ -11,7 +11,7 @@ describe('stringAssist', () => {
     assert.strictEqual(result1, false)
   })
 
-  it('multi_', () => {
+  it('multi', () => {
     const result = StringUtil.start(20000000000).multi(`20730`).unShiftedBy(new Calculator(18)).end()
     // global.console.error(result)
     assert.strictEqual(result, `0.0004146`)
@@ -19,6 +19,11 @@ describe('stringAssist', () => {
     const result1 = StringUtil.start(`0x2`).multi(`11`).end()
     // global.console.error(result)
     assert.strictEqual(result1, `22`)
+
+
+    const result2 = StringUtil.start(`625113268`).multi(`997`)
+    const result3 = result2.multi("1135067100697205")
+    assert.strictEqual(result3.div(result2).end(), `1135067100697205`)
   })
 
   it('remainDecimal_', () => {

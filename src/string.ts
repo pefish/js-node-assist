@@ -23,7 +23,7 @@ export enum RoundingMode {
 export class Calculator {
   private data: string
 
-  constructor (data: number | string | Calculator = `0`) {
+  constructor (data: BigNumber | number | string | Calculator = `0`) {
     this.data = data.toString()
   }
 
@@ -42,21 +42,19 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data);
-    this.data = num1.plus(val).toString()
-    return this
+    return new Calculator(num1.plus(val))
   }
 
   /**
    * 乘以10的几次方
    * @param num
    */
-  shiftedBy(num: number | string | Calculator): Calculator {
+  shiftedBy(num: BigNumber | number | string | Calculator): Calculator {
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.shiftedBy(new Calculator(num.toString()).toNumber()).toString()
-    return this
+    return new Calculator(num1.shiftedBy(new Calculator(num.toString()).toNumber()))
   }
 
   unShiftedBy(num: string | number | Calculator): Calculator {
@@ -64,8 +62,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.shiftedBy(new Calculator(num.toString()).negated().toNumber()).toString()
-    return this
+    return new Calculator(num1.shiftedBy(new Calculator(num.toString()).negated().toNumber()))
   }
 
   /**
@@ -77,8 +74,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.negated().toString()
-    return this
+    return new Calculator(num1.negated())
   }
 
   /**
@@ -92,8 +88,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.minus(val).toString()
-    return this
+    return new Calculator(num1.minus(val).toString())
   }
 
   /**
@@ -107,8 +102,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.times(val).toString()
-    return this
+    return new Calculator(num1.times(val).toString())
   }
 
   /**
@@ -116,13 +110,12 @@ export class Calculator {
    * @param val
    * @returns {any}
    */
-  pow(val: number | string | Calculator): Calculator {
+  pow(val: BigNumber | number | string | Calculator): Calculator {
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.exponentiatedBy(new Calculator(val.toString()).toNumber()).toString()
-    return this
+    return new Calculator(num1.exponentiatedBy(new Calculator(val.toString()).toNumber()).toString())
   }
 
   /**
@@ -136,8 +129,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.div(val).toString()
-    return this
+    return new Calculator(num1.div(val).toString())
   }
 
   /**
@@ -151,8 +143,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.mod(val).toString()
-    return this
+    return new Calculator(num1.mod(val).toString())
   }
 
   /**
@@ -164,8 +155,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num1 = new BN(this.data)
-    this.data = num1.sqrt().toString()
-    return this
+    return new Calculator(num1.sqrt().toString())
   }
 
   /**
@@ -245,14 +235,12 @@ export class Calculator {
           if (result.endsWith(".")) {
             result = result.substr(0, result.length - 1)
           }
-          this.data = result
-          return this
+          return new Calculator(result)
         }
         result = temp
       }
     }
-    this.data = result
-    return this
+    return new Calculator(result)
   }
 
   /**
@@ -264,8 +252,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num = new BN(this.data)
-    this.data = num.abs().toString()
-    return this
+    return new Calculator(num.abs())
   }
 
   /**
@@ -309,8 +296,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num = new BN(this.data)
-    this.data = '0b' + num.toString(2)
-    return this
+    return new Calculator('0b' + num.toString(2))
   }
 
   /**
@@ -322,8 +308,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num = new BN(this.data)
-    this.data = '0o' + num.toString(8)
-    return this
+    return new Calculator('0o' + num.toString(8))
   }
 
   /**
@@ -335,8 +320,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num = new BN(this.data)
-    this.data = num.toString(10)
-    return this
+    return new Calculator(num.toString(10))
   }
 
   /**
@@ -348,8 +332,7 @@ export class Calculator {
       EXPONENTIAL_AT: 1e+9
     })
     const num = new BN(this.data)
-    this.data = '0x' + num.toString(16)
-    return this
+    return new Calculator('0x' + num.toString(16))
   }
 
   end (): string {
@@ -360,7 +343,7 @@ export class Calculator {
 export default class StringUtil {
 
   // 支持"0x12"这种十六进制字串
-  static start (data: number | string | Calculator): Calculator {
+  static start (data: BigNumber | number | string | Calculator): Calculator {
     canCastBigNumber(data)
     return new Calculator(data)
   }
@@ -756,7 +739,7 @@ export default class StringUtil {
 }
 
 
-function canCastBigNumber(value: number | string | Calculator): void {
+function canCastBigNumber(value: BigNumber | number | string | Calculator): void {
   try {
     const _ = new BigNumber(value.toString())
   } catch (err) {

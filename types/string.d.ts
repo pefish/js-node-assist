@@ -14,7 +14,7 @@ export declare enum RoundingMode {
 }
 export declare class Calculator {
     private data;
-    constructor(data?: number | string | Calculator);
+    constructor(data?: BigNumber | number | string | Calculator);
     toString(): string;
     /**
      * 加
@@ -26,7 +26,7 @@ export declare class Calculator {
      * 乘以10的几次方
      * @param num
      */
-    shiftedBy(num: number | string | Calculator): Calculator;
+    shiftedBy(num: BigNumber | number | string | Calculator): Calculator;
     unShiftedBy(num: string | number | Calculator): Calculator;
     /**
      * 取相反数
@@ -50,7 +50,7 @@ export declare class Calculator {
      * @param val
      * @returns {any}
      */
-    pow(val: number | string | Calculator): Calculator;
+    pow(val: BigNumber | number | string | Calculator): Calculator;
     /**
      * 除
      * @param val
@@ -148,7 +148,7 @@ export declare class Calculator {
     end(): string;
 }
 export default class StringUtil {
-    static start(data: number | string | Calculator): Calculator;
+    static start(data: BigNumber | number | string | Calculator): Calculator;
     /**
      * 移除开头几位字符串
      * @param num
