@@ -1,7 +1,6 @@
 
 
 import BigNumber from 'bignumber.js'
-import ErrorHelper from '@pefish/js-error'
 import BufferUtil from './buffer';
 import ArrayUtil from './array';
 // 进制计算的结果都要带上相应前缀 二进制0b 八进制0o 十六进制0x
@@ -743,7 +742,7 @@ function canCastBigNumber(value: BigNumber | number | string | Calculator): void
   try {
     const _ = new BigNumber(value.toString())
   } catch (err) {
-    throw new ErrorHelper(`can not cast to bignumber`)
+    throw new Error(`can not cast to bignumber`)
   }
 }
 

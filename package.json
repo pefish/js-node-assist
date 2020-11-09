@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-node-assist",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -28,8 +28,7 @@
     "prepublish": "yarn build && yarn test"
   },
   "dependencies": {
-    "@pefish/js-error": "^0.1.2",
-    "bignumber.js": "^8.1.1"
+    "bignumber.js": "^9.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",

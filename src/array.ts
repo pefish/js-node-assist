@@ -1,5 +1,4 @@
 
-import ErrorHelper from '@pefish/js-error'
 import StringUtil, { Calculator } from './string';
 
 interface GetMaxMinResult {
@@ -41,7 +40,7 @@ export default class ArrayUtil {
       }
       return newArrays
     } else {
-      throw new ErrorHelper(`spliceNum or arrayNum error`)
+      throw new Error(`spliceNum or arrayNum error`)
     }
   }
 
@@ -118,7 +117,7 @@ export default class ArrayUtil {
 
   static removeByIndex(src: any[], index: number): any[] {
     if (index > src.length - 1) {
-      throw new ErrorHelper(`索引超过数组长度`)
+      throw new Error(`索引超过数组长度`)
     }
     const temp = this.deepCopy(src)
     temp.splice(index, 1)
@@ -129,7 +128,7 @@ export default class ArrayUtil {
     const temp = this.deepCopy(src)
     const index = temp.indexOf(value)
     if (index === -1) {
-      throw new ErrorHelper(`没有找到 ${value}`)
+      throw new Error(`没有找到 ${value}`)
     }
     temp.splice(index, 1)
     return temp
@@ -148,7 +147,7 @@ export default class ArrayUtil {
    */
   static getMax(src: any[]): GetMaxMinResult {
     if (src.length === 0) {
-      throw new ErrorHelper(`空数组`)
+      throw new Error(`空数组`)
     }
 
     let maxValue = src[0].toString()
@@ -174,7 +173,7 @@ export default class ArrayUtil {
 
   static sortWithPriority(src: any[], order: Order): (string | number)[][] {
     if (src.length === 0) {
-      throw new ErrorHelper(`空数组`)
+      throw new Error(`空数组`)
     }
 
     src.sort(([val, priority], [val1, priority1]) => {
@@ -189,7 +188,7 @@ export default class ArrayUtil {
 
   static getMin(src: any[]): GetMaxMinResult {
     if (src.length === 0) {
-      throw new ErrorHelper(`空数组`)
+      throw new Error(`空数组`)
     }
 
     let minValue = src[0].toString()
@@ -244,7 +243,7 @@ export default class ArrayUtil {
 
   static random(src: any[]): any {
     if (src.length === 0) {
-      throw new ErrorHelper(`空数组`)
+      throw new Error(`空数组`)
     }
     return src[Math.floor(Math.random() * 1E4) % src.length]
   }
@@ -255,7 +254,7 @@ export default class ArrayUtil {
    */
   static numberArrayToHexString(src: any[]): string {
     if (src.length === 0) {
-      throw new ErrorHelper(`空数组`)
+      throw new Error(`空数组`)
     }
     return src.map((byte) => {
       return StringUtil.numberStrToHex(byte.toString())
@@ -269,7 +268,7 @@ export default class ArrayUtil {
    */
   static subArray(src: any[], start: number, end: number): any[] {
     if (src.length === 0) {
-      throw new ErrorHelper(`空数组`)
+      throw new Error(`空数组`)
     }
     return src.slice(start, end)
   }
