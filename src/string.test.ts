@@ -363,6 +363,12 @@ describe('stringAssist', () => {
     // console.log(result1)
     assert.strictEqual(result2, `{\n\t"a": 2\n}`)
   })
+
+  it('toBigInt', () => {
+    const result: BigInt = StringUtil.start(1).toBigInt()
+    // console.log(JSON.stringify(result))
+    assert.strictEqual(result.toString(), `1`)
+  })
 })
 
 

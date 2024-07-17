@@ -126,6 +126,11 @@ export declare class Calculator {
      */
     toBigNumber(): BigNumber;
     /**
+   * 转换成 BigInt 对象
+   * @returns {BigInt}
+   */
+    toBigInt(): BigInt;
+    /**
      * 转换为二进制字符串
      * @returns {string}
      */

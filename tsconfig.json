@@ -5,7 +5,7 @@
     "declaration": true,
     "declarationDir": "./types",
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "es2020",
     "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,

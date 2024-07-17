@@ -22,11 +22,11 @@ export enum RoundingMode {
 export class Calculator {
   private data: string
 
-  constructor (data: BigNumber | number | string | Calculator = `0`) {
+  constructor(data: BigNumber | number | string | Calculator = `0`) {
     this.data = data.toString()
   }
 
-  toString (): string {
+  toString(): string {
     return this.data
   }
 
@@ -285,6 +285,14 @@ export class Calculator {
     return new BN(this.data)
   }
 
+  /**
+ * 转换成 BigInt 对象
+ * @returns {BigInt}
+ */
+  toBigInt(): BigInt {
+    return BigInt(this.data)
+  }
+
 
   /**
    * 转换为二进制字符串
@@ -326,7 +334,7 @@ export class Calculator {
    * 转换为十六进制字符串
    * @returns {string}
    */
-  toHexString (): Calculator {
+  toHexString(): Calculator {
     const BN = BigNumber.clone({
       EXPONENTIAL_AT: 1e+9
     })
@@ -334,7 +342,7 @@ export class Calculator {
     return new Calculator('0x' + num.toString(16))
   }
 
-  end (): string {
+  end(): string {
     return this.data
   }
 }
@@ -342,7 +350,7 @@ export class Calculator {
 export default class StringUtil {
 
   // 支持"0x12"这种十六进制字串
-  static start (data: BigNumber | number | string | Calculator): Calculator {
+  static start(data: BigNumber | number | string | Calculator): Calculator {
     canCastBigNumber(data)
     return new Calculator(data)
   }
@@ -353,7 +361,7 @@ export default class StringUtil {
    * @param num
    * @returns {Array}
    */
-  static removeFirst (src: string, num: number): string {
+  static removeFirst(src: string, num: number): string {
     return src.substring(num, src.length)
   }
 
@@ -424,7 +432,7 @@ export default class StringUtil {
    * @param num
    * @returns {string}
    */
-  static removeLast (src: string, num: number): string {
+  static removeLast(src: string, num: number): string {
     return src.substring(0, src.length - num)
   }
 
@@ -433,7 +441,7 @@ export default class StringUtil {
    * @param num
    * @returns {string}
    */
-  static getFirst (src: string, num: number): string {
+  static getFirst(src: string, num: number): string {
     return src.substring(0, num)
   }
 
@@ -442,7 +450,7 @@ export default class StringUtil {
    * @param num
    * @returns {string}
    */
-  static getLast (src: string, num: number): string {
+  static getLast(src: string, num: number): string {
     return src.substring(src.length - num, src.length)
   }
 
@@ -452,7 +460,7 @@ export default class StringUtil {
    * @param replaceStr
    * @returns {string}
    */
-  static replaceAll (src: string, regStr: string, replaceStr: string): string {
+  static replaceAll(src: string, regStr: string, replaceStr: string): string {
     return src.replace(new RegExp(regStr, 'gm'), replaceStr)
   }
 
@@ -462,7 +470,7 @@ export default class StringUtil {
    * @param splitStr2
    * @returns {{}}
    */
-  static classify (src: string, splitStr1: string, splitStr2: string): {
+  static classify(src: string, splitStr1: string, splitStr2: string): {
     name: string,
     is: boolean,
     index: number
@@ -504,7 +512,7 @@ export default class StringUtil {
     return results
   }
 
-  static findAll (src: string, regStr: string): {
+  static findAll(src: string, regStr: string): {
     outputFull: string,
     output: string,
     index: number,
@@ -584,7 +592,7 @@ export default class StringUtil {
    * @param typeStr {string} left/right/both
    * @returns {string | void | *} 结果不带0x
    */
-  static clearHexZeroZero (src: string, typeStr: string): string {
+  static clearHexZeroZero(src: string, typeStr: string): string {
     let hex = src.replace(/^0x/i, '')
     if (typeStr === 'left') {
       hex = hex.replace(/^(?:00)*/, '')
@@ -612,7 +620,7 @@ export default class StringUtil {
     return num1.toString()
   }
 
-  static toArray (src: string, eleLen?: number, arrLen?: number): string[] {
+  static toArray(src: string, eleLen?: number, arrLen?: number): string[] {
     if (eleLen !== undefined && arrLen === undefined) {
       const num = src.length % eleLen === 0 ? parseInt((src.length / eleLen).toString()) : parseInt((src.length / eleLen).toString()) + 1
       const newArrays: string[] = []
@@ -645,7 +653,7 @@ export default class StringUtil {
     return Buffer.from(src, 'hex').toString('base64')
   }
 
-  static base64ToHexStr (src: string, prefix: boolean = true): string {
+  static base64ToHexStr(src: string, prefix: boolean = true): string {
     return BufferUtil.toHexString(Buffer.from(src, 'base64'), prefix)
   }
 
@@ -671,7 +679,7 @@ export default class StringUtil {
   /**
    * 移除最后一段字符串
    */
-  static removeLastStr (src: string, str: string): string {
+  static removeLastStr(src: string, str: string): string {
     if (!src.endsWith(str)) {
       return src
     }
@@ -681,7 +689,7 @@ export default class StringUtil {
   /**
    * 移除开头一段字符串
    */
-  static removeFirstStr (src: string, str: string): string {
+  static removeFirstStr(src: string, str: string): string {
     if (!src.startsWith(str)) {
       return src
     }
@@ -692,7 +700,7 @@ export default class StringUtil {
    * 移除字符串最后一段。
    * @param str
    */
-  static removeLastByStr (src: string, str: string): string {
+  static removeLastByStr(src: string, str: string): string {
     const arr = src.split(str)
     if (arr.length === 1) {
       return src
@@ -700,7 +708,7 @@ export default class StringUtil {
     return ArrayUtil.removeLastOne(arr).join(str)
   }
 
-  static removeFirstByStr (src: string, str: string): string {
+  static removeFirstByStr(src: string, str: string): string {
     const arr = src.split(str)
     if (arr.length === 1) {
       return src
@@ -724,7 +732,7 @@ export default class StringUtil {
     return this.hexToBuffer(src).toString('utf8')
   }
 
-  static toUtf8HexString (src: string, prefix: boolean = true): string {
+  static toUtf8HexString(src: string, prefix: boolean = true): string {
     return BufferUtil.toHexString(this.toUtf8Buffer(src), prefix)
   }
 
@@ -747,83 +755,83 @@ function canCastBigNumber(value: BigNumber | number | string | Calculator): void
 }
 
 function format(data: string, indentChar?: string, indentBase?: string): string {
-	indentChar = indentChar ? indentChar : "\t";
-	indentBase = indentBase ? indentBase : "";
+  indentChar = indentChar ? indentChar : "\t";
+  indentBase = indentBase ? indentBase : "";
 
-	let formattedJSON = "";
-	let dataObject: any = undefined;
-	try{
-		dataObject = JSON.parse(data);
-	} catch(Error){
-		throw new TypeError("data parameter is not a valid JSON string !");
-	}
+  let formattedJSON = "";
+  let dataObject: any = undefined;
+  try {
+    dataObject = JSON.parse(data);
+  } catch (Error) {
+    throw new TypeError("data parameter is not a valid JSON string !");
+  }
   let dataIsArray = JSONtypeOf(dataObject) == "array";
   let dataIsObject = JSONtypeOf(dataObject) == "object";
 
-	// OPEN
-	if(dataIsArray){
-		if(data.length == 0) // Test empty array case
-			return "[]";
-		formattedJSON = "[";
-	}else if (dataIsObject) {
-		let objectsCount = 0;
-		for(let _ in dataObject){
-			objectsCount++;
-			break;
-		}
-		if(objectsCount == 0) // Test empty object case
-			return "{}";
-		formattedJSON = "{";
-	} else {
+  // OPEN
+  if (dataIsArray) {
+    if (data.length == 0) // Test empty array case
+      return "[]";
+    formattedJSON = "[";
+  } else if (dataIsObject) {
+    let objectsCount = 0;
+    for (let _ in dataObject) {
+      objectsCount++;
+      break;
+    }
+    if (objectsCount == 0) // Test empty object case
+      return "{}";
+    formattedJSON = "{";
+  } else {
     return data
   }
-	// CONTENT
-	let objectsCount = 0;
-	let keys = Object.keys(dataObject);
-	for(let keyID = 0; keyID < keys.length; ++keyID){
-		if(objectsCount > 0)
-			formattedJSON += ",";
-		if(dataIsArray)
-			formattedJSON += `\n${indentBase}${indentChar}`
-		else
-			formattedJSON += `\n${indentBase}${indentChar}"${keys[keyID]}": `;
+  // CONTENT
+  let objectsCount = 0;
+  let keys = Object.keys(dataObject);
+  for (let keyID = 0; keyID < keys.length; ++keyID) {
+    if (objectsCount > 0)
+      formattedJSON += ",";
+    if (dataIsArray)
+      formattedJSON += `\n${indentBase}${indentChar}`
+    else
+      formattedJSON += `\n${indentBase}${indentChar}"${keys[keyID]}": `;
 
-		switch(JSONtypeOf(dataObject[keys[keyID]])){
-			case "array":
-			case "object":
-				formattedJSON += format(JSON.stringify(dataObject[keys[keyID]]), indentChar, indentBase + indentChar);
-				break;
-			case "number":
-				formattedJSON += dataObject[keys[keyID]].toString();
-				break;
-			case "null":
-				formattedJSON += "null";
-				break;
-			case "string":
-				formattedJSON += `"${dataObject[keys[keyID]]}"`;
-				break;
-			case "boolean":
-				formattedJSON += dataObject[keys[keyID]];
-				break;
-		}
-		objectsCount++;
-	}
+    switch (JSONtypeOf(dataObject[keys[keyID]])) {
+      case "array":
+      case "object":
+        formattedJSON += format(JSON.stringify(dataObject[keys[keyID]]), indentChar, indentBase + indentChar);
+        break;
+      case "number":
+        formattedJSON += dataObject[keys[keyID]].toString();
+        break;
+      case "null":
+        formattedJSON += "null";
+        break;
+      case "string":
+        formattedJSON += `"${dataObject[keys[keyID]]}"`;
+        break;
+      case "boolean":
+        formattedJSON += dataObject[keys[keyID]];
+        break;
+    }
+    objectsCount++;
+  }
 
-	// CLOSE
-	if(dataIsArray)
-		formattedJSON += `\n${indentBase}]`;
-	else
-		formattedJSON += `\n${indentBase}}`;
+  // CLOSE
+  if (dataIsArray)
+    formattedJSON += `\n${indentBase}]`;
+  else
+    formattedJSON += `\n${indentBase}}`;
 
-	return formattedJSON;
+  return formattedJSON;
 }
 
 function JSONtypeOf(obj) {
-	let typeOf = typeof(obj);
-	if (typeOf == "object") {
-		if (obj === null) return "null";
-		if (Array.isArray(obj)) return "array";
-		return "object";
-	}
-	return typeOf;
+  let typeOf = typeof (obj);
+  if (typeOf == "object") {
+    if (obj === null) return "null";
+    if (Array.isArray(obj)) return "array";
+    return "object";
+  }
+  return typeOf;
 }

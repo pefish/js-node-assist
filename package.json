@@ -1,6 +1,6 @@
 {
   "name": "@pefish/js-node-assist",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "assistance tool of node",
   "keywords": [
     "assist",
@@ -25,7 +25,7 @@
     "test": "mocha --require ts-node/register src/**/*.test.ts",
     "t": "mocha --require ts-node/register",
     "doc": "rm -rf docs && jsdoc src -r -d docs",
-    "prepublish": "yarn build && yarn test"
+    "prepublish": "npm run build && npm run test"
   },
   "dependencies": {
     "bignumber.js": "^9.0.1"
@@ -36,6 +36,7 @@
     "@types/node": "^11.13.7",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "mocha": "^10.6.0"
   }
 }
