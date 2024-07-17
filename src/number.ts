@@ -15,6 +15,14 @@ export default class NumberUtil {
   }
 
   /**
+   * 转换成 BigInt 对象
+   * @returns {BigNumber}
+   */
+  static toBigInt(src: number): BigInt {
+    return BigInt(src)
+  }
+
+  /**
    * 转换为二进制字符串
    * @returns {string}
    */

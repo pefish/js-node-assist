@@ -365,9 +365,9 @@ describe('stringAssist', () => {
   })
 
   it('toBigInt', () => {
-    const result: BigInt = StringUtil.start(1).toBigInt()
+    const result: BigInt = StringUtil.start(1).shiftedBy(2).toBigInt()
     // console.log(JSON.stringify(result))
-    assert.strictEqual(result.toString(), `1`)
+    assert.strictEqual(result.toString(), `100`)
   })
 })
 

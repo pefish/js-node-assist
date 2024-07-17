@@ -7,6 +7,11 @@ export default class NumberUtil {
      */
     static toBigNumber(src: number): BigNumber;
     /**
+     * 转换成 BigInt 对象
+     * @returns {BigNumber}
+     */
+    static toBigInt(src: number): BigInt;
+    /**
      * 转换为二进制字符串
      * @returns {string}
      */
