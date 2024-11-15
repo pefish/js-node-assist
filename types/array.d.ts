@@ -2,7 +2,7 @@ interface GetMaxMinResult {
     value: string;
     indexes: number[];
 }
-declare type Order = (`desc` | `asc`);
+type Order = (`desc` | `asc`);
 export default class ArrayUtil {
     /**
    * 转换为二维数组

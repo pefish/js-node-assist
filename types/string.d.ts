@@ -1,12 +1,11 @@
-/// <reference types="node" />
-import BigNumber from 'bignumber.js';
+import BigNumber from "bignumber.js";
 export declare enum RoundingMode {
-    ROUND_UP = 0,
-    ROUND_DOWN = 1,
+    ROUND_UP = 0,// 直接截断，向上取整
+    ROUND_DOWN = 1,// 直接截断，向下取整
     ROUND_CEIL = 2,
     ROUND_FLOOR = 3,
-    ROUND_HALFUP = 4,
-    ROUND_HALFDOWN = 5,
+    ROUND_HALFUP = 4,// 遇到.5的情况时往上近似,就是四舍五入
+    ROUND_HALFDOWN = 5,// 遇到.5的情况时往下近似
     ROUND_HALFEVEN = 6,
     ROUND_HALFCEIL = 7,
     ROUND_HALFFLOOR = 8,
@@ -126,9 +125,9 @@ export declare class Calculator {
      */
     toBigNumber(): BigNumber;
     /**
-   * 转换成 BigInt 对象
-   * @returns {BigInt}
-   */
+     * 转换成 BigInt 对象
+     * @returns {BigInt}
+     */
     toBigInt(): BigInt;
     /**
      * 转换为二进制字符串

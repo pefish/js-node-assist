@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import BigNumber from 'bignumber.js';
 export default class NumberUtil {
     /**

@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export default class BufferUtil {
     /**
      * 以hex编码转换为十进制的bytes数组
