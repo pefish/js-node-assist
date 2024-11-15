@@ -778,7 +778,7 @@ function canCastBigNumber(
   try {
     const _ = new BigNumber(value.toString());
   } catch (err) {
-    throw new Error(`<${value.toString()}> can not cast to bignumber`);
+    throw new Error(`<${value}> can not cast to bignumber`);
   }
 }
 
