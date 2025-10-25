@@ -25,11 +25,6 @@ export default class NumberUtil {
      * @returns {string}
      */
     static toHexString(src: number): string;
-    /**
-     * 为了调用此方法时不用区分主体是string还是number
-     * @returns {toNumber}
-     */
-    static toNumber(src: number): number;
     static toInt(src: number): number;
     static toBuffer(src: number, endian?: EndianType): Buffer;
     static toNoScientificString(src: number): string;

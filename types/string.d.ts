@@ -184,6 +184,11 @@ export default class StringUtil {
      */
     static numberStrToHex(src: string): string;
     /**
+     * '190' --> 190
+     * @returns {string}
+     */
+    static numberStrToNumber(src: string): number;
+    /**
      * 判断此值用于计算时是否具有精度问题
      */
     static hasPrecisionIssue(src: string): boolean;
