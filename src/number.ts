@@ -46,14 +46,6 @@ export default class NumberUtil {
     return src.toString(16)
   }
 
-  /**
-   * 为了调用此方法时不用区分主体是string还是number
-   * @returns {toNumber}
-   */
-  static toNumber(src: number): number {
-    return src
-  }
-
   // 转成int类型，直接溢出截取
   static toInt(src: number): number {
     return parseInt(src.toString(10), 10)

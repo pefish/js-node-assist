@@ -429,6 +429,14 @@ export default class StringUtil {
   }
 
   /**
+   * '190' --> 190
+   * @returns {string}
+   */
+  static numberStrToNumber(src: string): number {
+    return new Calculator(src).toNumber();
+  }
+
+  /**
    * 判断此值用于计算时是否具有精度问题
    */
   static hasPrecisionIssue(src: string): boolean {
